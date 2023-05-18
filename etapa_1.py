@@ -1,26 +1,36 @@
 # ETAPA_1
 # INTERACCION CON EL JUGADOR
 
-def tablero(letra,lista_acierto,letra_errada,letra_adivinada):
-
-    for element in letra:
+def tablero(letras_candidatas):
+    # CREO UNA FUNCION QUE OBTENGA LOS 10 CARACTERES A JUGAR (ETAPA 3)
+    ACIERTOS = 0
+    ERRORES = 0
+    lista_aciertos = []
+    for element in letras_candidatas:
         print(f"["+element+"]",end="")
     print() 
-    for acetado in lista_acierto:
-        print(acetado,end="")
+    for acertado in lista_aciertos:
+        print(acertado,end="")
     print()
-    print(f"Acierto: {letra_adivinada}")
-    print(f"Errores: {letra_errada}")
+    print(f"Acierto: {ACIERTOS}")
+    print(f"Errores: {ERRORES}")
 
-def turno(letra,long_palabra,deficion):
+def turno(palabra_y_deficion):
+    # OBTENEMOS EL DICCIONARIO CON SU PALABRA Y DEFINICION (ETAPA 2) 
     LETRA_CAND = 0
-    print(f"Turno de letra {letra[LETRA_CAND]} - Palabra de {long_palabra} letras")
-    print(f"Definicion: {deficion}")
+    DEFINICION = 1
+    print(f"Turno de letra {palabra_y_deficion[LETRA_CAND]} - Palabra de {len(palabra_y_deficion[LETRA_CAND])} letras")
+    print(f"Definicion: {palabra_y_deficion[DEFINICION]}")
 
-
-def ingresar_palabra(palabra_cand):
+def ingre_palabra(palabras_candidatas):
+    # ETAPA 5 , PUNTAJE 
     palabra = input("Ingrese palabra:")
-    lista_vocal_acent = ["á", "é", "í", "ó", "ú"]
+
+        
+
+
+
+
 
             
 
