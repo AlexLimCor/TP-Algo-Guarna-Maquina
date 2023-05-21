@@ -1,7 +1,8 @@
 from etapa3 import definicion, etapa_2, etapa3 , letrasElegidas
 # UNIMOS TODAS LAS ETAPAS CREADAS 
 
-def invocar():
+def main():
+    # MOSTRAMOS EL TABLERO DE LAS LETRAS PARTICIPANTES
     palabras_deficiones = definicion(etapa3(etapa_2(),letrasElegidas))
     lista_aciertos = []
     ACIERTOS = 0
@@ -23,6 +24,7 @@ def invocar():
             print(agregar,end="")
         print(f"\nAciertos:", ACIERTOS)
         print(f"Errores:",ERRORES)
+    # TURNO DE LA LETRA A ADIVINAR 
         print(f"Turno letra",palabras_deficiones[PALABRA][PALABRA_UNO][CARACTER].upper(),"- Palabra de",len(palabras_deficiones[PALABRA][PALABRA_UNO]),"letras")
         print(f"Definicion:",palabras_deficiones[PALABRA][DEFINICION])
         ing_palabra = input(f"Ingrese palabra:")
@@ -53,7 +55,17 @@ def invocar():
             INDICE_2 +=1
             PUNTAJE -= 3
     print(f"Puntaje final: {PUNTAJE}")
-invocar()
+    pregunta = int(input("Desea volver a jugar?: \n1.Si \n2.No"))
+    SI = 1
+    NO = 2
+    volverajugar = "Gracias por jugar"
+    if pregunta == SI:
+        volverajugar = main()
+    return volverajugar
+
+print(main())
+
+        
 
 
    
