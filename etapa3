@@ -105,8 +105,23 @@ def etapa3(dicc_pal_def,letrasElegidas):
     return palabrasElegidas
 
 #Invocamos 100 veces las funciones letrasParticipantes y etapa3.
-for i in range (101):      
+'''for i in range (101):      
     letrasElegidas = letrasParticipantes()
     print (letrasElegidas)
-    print (etapa3(etapa_2(),letrasElegidas))
+    print (etapa3(etapa_2(),letrasElegidas))'''
 #------ ACA TERMINA ETAPA 3 ------
+
+letrasElegidas = letrasParticipantes()
+def definicion(lista):
+    diccionario = etapa_2()
+    lista_result = []
+    ORDEN = 0
+    for clave,valor in diccionario.items():
+        if clave in lista:
+            lista_result.append([clave,valor])
+    lista_result.sort(key=lambda x:x[ORDEN])
+    return lista_result
+
+
+
+
