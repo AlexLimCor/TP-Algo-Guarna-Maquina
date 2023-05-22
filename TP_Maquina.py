@@ -3,10 +3,11 @@ import random
 
 # ETAPA_1
 # INTERACCION CON EL JUGADOR
+# CREAMOS UNA FUNCION DONDE INVOLUCRA LA ETAPA 1 Y 5 
 def main():
-    # MOSTRAMOS EL TABLERO DE LAS LETRAS PARTICIPANTES
-    palabras_deficiones = []
-    lista_caracter = []
+    # BUSCAMOS GENERAR UNA LISTA DE LETRAS ELEGIDAS Y OTRA LISTA CON LA PALABRA Y SU DEFINICION SELECCIONADA 
+    palabras_deficiones = [] # LISTA PALABRA Y DEFINICION
+    lista_caracter = []   # LISTA DE LETRAS ELEGIDAS
     lista_aciertos = []
     ACIERTOS = 0
     lista_informe = []
@@ -68,9 +69,9 @@ def main():
     print("----------------------------------------------------------")
     return volverajugar
 
-
 # ETAPA 2
-'''En esta etapa procesamos el diccionario de palabras con sus definiciones y lo convertimos a diccionario con los requisitos pedidos'''
+'''En esta etapa procesamos el diccionario de palabras con sus definiciones y
+ lo convertimos a diccionario con los requisitos pedidos'''
 def etapa_2():
     datos = obtener_lista_definiciones()
     dicc_pal_def = {}
@@ -96,81 +97,77 @@ def letrasParticipantes():
     return letrasElegidas
 # Creamos lista de palabras participantes.    
 def etapa3(dicc_pal_def,letrasElegidas):
-    lista1=[] #Lista de palabras correspondiente a la 1° letra participante
-    lista2=[] #Lista de palabras correspondiente a la 2° letra participante
-    lista3=[] #Lista de palabras correspondiente a la 3° letra participante
-    lista4=[] #Lista de palabras correspondiente a la 4° letra participante
-    lista5=[] #Lista de palabras correspondiente a la 5° letra participante
-    lista6=[] #Lista de palabras correspondiente a la 6° letra participante
-    lista7=[] #Lista de palabras correspondiente a la 7° letra participante
-    lista8=[] #Lista de palabras correspondiente a la 8° letra participante
-    lista9=[] #Lista de palabras correspondiente a la 9° letra participante
-    lista10=[] #Lista de palabras correspondiente a la 10° letra participante
+
     palabrasElegidas=[]
-    #Creamos a partir del diccionario una lista de palabras ordenadas y contemplando los acentos y la ñ
-    palabras= sorted(dicc_pal_def,key=lambda x: x.lower().
+    #Convertimos el diccionario en lista para procesar las claves
+    palabras = list(dicc_pal_def)
+    #Mezclamos las palabras
+    random.shuffle(palabras)
+    # Indice que se incrementa con cada ciclo del while
+    i = 0
+    #Lista en la que se registra si se encontro la palabra segun las letras participantes
+    encontradas = [False,False,False,False,False,False,False,False,False,False]
+    while encontradas.count(False) > 0 and i < len(palabras):
+        if len(palabras[i])>=5:
+            #Se guardan las palabras segun las letras participantes, en la lista palabrasElegidas
+            if not(encontradas[0]) and letrasElegidas[0]==palabras[i][0].replace("á","a").replace("é","e").\
+                     replace("í","i").replace("ó","o").\
+                     replace("ú","u"):
+                palabrasElegidas.append(palabras[i])
+                encontradas[0] = True
+            elif not(encontradas[1]) and letrasElegidas[1]==palabras[i][0].replace("á","a").replace("é","e").\
+                     replace("í","i").replace("ó","o").\
+                     replace("ú","u"):
+                palabrasElegidas.append(palabras[i])
+                encontradas[1] = True            
+            elif not(encontradas[2]) and letrasElegidas[2]==palabras[i][0].replace("á","a").replace("é","e").\
+                     replace("í","i").replace("ó","o").\
+                     replace("ú","u"):
+                palabrasElegidas.append(palabras[i])
+                encontradas[2] = True
+            elif not(encontradas[3]) and letrasElegidas[3]==palabras[i][0].replace("á","a").replace("é","e").\
+                     replace("í","i").replace("ó","o").\
+                     replace("ú","u"):
+                palabrasElegidas.append(palabras[i])
+                encontradas[3] = True
+            elif not(encontradas[4]) and letrasElegidas[4]==palabras[i][0].replace("á","a").replace("é","e").\
+                     replace("í","i").replace("ó","o").\
+                     replace("ú","u"):
+                palabrasElegidas.append(palabras[i])
+                encontradas[4] = True
+            elif not(encontradas[5]) and letrasElegidas[5]==palabras[i][0].replace("á","a").replace("é","e").\
+                     replace("í","i").replace("ó","o").\
+                     replace("ú","u"):
+                palabrasElegidas.append(palabras[i])
+                encontradas[5] = True
+            elif not(encontradas[6]) and letrasElegidas[6]==palabras[i][0].replace("á","a").replace("é","e").\
+                     replace("í","i").replace("ó","o").\
+                     replace("ú","u"):
+                palabrasElegidas.append(palabras[i])
+                encontradas[6] = True
+            elif not(encontradas[7]) and letrasElegidas[7]==palabras[i][0].replace("á","a").replace("é","e").\
+                     replace("í","i").replace("ó","o").\
+                     replace("ú","u"):
+                palabrasElegidas.append(palabras[i])
+                encontradas[7] = True
+            elif not(encontradas[8]) and letrasElegidas[8]==palabras[i][0].replace("á","a").replace("é","e").\
+                     replace("í","i").replace("ó","o").\
+                     replace("ú","u"):
+                palabrasElegidas.append(palabras[i])
+                encontradas[8] = True
+            elif not(encontradas[9]) and letrasElegidas[9]==palabras[i][0].replace("á","a").replace("é","e").\
+                     replace("í","i").replace("ó","o").\
+                     replace("ú","u"):
+                palabrasElegidas.append(palabras[i])
+                encontradas[9] = True
+        i += 1
+    #Ordenamos la lista de palabras teniendo en cuenta acentos y ñ
+    palabrasElegidas.sort(key=lambda x: x.lower().
                      replace("á","a").replace("é","e").
                      replace("í","i").replace("ó","o").
                      replace("ú","u").replace("ñ","nzz"))
-    #Obtenemos una palabra de la lista palabras para procesarlas
-    for palabra in palabras:
-        #verificamos que cumplan las condiciones de longitud y que su 1° letra sea de las participantes
-        if palabra[0] in letrasElegidas and len(palabra)>=5:
-            #creamos listas de palabras segun las letras participantes
-            if letrasElegidas[0]==palabra[0].replace("á","a").replace("é","e").\
-                     replace("í","i").replace("ó","o").\
-                     replace("ú","u"):
-               lista1.append(palabra)
-            elif letrasElegidas[1]==palabra[0].replace("á","a").replace("é","e").\
-                     replace("í","i").replace("ó","o").\
-                     replace("ú","u"):
-                lista2.append(palabra)            
-            elif letrasElegidas[2]==palabra[0].replace("á","a").replace("é","e").\
-                     replace("í","i").replace("ó","o").\
-                     replace("ú","u"):
-                lista3.append(palabra)
-            elif letrasElegidas[3]==palabra[0].replace("á","a").replace("é","e").\
-                     replace("í","i").replace("ó","o").\
-                     replace("ú","u"):
-                lista4.append(palabra)
-            elif letrasElegidas[4]==palabra[0].replace("á","a").replace("é","e").\
-                     replace("í","i").replace("ó","o").\
-                     replace("ú","u"):
-                lista5.append(palabra)
-            elif letrasElegidas[5]==palabra[0].replace("á","a").replace("é","e").\
-                     replace("í","i").replace("ó","o").\
-                     replace("ú","u"):
-                lista6.append(palabra)
-            elif letrasElegidas[6]==palabra[0].replace("á","a").replace("é","e").\
-                     replace("í","i").replace("ó","o").\
-                     replace("ú","u"):
-                lista7.append(palabra)
-            elif letrasElegidas[7]==palabra[0].replace("á","a").replace("é","e").\
-                     replace("í","i").replace("ó","o").\
-                     replace("ú","u"):
-                lista8.append(palabra)
-            elif letrasElegidas[8]==palabra[0].replace("á","a").replace("é","e").\
-                     replace("í","i").replace("ó","o").\
-                     replace("ú","u"):
-                lista9.append(palabra)
-            elif letrasElegidas[9]==palabra[0].replace("á","a").replace("é","e").\
-                     replace("í","i").replace("ó","o").\
-                     replace("ú","u"):
-                lista10.append(palabra)
-    #seleccionamos una palabra aleatoria de cada lista segun letra
-    #y guardamos en la lista palabrasElegidas, la cual será retornada
-    palabrasElegidas.extend(random.sample(lista1,1))
-    palabrasElegidas.extend(random.sample(lista2,1))
-    palabrasElegidas.extend(random.sample(lista3,1))
-    palabrasElegidas.extend(random.sample(lista4,1))
-    palabrasElegidas.extend(random.sample(lista5,1))
-    palabrasElegidas.extend(random.sample(lista6,1))
-    palabrasElegidas.extend(random.sample(lista7,1))
-    palabrasElegidas.extend(random.sample(lista8,1))
-    palabrasElegidas.extend(random.sample(lista9,1))
-    palabrasElegidas.extend(random.sample(lista10,1))
-    
     return palabrasElegidas
+
 
 #Invocamos 100 veces las funciones letrasParticipantes y etapa3.
 '''for i in range (101):      
@@ -178,25 +175,20 @@ def etapa3(dicc_pal_def,letrasElegidas):
     print (letrasElegidas)
     print (etapa3(etapa_2(),letrasElegidas))'''
 def definicion(lista):
+    # LO QUE SE BUSCA EN ESTA FUNCION ES OBTENER UNA LISTA(obtenida en la etapa3) 
+    # ANIDADA CON LA FORMA : [[PALABRA,DEFINICION],[PALABRA2,DEFINICION2],ETC...]
     diccionario = etapa_2()
     lista_result = []
     ORDEN = 0
     for clave,valor in diccionario.items():
         if clave in lista:
             lista_result.append([clave,valor])
-    lista_result.sort(key=lambda x:x[ORDEN])
+    lista_result.sort(key=lambda x:x[ORDEN].replace("ñ","nzz"))
     return lista_result
-#------ ACA TERMINA ETAPA 3 ------
-
-# ---------- ETAPA 4 ----------
-# UNIMOS TODAS LAS ETAPAS 
-letrasElegidas = letrasParticipantes()
-
-def main():
-    # MOSTRAMOS EL TABLERO DE LAS LETRAS PARTICIPANTES
-    print("----------------------------------------------------------")
-    palabras_deficiones = definicion(etapa3(etapa_2(),letrasElegidas))
-    lista_caracter = letrasElegidas
+# --------------- ETAPA 4 --------------
+def UnionEtapas(): 
+    print("---------------------------------------------------")
+    palabras_deficiones = definicion(etapa3(etapa_2(),letrasParticipantes()))
     lista_aciertos = []
     ACIERTOS = 0
     lista_informe = []
@@ -209,8 +201,8 @@ def main():
     INDICE =0
     PALABRA_UNO = 0
     DEFINICION = 1
-    while INDICE < len(lista_caracter):
-        for caracter in lista_caracter:
+    while INDICE < len(palabras_deficiones):
+        for caracter in palabras_deficiones:
             print("["+caracter.upper()+"]",end="")   
         print()
         for agregar in lista_aciertos:
@@ -220,7 +212,7 @@ def main():
     # TURNO DE LA LETRA A ADIVINAR 
         print(f"Turno letra",lista_caracter[CARACTER].upper(),"- Palabra de",len(palabras_deficiones[PALABRA][PALABRA_UNO]),"letras")
         print(f"Definicion:",palabras_deficiones[PALABRA][DEFINICION])
-        '''print(palabras_deficiones[PALABRA])'''
+        print(palabras_deficiones[PALABRA])
         ing_palabra = input(f"Ingrese palabra:")
         if ing_palabra ==  palabras_deficiones[PALABRA][PALABRA_UNO]:
             lista_informe.append(palabras_deficiones[PALABRA][PALABRA_UNO])
@@ -242,12 +234,12 @@ def main():
     diccionario_resumen = dict(zip(lista_informe,lista_aciertos))
     INDICE_2 = 0
     PUNTAJE = 0
-    CARACTER_2 =0
+    CARACTER_2 = 0
     for clave,valor in diccionario_resumen.items():
         if valor == ACERTADO:
             print("Turno letra:",lista_caracter[CARACTER_2].upper(),"- Palabra de",len(clave),"letras-",clave,"acierto")
             PUNTAJE +=10
-            CARACTER_2 +=1
+            CARACTER_2+=1
         if valor == ERRADO:
             print("Turno letra:",lista_caracter[CARACTER_2].upper(),"- Palabra de",len(clave),"letras-",lista_agre_usuario[INDICE_2],"- error - Palabra correcta:",clave)
             INDICE_2 +=1
@@ -258,12 +250,19 @@ def main():
     SI = 1
     volverajugar = "Gracias por jugar"
     if pregunta == SI:
-        volverajugar = main()
-        
+        volverajugar = UnionEtapas()
     print("----------------------------------------------------------")
     return volverajugar
+UnionEtapas()
 
-print(main())
+
+
+
+
+
+
+
+
 
 
 
