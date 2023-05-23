@@ -186,9 +186,11 @@ def definicion(lista):
     lista_result.sort(key=lambda x:x[ORDEN].replace("ñ","nzz"))
     return lista_result
 # --------------- ETAPA 4 --------------
+
 def UnionEtapas(): 
     print("---------------------------------------------------")
-    palabras_deficiones = definicion(etapa3(etapa_2(),letrasParticipantes()))
+    letrasElegidas = letrasParticipantes()
+    palabras_deficiones = definicion(etapa3(etapa_2(),letrasElegidas))
     lista_aciertos = []
     ACIERTOS = 0
     lista_informe = []
@@ -201,8 +203,8 @@ def UnionEtapas():
     INDICE =0
     PALABRA_UNO = 0
     DEFINICION = 1
-    while INDICE < len(palabras_deficiones):
-        for caracter in palabras_deficiones:
+    while INDICE < len(letrasElegidas):
+        for caracter in letrasElegidas:
             print("["+caracter.upper()+"]",end="")   
         print()
         for agregar in lista_aciertos:
@@ -210,9 +212,9 @@ def UnionEtapas():
         print(f"\nAciertos:", ACIERTOS)
         print(f"Errores:",ERRORES)
     # TURNO DE LA LETRA A ADIVINAR 
-        print(f"Turno letra",lista_caracter[CARACTER].upper(),"- Palabra de",len(palabras_deficiones[PALABRA][PALABRA_UNO]),"letras")
+        print(f"Turno letra",letrasElegidas[CARACTER].upper(),"- Palabra de",len(palabras_deficiones[PALABRA][PALABRA_UNO]),"letras")
         print(f"Definicion:",palabras_deficiones[PALABRA][DEFINICION])
-        print(palabras_deficiones[PALABRA])
+        #print(palabras_deficiones[PALABRA])
         ing_palabra = input(f"Ingrese palabra:")
         if ing_palabra ==  palabras_deficiones[PALABRA][PALABRA_UNO]:
             lista_informe.append(palabras_deficiones[PALABRA][PALABRA_UNO])
@@ -225,8 +227,8 @@ def UnionEtapas():
             lista_agre_usuario.append(ing_palabra)
             ERRORES +=1
             PALABRA+=1
-            lista_aciertos.append(ERRADO)
             CARACTER +=1
+            lista_aciertos.append(ERRADO)
         print("----------------------------------------------------------")
         INDICE += 1
     # ETAPA 5 , PUNTAJE Y RESUMEN
@@ -234,17 +236,14 @@ def UnionEtapas():
     diccionario_resumen = dict(zip(lista_informe,lista_aciertos))
     INDICE_2 = 0
     PUNTAJE = 0
-    CARACTER_2 = 0
     for clave,valor in diccionario_resumen.items():
         if valor == ACERTADO:
-            print("Turno letra:",lista_caracter[CARACTER_2].upper(),"- Palabra de",len(clave),"letras-",clave,"acierto")
+            print("Turno letra:",clave[PALABRA_UNO].upper(),"- Palabra de",len(clave),"letras-",clave,"acierto")
             PUNTAJE +=10
-            CARACTER_2+=1
         if valor == ERRADO:
-            print("Turno letra:",lista_caracter[CARACTER_2].upper(),"- Palabra de",len(clave),"letras-",lista_agre_usuario[INDICE_2],"- error - Palabra correcta:",clave)
+            print("Turno letra:",clave[PALABRA_UNO].upper(),"- Palabra de",len(clave),"letras-",lista_agre_usuario[INDICE_2],"- error - Palabra correcta:",clave)
             INDICE_2 +=1
             PUNTAJE -= 3
-            CARACTER_2 +=1
     print(f"Puntaje final: {PUNTAJE}")
     pregunta = int(input("Desea volver a jugar?: \n1.Si \n2.No \n"))
     SI = 1
@@ -253,7 +252,7 @@ def UnionEtapas():
         volverajugar = UnionEtapas()
     print("----------------------------------------------------------")
     return volverajugar
-UnionEtapas()
+print(UnionEtapas())
 
 
 
