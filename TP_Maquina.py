@@ -1,75 +1,59 @@
 from datos import obtener_lista_definiciones
 import random
 
-# ETAPA_1
+# ----------ETAPA_1-------------
 # INTERACCION CON EL JUGADOR
-# CREAMOS UNA FUNCION DONDE INVOLUCRA LA ETAPA 1 Y 5 
-def main():
-    # BUSCAMOS GENERAR UNA LISTA DE LETRAS ELEGIDAS Y OTRA LISTA CON LA PALABRA Y SU DEFINICION SELECCIONADA 
-    palabras_deficiones = [] # LISTA PALABRA Y DEFINICION
-    lista_caracter = []   # LISTA DE LETRAS ELEGIDAS
-    lista_aciertos = []
-    ACIERTOS = 0
-    lista_informe = []
-    lista_agre_usuario = []
+def tablero_turno_palabraIngresada(palabra_y_deficion,letrasElegidas):
+    ''' Obtenemos como parametro una lista de  10 palabras junto con sus definiciones seleccionadas, y el otro parametro
+    las letras seleccionadas que tambien son 10 '''
+    # palabra_y_definicion = [[PALABRA,DEFINCION],[PALABRA2,DEFINICION2],ETC....]
+    #letrasElegidas = ["A","B","C","D","E","F","G",ETC....]
+    aciertos = []
+    ACIERTO = 0
     ERRORES = 0
-    CARACTER = 0
-    ACERTADO = "[a]"
-    ERRADO = "[e]"
+    lista_resumen = []
     PALABRA = 0
-    INDICE =0
     PALABRA_UNO = 0
+    CARACTER = 0
     DEFINICION = 1
-    while INDICE < len(lista_caracter):
-        for caracter in lista_caracter:
-            print("["+caracter.upper()+"]",end="")   
+    a = "[a]"
+    e = "[e]"
+    INDICE = 0
+    while INDICE < len(letrasElegidas):
+        print("-------------------------------------------------------")
+        for element in letrasElegidas:
+            print(f"[{element.upper()}]",end="")
         print()
-        for agregar in lista_aciertos:
-            print(agregar,end="")
-        print(f"\nAciertos:", ACIERTOS)
-        print(f"Errores:",ERRORES)
-    # TURNO DE LA LETRA A ADIVINAR 
-        print(f"Turno letra",lista_caracter[CARACTER].upper(),"- Palabra de",len(palabras_deficiones[PALABRA][PALABRA_UNO]),"letras")
-        print(f"Definicion:",palabras_deficiones[PALABRA][DEFINICION])
-        ing_palabra = input(f"Ingrese palabra:")
-        if ing_palabra ==  palabras_deficiones[PALABRA][PALABRA_UNO]:
-            lista_informe.append(palabras_deficiones[PALABRA][PALABRA_UNO])
-            ACIERTOS +=1
+        for i in aciertos:
+            print(i,end="")
+        print(f"\nAciertos: {ACIERTO}")
+        print(f"Errores: {ERRORES}")
+        print(f"Turno de letra {letrasElegidas[CARACTER].upper()} - Palabra de {len(palabra_y_deficion[PALABRA][PALABRA_UNO])} letras")
+        print(f"Definicion: {palabra_y_deficion[PALABRA][DEFINICION]}")
+        palabra_regi = input("Ingrese una palabra:")
+        if palabra_regi == palabra_y_deficion[PALABRA][PALABRA_UNO]:
+            aciertos.append(a)
+            CARACTER +=1
             PALABRA +=1
-            CARACTER +=1
-            lista_aciertos.append(ACERTADO) 
+            ACIERTO +=1
+            lista_resumen.append(palabra_regi)
         else:
-            lista_informe.append(palabras_deficiones[PALABRA][PALABRA_UNO])
-            lista_agre_usuario.append(ing_palabra)
-            ERRORES +=1
-            PALABRA+=1
-            lista_aciertos.append(ERRADO)
+            aciertos.append(e)
             CARACTER +=1
-        print("----------------------------------------------------------")
-        INDICE += 1
-    # ETAPA 5 , PUNTAJE Y RESUMEN
-    print("*****RESUMEN *****")
-    diccionario_resumen = dict(zip(lista_informe,lista_aciertos))
-    INDICE_2 = 0
-    PUNTAJE = 0
-    for clave,valor in diccionario_resumen.items():
-        if valor == ACERTADO:
-            print("Turno letra:",clave[PALABRA_UNO][CARACTER].upper(),"- Palabra de",len(clave),"letras-",clave,"acierto")
-            PUNTAJE +=10
-        if valor == ERRADO:
-            print("Turno letra:",clave[PALABRA_UNO][CARACTER].upper(),"- Palabra de",len(clave),"letras-",lista_agre_usuario[INDICE_2],"- error - Palabra correcta:",clave)
-            INDICE_2 +=1
-            PUNTAJE -= 3
-    print(f"Puntaje final: {PUNTAJE}")
-    pregunta = int(input("Desea volver a jugar?: \n1.Si \n2.No \n"))
-    SI = 1
-    volverajugar = "Gracias por jugar"
-    if pregunta == SI:
-        volverajugar = main()
-    print("----------------------------------------------------------")
-    return volverajugar
+            PALABRA +=1
+            lista_resumen.append(palabra_regi)
+            ERRORES +=1            
+        INDICE +=1
+    print("-----------------------------------------------")
+    for element in letrasElegidas:
+        print(f"[{element.upper()}]",end="")
+    print()
+    for i in aciertos:
+        print(i,end="")
+    print()
+    return lista_resumen
 
-# ETAPA 2
+# ----------ETAPA 2---------
 '''En esta etapa procesamos el diccionario de palabras con sus definiciones y
  lo convertimos a diccionario con los requisitos pedidos'''
 def etapa_2():
@@ -185,206 +169,38 @@ def definicion(lista):
             lista_result.append([clave,valor])
     lista_result.sort(key=lambda x:x[ORDEN].replace("ñ","nzz"))
     return lista_result
-# --------------- ETAPA 4 --------------
+    
 
-def UnionEtapas(): 
-    print("---------------------------------------------------")
+# -------------ETAPA 4----------------------#
+def UnionEtapas(puntaje_inicial):
     letrasElegidas = letrasParticipantes()
-    palabras_deficiones = definicion(etapa3(etapa_2(),letrasElegidas))
-    lista_aciertos = []
-    ACIERTOS = 0
-    lista_informe = []
-    lista_agre_usuario = []
-    ERRORES = 0
-    CARACTER = 0
-    ACERTADO = "[a]"
-    ERRADO = "[e]"
-    PALABRA = 0
-    INDICE =0
-    PALABRA_UNO = 0
-    DEFINICION = 1
-    while INDICE < len(letrasElegidas):
-        for caracter in letrasElegidas:
-            print("["+caracter.upper()+"]",end="")   
-        print()
-        for agregar in lista_aciertos:
-            print(agregar,end="")
-        print(f"\nAciertos:", ACIERTOS)
-        print(f"Errores:",ERRORES)
-    # TURNO DE LA LETRA A ADIVINAR 
-        print(f"Turno letra",letrasElegidas[CARACTER].upper(),"- Palabra de",len(palabras_deficiones[PALABRA][PALABRA_UNO]),"letras")
-        print(f"Definicion:",palabras_deficiones[PALABRA][DEFINICION])
-        #print(palabras_deficiones[PALABRA])
-        ing_palabra = input(f"Ingrese palabra:")
-        if ing_palabra ==  palabras_deficiones[PALABRA][PALABRA_UNO]:
-            lista_informe.append(palabras_deficiones[PALABRA][PALABRA_UNO])
-            ACIERTOS +=1
-            PALABRA +=1
-            CARACTER +=1
-            lista_aciertos.append(ACERTADO) 
-        else:
-            lista_informe.append(palabras_deficiones[PALABRA][PALABRA_UNO])
-            lista_agre_usuario.append(ing_palabra)
-            ERRORES +=1
-            PALABRA+=1
-            CARACTER +=1
-            lista_aciertos.append(ERRADO)
-        print("----------------------------------------------------------")
-        INDICE += 1
-    # ETAPA 5 , PUNTAJE Y RESUMEN
-    print("*****RESUMEN *****")
-    diccionario_resumen = dict(zip(lista_informe,lista_aciertos))
-    INDICE_2 = 0
-    PUNTAJE = 0
-    for clave,valor in diccionario_resumen.items():
-        if valor == ACERTADO:
-            print("Turno letra:",clave[PALABRA_UNO].upper(),"- Palabra de",len(clave),"letras-",clave,"acierto")
-            PUNTAJE +=10
-        if valor == ERRADO:
-            print("Turno letra:",clave[PALABRA_UNO].upper(),"- Palabra de",len(clave),"letras-",lista_agre_usuario[INDICE_2],"- error - Palabra correcta:",clave)
-            INDICE_2 +=1
-            PUNTAJE -= 3
-    print(f"Puntaje final: {PUNTAJE}")
-    pregunta = int(input("Desea volver a jugar?: \n1.Si \n2.No \n"))
-    SI = 1
-    volverajugar = "Gracias por jugar"
-    if pregunta == SI:
-        volverajugar = UnionEtapas()
-    print("----------------------------------------------------------")
-    return volverajugar
-print(UnionEtapas())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''def tablero(letras_candidatas):
-    # CREO UNA FUNCION QUE OBTENGA LOS 10 CARACTERES A JUGAR (ETAPA 3)
-    lista_aciertos = []
-    for element in letras_candidatas:
-        print(f"["+element.upper()+"]",end="")
-    print() 
-    for acertado in lista_aciertos:
-        print(acertado,end="")
-    print()
-
-def turno(palabra_y_deficion):
-    # OBTENEMOS EL DICCIONARIO CON SU PALABRA Y DEFINICION
-    ACIERTO = 0
-    ERRORES = 0
-    print(f"\nAciertos: {ACIERTO}")
-    print(f"Errores: {ERRORES}") 
-    PALABRA = 0
-    PALABRA_UNO = 0
-    CARACTER = 0
-    DEFINICION = 1
-    print(f"Turno de letra {palabra_y_deficion[PALABRA][PALABRA_UNO][CARACTER].upper()} - Palabra de {len(palabra_y_deficion[PALABRA][PALABRA_UNO])} letras")
-    print(f"Definicion: {palabra_y_deficion[PALABRA][DEFINICION]}")
-
-def ingre_palabra(palabras_candidatas):
-    # ETAPA 5 , PUNTAJE
-    PALABRA = 0
-    PALABRA_UNO = 0
-    ACERTADO = "[a]"
-    ERRADO = "[e]"
-    lista_aciertos = []
-     
-    lista_informe = []
-    lista_agre_usuario = []
-    palabra = input("Ingrese palabra:")
-    if palabra in palabras_candidatas[PALABRA][PALABRA_UNO]:
-        lista_informe.append(palabras_candidatas[PALABRA][PALABRA_UNO])
-        ACIERTOS +=1
-        PALABRA += 1
-        lista_aciertos.append(ACERTADO)
-    else:
-        lista_informe.append(palabras_candidatas[PALABRA][PALABRA_UNO])
-        lista_agre_usuario.append(palabra)
-        ERRORES +=1
-        PALABRA+=1
-        lista_aciertos.append(ERRADO)
-    print("----------------------------------------")
-def puntaje():
-    #RESUMEN
-    lista_informe = []
-    lista_aciertos = []
-    lista_agre_usuario = []
-    diccionario_resumen = dict(zip(lista_informe,lista_aciertos))
-    PALABRA_UNO = 0
-    INDICE_2 = 0
-    PUNTAJE = 0
-    CARACTER = 0
-    ACERTADO = "[a]"
-    ERRADO = "[e]"
-    for clave,valor in diccionario_resumen.items():
-        if valor == ACERTADO:
-            print("Turno letra:",clave[PALABRA_UNO][CARACTER].upper(),"- Palabra de",len(clave),"letras-",clave,"acierto")
-            PUNTAJE +=10
-        if valor == ERRADO:
-            print("Turno letra:",clave[PALABRA_UNO][CARACTER].upper(),"- Palabra de",len(clave),"letras-",lista_agre_usuario[INDICE_2],"- error - Palabra correcta:",clave)
-            INDICE_2 +=1
-            PUNTAJE -= 3
-    print(f"Puntaje final: {PUNTAJE}")
-    pregunta = int(input("Desea volver a jugar?: \n1.Si \n2.No \n"))
-    SI = 1
-    volverajugar = "Gracias por jugar"
-    if pregunta == SI:
-        volverajugar = unionEtapas()
-    print("----------------------------------------------------------")
-    return volverajugar
-'''
-
-
-
-
-
-
-
-
-
-
-
-
-'''def unionEtapas():
-    lista = definicion(etapa3(etapa_2(),letrasElegidas))
+    palabra_definicion = definicion(etapa3(etapa_2(),letrasElegidas))
+    lista = tablero_turno_palabraIngresada(palabra_definicion,letrasElegidas)
+    #------------- ETAPA 5 PUNTAJE Y RESUMEN------------------#
+    print("#------------RESUMEN---------------#")
     INDICE = 0
-    while INDICE < len(letrasElegidas):
-        tablero(letrasElegidas)
-        turno(lista)
-        ingre_palabra(lista)
-    puntaje()
-
-print(unionEtapas())'''
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    INDICE_1 = 0 
+    PUNTAJE = 0 + puntaje_inicial
+    for palabra in lista:
+        if palabra == palabra_definicion[INDICE][INDICE_1]:
+            print(f"Turno de letra {letrasElegidas[INDICE].upper()} - Palabra de {len(palabra)} letras - {palabra} - acierto")
+            INDICE +=1
+            PUNTAJE +=10  
+        else:
+            print(f"Turno de letra {letrasElegidas[INDICE].upper()} - Palabra de {len(palabra_definicion[INDICE][INDICE_1])} letras - {palabra} - error - Palabra correcta {palabra_definicion[INDICE][INDICE_1]}")
+            INDICE +=1
+            PUNTAJE += -3
+    print(PUNTAJE)
+    VolverAJugar = int(input("Desea volver a jugar?: \n1.Si\n2.No\n"))
+    SI =1
+    if VolverAJugar == SI:
+        VolverAJugar = UnionEtapas(PUNTAJE)
+    else:
+        print("----------------------------------------")
+        VolverAJugar = print(f"Fin del juego, Puntaje final : {PUNTAJE}")
+    return VolverAJugar
+INICIO = 0
+UnionEtapas(INICIO)
 
 
 
