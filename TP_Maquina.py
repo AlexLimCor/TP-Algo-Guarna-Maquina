@@ -8,7 +8,7 @@ def tablero_turno_palabraIngresada(palabra_y_deficion,letrasElegidas):
     las letras seleccionadas que tambien son 10 '''
     # palabra_y_definicion = [[PALABRA,DEFINCION],[PALABRA2,DEFINICION2],ETC....]
     #letrasElegidas = ["A","B","C","D","E","F","G",ETC....]
-    aciertos = []
+    aciertos = ["[ ]","[ ]","[ ]","[ ]","[ ]","[ ]","[ ]","[ ]","[ ]","[ ]"]
     ACIERTO = 0
     ERRORES = 0
     lista_resumen = []
@@ -21,28 +21,28 @@ def tablero_turno_palabraIngresada(palabra_y_deficion,letrasElegidas):
     INDICE = 0
     while INDICE < len(letrasElegidas):
         print("-------------------------------------------------------")
-        for element in letrasElegidas:
-            print(f"[{element.upper()}]",end="")
+        for letra in letrasElegidas:
+            print(f"[{letra.upper()}]",end="")
         print()
-        for i in aciertos:
-            print(i,end="")
+        for element in aciertos:
+            print(element,end="")
         print(f"\nAciertos: {ACIERTO}")
         print(f"Errores: {ERRORES}")
         print(f"Turno de letra {letrasElegidas[CARACTER].upper()} - Palabra de {len(palabra_y_deficion[PALABRA][PALABRA_UNO])} letras")
         print(f"Definicion: {palabra_y_deficion[PALABRA][DEFINICION]}")
+        #SOLUCION
+        #print(palabra_y_deficion[PALABRA][PALABRA_UNO])
         palabra_regi = input("Ingrese una palabra:")
         if palabra_regi == palabra_y_deficion[PALABRA][PALABRA_UNO]:
-            aciertos.append(a)
-            CARACTER +=1
-            PALABRA +=1
+            aciertos[INDICE] = a
             ACIERTO +=1
             lista_resumen.append(palabra_regi)
         else:
-            aciertos.append(e)
-            CARACTER +=1
-            PALABRA +=1
+            aciertos[INDICE] = e
             lista_resumen.append(palabra_regi)
-            ERRORES +=1            
+            ERRORES +=1 
+        PALABRA +=1
+        CARACTER +=1           
         INDICE +=1
     print("-----------------------------------------------")
     for element in letrasElegidas:
@@ -184,13 +184,12 @@ def UnionEtapas(puntaje_inicial):
     for palabra in lista:
         if palabra == palabra_definicion[INDICE][INDICE_1]:
             print(f"Turno de letra {letrasElegidas[INDICE].upper()} - Palabra de {len(palabra)} letras - {palabra} - acierto")
-            INDICE +=1
             PUNTAJE +=10  
         else:
             print(f"Turno de letra {letrasElegidas[INDICE].upper()} - Palabra de {len(palabra_definicion[INDICE][INDICE_1])} letras - {palabra} - error - Palabra correcta {palabra_definicion[INDICE][INDICE_1]}")
-            INDICE +=1
             PUNTAJE += -3
-    print(PUNTAJE)
+        INDICE +=1
+    print(f"Puntaje:{PUNTAJE}")
     VolverAJugar = int(input("Desea volver a jugar?: \n1.Si\n2.No\n"))
     SI =1
     if VolverAJugar == SI:
