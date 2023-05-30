@@ -21,26 +21,27 @@ def tablero_turno_palabraIngresada(palabra_y_deficion,letrasElegidas):
     INDICE = 0
     while INDICE < len(letrasElegidas):
         print("-------------------------------------------------------")
+        # TABLERO
         for letra in letrasElegidas:
             print(f"[{letra.upper()}]",end="")
         print()
         for element in aciertos:
             print(element,end="")
+        # TURNO
         print(f"\nAciertos: {ACIERTO}")
         print(f"Errores: {ERRORES}")
         print(f"Turno de letra {letrasElegidas[CARACTER].upper()} - Palabra de {len(palabra_y_deficion[PALABRA][PALABRA_UNO])} letras")
         print(f"Definicion: {palabra_y_deficion[PALABRA][DEFINICION]}")
         #SOLUCION
-        #print(palabra_y_deficion[PALABRA][PALABRA_UNO])
+        print(palabra_y_deficion[PALABRA][PALABRA_UNO])
         palabra_regi = input("Ingrese una palabra:")
         if palabra_regi == palabra_y_deficion[PALABRA][PALABRA_UNO]:
             aciertos[INDICE] = a
             ACIERTO +=1
-            lista_resumen.append(palabra_regi)
         else:
             aciertos[INDICE] = e
-            lista_resumen.append(palabra_regi)
             ERRORES +=1 
+        lista_resumen.append(palabra_regi)
         PALABRA +=1
         CARACTER +=1           
         INDICE +=1
@@ -52,6 +53,7 @@ def tablero_turno_palabraIngresada(palabra_y_deficion,letrasElegidas):
         print(i,end="")
     print()
     return lista_resumen
+# ALEX LIMACHI 
 
 # ----------ETAPA 2---------
 '''En esta etapa procesamos el diccionario de palabras con sus definiciones y
@@ -68,7 +70,7 @@ def etapa_2():
         if len(clave) >= LONG_MIN:
             dicc_pal_def[clave] = valor
     return dicc_pal_def
-
+# CINDY CALDERON
 # ------ ETAPA 3 ------
 
 # Creamos lista de letras participantes.
@@ -169,7 +171,7 @@ def definicion(lista):
             lista_result.append([clave,valor])
     lista_result.sort(key=lambda x:x[ORDEN].replace("ñ","nzz"))
     return lista_result
-    
+# ALEJANDRA MARCELA DEL VALLE   
 
 # -------------ETAPA 4----------------------#
 def UnionEtapas(puntaje_inicial):
@@ -198,8 +200,24 @@ def UnionEtapas(puntaje_inicial):
         print("----------------------------------------")
         VolverAJugar = print(f"Fin del juego, Puntaje final : {PUNTAJE}")
     return VolverAJugar
+# ARIEL CRUZ 
 INICIO = 0
 UnionEtapas(INICIO)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
