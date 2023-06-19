@@ -11,16 +11,17 @@ def Tablero(LetrasParticipantes,lista_aciertos = []):
         else:
             tablero_aciertos += "[ ]"
     print(f"{tablero_letras}\n{tablero_aciertos}")
-
+#Mostramos en pantalla la cantidad de aciertos y errores del jugador
 def CantAcErr(aciertos = 0,errores = 0):
     print(f"Aciertos: {aciertos}\nErrores: {errores}")
 
+# Informacion de la palabra candidata a adivinar
 def Informacion(LetrasParticipantes,palabras,caracter = 0,definicion =1):
     print(f"Turno de la letra {LetrasParticipantes[caracter].upper()} - Palabra de {len(palabras[caracter][0])} letras")
     print(f"Definicion: {palabras[caracter][definicion]}")
 
+# Solicitamos al usuario que ingrese una palabra alfabetica y validamos que sea correcta 
 def Interactuar():
-
     palabra = input("Ingrese palabra: ")
     vocales_acentuadas = ["á","é","í","ó","ú"]
     validar = True
