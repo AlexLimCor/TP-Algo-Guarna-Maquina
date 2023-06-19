@@ -33,7 +33,7 @@ def tablero_turno_palabraIngresada(palabra_y_deficion,letrasElegidas):
         print(f"Turno de letra {letrasElegidas[CARACTER].upper()} - Palabra de {len(palabra_y_deficion[PALABRA][PALABRA_UNO])} letras")
         print(f"Definicion: {palabra_y_deficion[PALABRA][DEFINICION]}")
         #SOLUCION
-        print(palabra_y_deficion[PALABRA][PALABRA_UNO])
+        #print(palabra_y_deficion[PALABRA][PALABRA_UNO])
         palabra_regi = input("Ingrese una palabra:")
         if palabra_regi == palabra_y_deficion[PALABRA][PALABRA_UNO]:
             aciertos[INDICE] = a
