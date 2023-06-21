@@ -20,9 +20,13 @@ def Informacion(LetrasParticipantes,palabras,caracter = 0,definicion =1):
     print(f"Turno de la letra {LetrasParticipantes[caracter].upper()} - Palabra de {len(palabras[caracter][0])} letras")
     print(f"Definicion: {palabras[caracter][definicion]}")
 
-# Solicitamos al usuario que ingrese una palabra alfabetica y validamos que sea correcta 
-def Interactuar():
+# Solicitamos al usuario que ingrese una palabra alfabetica 
+def Preguntar():
     palabra = input("Ingrese palabra: ")
+    return palabra
+
+# Validamos que sea una palabra correcta 
+def Verificar(palabra):
     vocales_acentuadas = ["á","é","í","ó","ú"]
     validar = True
     indice = 0
@@ -39,9 +43,8 @@ def Interactuar():
     minuscula = palabra.lower()
     return validar,minuscula
 
-
-# Unimos todas las funciones para crear la  etapa 1 "Interracion con el Jugador"
-def Jugar(LetrasParticipantes,palabras):
+#Interactuamos con el jugador 
+def Interactuar(LetrasParticipantes,palabras):
     resumen = []
     lista_aciertos = []
     acierto = 0
@@ -55,7 +58,8 @@ def Jugar(LetrasParticipantes,palabras):
         Tablero(LetrasParticipantes,lista_aciertos)
         CantAcErr(acierto,errores)
         Informacion(LetrasParticipantes,palabras,indice,DEFINICION)
-        validar,palabra = Interactuar()
+        termino = Preguntar()
+        validar,palabra = Verificar(termino)
         if validar and palabra == palabras[indice][0]:
             acierto += 1
             lista_aciertos.append(A)
@@ -71,4 +75,7 @@ def Jugar(LetrasParticipantes,palabras):
     return resumen
 
 
-
+# Unimos todas las funciones para crear la  etapa 1 "Interracion con el Jugador"
+def Jugar(letrasElegidas,Palabras):
+    resumen = Interactuar(letrasElegidas,Palabras)
+    return resumen
