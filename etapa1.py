@@ -23,6 +23,7 @@ def Informacion(LetrasParticipantes,palabras,caracter = 0,definicion =1):
 # Solicitamos al usuario que ingrese una palabra alfabetica 
 def Preguntar():
     palabra = input("Ingrese palabra: ")
+    palabra.lower()
     return palabra
 
 # Validamos que sea una palabra correcta 
@@ -40,8 +41,7 @@ def Verificar(palabra):
                 validar = True
         indice +=1
     # Aplanamos la palabra para que no distinga la mayuscula
-    minuscula = palabra.lower()
-    return validar,minuscula
+    return validar
 
 #Interactuamos con el jugador 
 def Interactuar(LetrasParticipantes,palabras):
@@ -58,11 +58,12 @@ def Interactuar(LetrasParticipantes,palabras):
         Tablero(LetrasParticipantes,lista_aciertos)
         CantAcErr(acierto,errores)
         Informacion(LetrasParticipantes,palabras,indice,DEFINICION)
-        termino = Preguntar()
-        validar,palabra = Verificar(termino)
-        if validar and palabra == palabras[indice][0]:
-            acierto += 1
-            lista_aciertos.append(A)
+        palabra = Preguntar()
+        validar = Verificar(palabra)
+        if validar:
+            if palabra == palabras[indice][0]:
+                acierto += 1
+                lista_aciertos.append(A)
         else:
             errores +=1
             lista_aciertos.append(E)

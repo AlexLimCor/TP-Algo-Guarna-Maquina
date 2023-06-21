@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox 
 import random
-#Leemos el archivo , en este caso vamos a usar el metodo r+ de escritura y lectura
+#Leemos el archivo 
 
 def leer(arUser):
     linea = arUser.readline()
@@ -167,7 +167,7 @@ def ventana_principal(arUser):
     botonIngresar = Button(login,text="Acceder",command=lambda: Verificar())
     botonIngresar.grid(column=0,row=3)
 
-    botonRegistrarse = Button(login,text="Registrarse",command=lambda: Registro(arUser))
+    botonRegistrarse = Button(login,text="Registrarse",command=lambda: ventana_secundaria(arUser))
     botonRegistrarse.grid(column=1,row=3)
 
     botonJugar = Button(ventana,text="Jugar",command=lambda: BorrarVentana())
@@ -218,7 +218,7 @@ def ventana_principal(arUser):
 
 
 # --- Nueva ventana de registro -- 
-def Registro(arUser):
+def ventana_secundaria(arUser):
     ventana_secundaria = Tk()
     ventana_secundaria.title("Registro de usuario")
     ventana_secundaria.geometry("300x150")
@@ -295,15 +295,14 @@ def mostrar_eleccion(arUser):
 
 
 #---- Empezar juego---#
-
-def Jugar(arUser):
+def Ejecutar_Juego(arUser):
     lista_usuarios = mostrar_eleccion(arUser)
     return lista_usuarios
 
 
 usuarios_csv = "usuarios.csv"
 #archivo = open(usuarios_csv,"r+")
-print(Jugar(usuarios_csv))
+print(Ejecutar_Juego(usuarios_csv))
 
 
 
