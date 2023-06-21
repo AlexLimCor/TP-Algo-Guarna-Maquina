@@ -1,5 +1,5 @@
 from datos import obtener_lista_definiciones
-
+from set_herramientas import orden_alfabetico
 # ----------ETAPA 2---------
 '''En esta etapa procesamos el diccionario de palabras con sus definiciones y
  lo convertimos a diccionario con los requisitos pedidos'''
@@ -55,5 +55,27 @@ def contador_puntaje(palabra_definicion,lista,puntaje_inicial = 0):
     diccionario_puntaje = {"puntaje":PUNTAJE,"lista_acietos_errores":lista_acietos_errores} 
     return diccionario_puntaje
     
-
-
+# -----------------ETAPA 8-------------------
+def main(longitud_minima_palabra = 5):
+    palabras = open("definiciones_palabras\\palabras.txt","r",encoding='utf-8')
+    definiciones = open("definiciones_palabras\\definiciones.txt","r",encoding='utf-8')
+    diccionario = open("definiciones_palabras\\definiciones.csv","w",encoding='utf-8')
+    palabras_candidatas = []
+    linea_palabra = leer_archivo(palabras,"####")
+    linea_definicion = leer_archivo(definiciones,"####")
+    palabra = linea_palabra.rstrip('\n')
+    definicion = linea_definicion.rstrip("\n")
+    while palabra != "####" and definicion != "####":
+        #print(palabra,definicion,"\n")
+        if len(palabra)<=longitud_minima_palabra and palabra.isalpha(): 
+            palabras_candidatas.append([palabra,definicion])
+        linea_palabra = leer_archivo(palabras,"####")
+        linea_definicion = leer_archivo(definiciones,"####")
+        palabra = linea_palabra.rstrip('\n')
+        definicion = linea_definicion.rstrip('\n')
+    palabras.close()
+    definiciones.close()
+    palabras_candidatas = sorted(palabras_candidatas, key=orden_alfabetico)
+    escribir_archivo(diccionario,palabras_candidatas)
+    diccionario.close()
+main()
