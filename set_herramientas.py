@@ -14,9 +14,6 @@ def orden_alfabetico(elemento):
     >>> orden_alfabetico("último")
     [22, 12, 21, 9, 13, 16]
     """
-    if type(elemento) == list:
-        elemento = elemento[0]
-    
     abecedario = {
     'a': 1, 'á': 1, 
     'b': 2, 
@@ -70,14 +67,12 @@ print(doctest.testmod())
 def imprimir_diccionario_valores(diccionario):
     for valor in diccionario.values():
         print(valor)
-        
-def jugar_de_nuevo(PUNTAJE = 0):
-    VolverAJugar = int(input("Desea volver a jugar?: \n1.Si\n2.No\n"))
-    NO =2
-    if VolverAJugar == NO:
-        VolverAJugar = False
-    else:
-        print("----------------------------------------")
-        VolverAJugar = True
-    return VolverAJugar
+
+
+def imprimir_diccionario(diccionario):
+    #___________Colores___________
+    azul = '\033[94m'
+    reset = '\033[0m'
+    for clave , valor in diccionario.items():
+        print(f"{azul}{clave}:{reset}{valor}")
 

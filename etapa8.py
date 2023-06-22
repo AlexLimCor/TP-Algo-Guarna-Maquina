@@ -81,3 +81,4 @@ def main(longitud_minima_palabra = 5):
     escribir_archivo(diccionario,palabras_candidatas)
     diccionario.close()
 main()
+

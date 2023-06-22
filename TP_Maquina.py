@@ -178,6 +178,10 @@ def UnionEtapas(puntaje_inicial):
     letrasElegidas = letrasParticipantes()
     palabra_definicion = definicion(etapa3(etapa_2(),letrasElegidas))
     lista = tablero_turno_palabraIngresada(palabra_definicion,letrasElegidas)
+
+    print("\033[31m",letrasElegidas)
+    print(palabra_definicion)
+    print(lista,"\033[0m")
     #------------- ETAPA 5 PUNTAJE Y RESUMEN------------------#
     print("#------------RESUMEN---------------#")
     INDICE = 0
