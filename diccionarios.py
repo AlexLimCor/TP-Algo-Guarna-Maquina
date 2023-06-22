@@ -17,10 +17,6 @@ def generador_diccionario():
             dicc_pal_def[clave] = valor
     return dicc_pal_def
 
-{"a":[["argentina","asd"]
-      ["argelia","asd"]]}
-
-
 def genera_diccionario_resumen(diccionario):
     """
     la funcion recibe como parametro un diccionario y devuelve un diccionario
