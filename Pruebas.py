@@ -4,13 +4,13 @@ import doctest
 def Verificar(palabra):
     '''
     >>> Verificar('Manzana')
-    (True, 'manzana')
+    True
     >>> Verificar('Per@#@')
-    (False, 'per@#@')
+    False
     >>> Verificar("1234")
-    (False, '1234')
+    False
     >>> Verificar("AnAná")
-    (True, 'ananá')
+    True
     '''
     vocales_acentuadas = ["á","é","í","ó","ú"]
     validar = True
@@ -25,9 +25,9 @@ def Verificar(palabra):
                 validar = True
         indice +=1
     # Aplanamos la palabra para que no distinga la mayuscula
-    minuscula = palabra.lower()
-    return validar,minuscula
+    return validar
 print(doctest.testmod())
+# --------- Etapa 2-----------#
 
 
 
