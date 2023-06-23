@@ -1,5 +1,4 @@
 import random
-from etapa2 import integrar_etapa2
 from set_herramientas import orden_alfabetico
 def generar_letras_aleatorias(cantidad_letras):
     """
@@ -36,14 +35,16 @@ def obtener_lista_palabras(diccionario,letras_participantes):
         lista_palabras_elegidas.append(letra_elegida)
     return lista_palabras_elegidas
 
-def integracion_etapa_3(diccionario,cantidad_letras):
+def integrar_etapa_3(diccionario,cantidad_letras):
     """
+    diccionario:{"palabra":definicion,"palabra":definicion,...}
+    cantidad_letras:numero entero
+    return: una lista de listas [[letras_participantes,lista_palabras_elegidas]]
+
     La funcion recibe como parametro un diccionario y un numero entero y devuelve una lista de palabras
     aleatorias que empiezan con cada letra participante
     """
     letras_participantes = generar_letras_aleatorias(cantidad_letras)
     lista_palabras_elegidas = obtener_lista_palabras(diccionario,letras_participantes)
-    return lista_palabras_elegidas
-
-
-print(integracion_etapa_3(integrar_etapa2(),10))
+    resultado = [letras_participantes,lista_palabras_elegidas]
+    return resultado

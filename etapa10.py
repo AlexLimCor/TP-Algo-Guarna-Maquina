@@ -7,15 +7,19 @@ def write_csv(diccionario, archivo):
 def leer_linea(archivo,default):
     linea = archivo.readline()
     return linea if linea else default
-
-
+def validar_int(cadena):
+    if cadena.isnumeric():
+        cadena = int(cadena)
+    else:
+        cadena = "Valor invalido"
+    return cadena
 
 #________________________Etapa 10______________________________
 def definir_configuracion():
     lista_configuracion = ["LONGITUD_PALABRA_MINIMA","CANTIDAD_LETRAS_ROSCO","MAXIMO_PARTIDAS","PUNTAJE_ACIERTO","PUNTAJE_DESACIERTO"]
     dicc_configuracion = {}
     for clave in lista_configuracion:
-        dicc_configuracion[clave] = input(f"Ingrese {clave}: ")
+        dicc_configuracion[clave] = validar_int(input(f"Ingrese {clave}: "))
     with open("definiciones_palabras\\configuracion.csv","w") as configuracion:
         write_csv(dicc_configuracion, configuracion)
     return 
@@ -38,15 +42,14 @@ def designar_configuracion(archivo= "definiciones_palabras\\configuracion.csv"):
         linea = leer_linea(configuracion,default)
         linea_config = linea.rstrip("\n").split(",")
         while linea != default and test:
-            if not linea_config[0] in dicc_default.keys() or not linea_config[1].isnumeric():
-                test = False
-            dicc_configuracion[linea_config[0]] = linea_config[1]
+            if linea_config[0] in dicc_default.keys() and linea_config[1].isnumeric():
+                dicc_configuracion[linea_config[0]] = linea_config[1]
+            else:
+                dicc_configuracion[linea_config[0]] = dicc_default[linea_config[0]]
             linea = leer_linea(configuracion,default)
             linea_config = linea.rstrip("\n").split(",")
             lineas +=1
         test = False if lineas != len(dicc_default) else True
-    if not test:
-        dicc_configuracion = dicc_default
 
     return dicc_configuracion
 

@@ -1,7 +1,10 @@
 from set_herramientas import imprimir_diccionario_valores,imprimir_diccionario
+"""
 diccionario_v1 = {"respuestas":['berenjena', 'federación', 'gimotear', 'individual', 'necrología', 'ovacionar', 'probable', 'quíntuple', 'xerografía', 'yelmo'],
                 "palabras_correctas": ['','','','','','','','','','',],
+                "letras_participantes":['','','','','','','','','','',],
 }
+"""
 
 #_______________________ETAPA 5_______________________
 #Se cuenta la cantidad de aciertos y errores y se calcula el puntaje
@@ -67,24 +70,23 @@ def genera_diccionario_resumen(diccionario):
         
     return(diccionario_resumen)
 
-def integrar_etapa5(diccionario,letras_participantes):
+def integrar_etapa_5(diccionario):
     """
-    la funcion recibe como parametro un diccionario y devuelve una tupla con el puntaje y un booleano(volver a jugar)
     Parametros:diccionario{"letras_participantes":lista,
                             "respuestas":lista,
-                            "palabra_correcta":lista,
-                            "lista_resultados":lista
+                            "palabras_correctas":lista,
                             }
+    return: una tupla con el puntaje y un booleano(volver a jugar)
+    la funcion recibe como parametro un diccionario y devuelve una tupla con el puntaje y un booleano(volver a jugar)
     """
     #se genera un diccionario que contiene el puntaje y una lista de aciertos y errores 
     diccionario_juego = contador_puntaje(diccionario)
-    diccionario_juego["letras_participantes"] = letras_participantes
     puntaje = diccionario_juego["puntaje"]
     #se genera un diccionario con el resumen de la partida
-    imprimir_diccionario(diccionario_juego)
+    #imprimir_diccionario(diccionario_juego)
     diccionario_resumen = genera_diccionario_resumen(diccionario_juego)
     imprimir_diccionario_valores(diccionario_resumen)
-    imprimir_diccionario(diccionario_juego)
+    #imprimir_diccionario(diccionario_juego)
     print(f"Puntaje:{puntaje}")
 
 
@@ -95,18 +97,3 @@ def integrar_etapa5(diccionario,letras_participantes):
     volver_jugar = True if volver_jugar == 1 else False
     renaudar = (puntaje,volver_jugar)
     return renaudar
-
-print(integrar_etapa5(diccionario_v1,["a","b","c","d","e","f","g","h","i","j"]))
-
-"""
-el diccionario recibido como parametro debe tener las siguientes claves:
-    "respuestas":lista,
-    "palabras_correctas":lista,
-posteriormente se agregan las siguientes claves:
-    "puntaje_inicial":int,
-    "resultados":lista,
-    "puntaje":int,
-y se agrega la clave "letras_participantes":lista
-
-Se genera otro diccionario con el resumen de la partida que posteriormente se imprime
-"""

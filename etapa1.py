@@ -78,5 +78,13 @@ def Interactuar(LetrasParticipantes,palabras):
 
 # Unimos todas las funciones para crear la  etapa 1 "Interracion con el Jugador"
 def Jugar(letrasElegidas,Palabras):
+    """
+    letrasElegidas: lista de letras elegidas
+    Palabras: lista de palabras candidatas
+    return: lista de palabras ingresadas por el usuario
+    """
     resumen = Interactuar(letrasElegidas,Palabras)
     return resumen
+
+
+Jugar(["a","b","c","d","e","f","g","h","i","j"],["arbol","boca","casa","dado","elefante","foca","gato","hola","iglesia","jirafa"])

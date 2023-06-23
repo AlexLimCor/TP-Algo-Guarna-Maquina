@@ -3,7 +3,7 @@ from set_herramientas import orden_alfabetico,imprimir_diccionario
 import doctest
 
 #_______________________Funciones complementarias_______________________
-datos = obtener_lista_definiciones()
+
 def quitar_tilde(vocal_tildada):
     """
     Reemplaza una vocal con tilde por su equivalente sin tilde.
@@ -92,14 +92,13 @@ def contador_letras(diccionario):
     resumen_diccionario = ordenar_diccionario(resumen_diccionario)
     return resumen_diccionario
 
-def integrar_etapa2():
+def integrar_etapa_2(datos):
     """
+    datos:lista de listas [[palabra,definicion],[palabra,definicion],...]
+    retorna un diccionario {"palabra":definicion,"palabra":definicion,...}
     La funcion integra las funciones de la etapa 2
     """
-    diccionario_datos = obtener_lista_definiciones()
-    diccionario = generador_diccionario(diccionario_datos)
-    resumen_diccionario = contador_letras(diccionario_datos)
+    diccionario = generador_diccionario(datos)
+    resumen_diccionario = contador_letras(datos)
     imprimir_diccionario(resumen_diccionario)
     return diccionario
-
-integrar_etapa2()

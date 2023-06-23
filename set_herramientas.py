@@ -78,13 +78,16 @@ def imprimir_diccionario(diccionario):
 
 
 def correccion_alfabetica(cadena):
+    """
+    alternativa a la funcion orden_alfabetico
+    """
     equivalencia_alfabetica = {
     'á': 'a',
     'é': 'e',
     'í': 'i',
     'ó': 'o',
     'ú': 'u',
-    'ñ': 'nzzz',
+    'ñ': 'nz',
     }
     cadena_eq =""
     for caracter in cadena:
@@ -93,6 +96,8 @@ def correccion_alfabetica(cadena):
         else:
             cadena_eq += caracter
     return cadena_eq
-
+"""
 print(correccion_alfabetica("árbol"))
 print(correccion_alfabetica("ñandú"))
+"""
+print(correccion_alfabetica("ñu"))
