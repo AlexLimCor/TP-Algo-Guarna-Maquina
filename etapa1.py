@@ -85,8 +85,6 @@ def Jugar(letrasElegidas,Palabras):
     resumen = Interactuar(letrasElegidas,Palabras)
     return resumen
 
-<<<<<<< HEAD
-#print(Jugar(["a","n"],[["argentina","pais"],["nigeria","pais"]]))
-=======
+
 
 Jugar(["a","b","c"],[["arbol","planta"],["barco","medio de transporte"],["casa","lugar donde se vive"]])
