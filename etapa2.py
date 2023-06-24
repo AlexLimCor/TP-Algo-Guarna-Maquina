@@ -92,14 +92,18 @@ def contador_letras(diccionario):
     resumen_diccionario = ordenar_diccionario(resumen_diccionario)
     return resumen_diccionario
 
-def integrar_etapa2():
+def integrar_etapa_2(datos):
     """
+    datos:lista de listas [[palabra,definicion],[palabra,definicion],...]
+    retorna un diccionario {"palabra":definicion,"palabra":definicion,...}
     La funcion integra las funciones de la etapa 2
     """
-    diccionario_datos = obtener_lista_definiciones()
-    diccionario = generador_diccionario(diccionario_datos)
-    resumen_diccionario = contador_letras(diccionario_datos)
+    diccionario = generador_diccionario(datos)
+    resumen_diccionario = contador_letras(datos)
     imprimir_diccionario(resumen_diccionario)
     return diccionario
+<<<<<<< HEAD
 
-print(integrar_etapa2())
+print(integrar_etapa_2(datos))
+=======
+>>>>>>> c843b93efd4e523eddb231cd39284a4c1bc31c34
