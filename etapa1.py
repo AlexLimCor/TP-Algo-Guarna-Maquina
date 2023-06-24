@@ -87,4 +87,4 @@ def Jugar(letrasElegidas,Palabras):
     return resumen
 
 
-Jugar(["a","b","c","d","e","f","g","h","i","j"],["arbol","boca","casa","dado","elefante","foca","gato","hola","iglesia","jirafa"])
+Jugar(["a","b","c"],[["arbol","planta"],["barco","medio de transporte"],["casa","lugar donde se vive"]])

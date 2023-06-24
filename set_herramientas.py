@@ -57,7 +57,7 @@ def extraer_claves_coincidentes(diccionario,lista_palabras):
     for palabra, definicion in diccionario.items():
         if palabra in lista_palabras:
             lista_definiciones.append([palabra,definicion])
-        lista_definiciones = sorted(lista_definiciones, key=orden_alfabetico)
+        lista_definiciones = sorted(lista_definiciones, key=lambda x: orden_alfabetico(x[0]))
     return lista_definiciones
 
 
