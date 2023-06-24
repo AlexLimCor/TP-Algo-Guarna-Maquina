@@ -102,4 +102,4 @@ def integrar_etapa2():
     imprimir_diccionario(resumen_diccionario)
     return diccionario
 
-integrar_etapa2()
+print(integrar_etapa2())
