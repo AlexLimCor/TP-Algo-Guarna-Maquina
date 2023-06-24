@@ -14,8 +14,7 @@ def integrar_juego(cantidad_letras):
     respuestas = Jugar(letras_elegidas,palabras_definicion)
     diccionario_juego = {"letras_participantes" : letras_elegidas,
                          "respuestas": respuestas,
-                         "palabras_correctas" : palabras_elegidas,
-                         "puntaje_inicial" : 0}
+                         "palabras_correctas" : palabras_elegidas}
     puntaje, volver_a_jugar = integrar_etapa_5(diccionario_juego)
     renaudar = integrar_juego(cantidad_letras) if volver_a_jugar else print(f"Fin del juego, Puntaje final : {puntaje}")
     return renaudar
