@@ -2,9 +2,19 @@
 from etapa1 import Jugar
 from etapa2 import integrar_etapa_2
 from etapa3 import integrar_etapa_3
-from etapa5 import integrar_etapa_5
 from datos import obtener_lista_definiciones
-from set_herramientas import extraer_claves_coincidentes
+from set_herramientas import extraer_claves_coincidentes,imprimir_diccionario
+#___________________funciones complementarias_____________________
+def generar_dicc_juego(palabras_elegidas,respuestas):
+    dicc_juego = {}
+    INICIAL = 0
+    for elemento in range(len(palabras_elegidas)):
+        dicc_juego[palabras_elegidas[elemento][INICIAL]] = [palabras_elegidas[elemento],respuestas[elemento]]
+    return dicc_juego
+
+#______________________Etapas 4__________________________
+
+
 
 def integrar_juego(cantidad_letras,puntaje_inicial=0):
 
@@ -13,12 +23,5 @@ def integrar_juego(cantidad_letras,puntaje_inicial=0):
     letras_elegidas,palabras_elegidas = integrar_etapa_3(diccionario,cantidad_letras)
     palabras_definicion = extraer_claves_coincidentes(diccionario,palabras_elegidas)
     respuestas = Jugar(letras_elegidas,palabras_definicion)
-    diccionario_juego = {"letras_participantes" : letras_elegidas,
-                         "respuestas": respuestas,
-                         "palabras_correctas" : palabras_elegidas}
-    puntaje, volver_a_jugar = integrar_etapa_5(diccionario_juego,puntaje_inicial)
-    renaudar = integrar_juego(cantidad_letras,puntaje) if volver_a_jugar else print(f"Fin del juego, Puntaje final : {puntaje}")
-    return renaudar
-
-
-integrar_juego(10)
+    diccionario_juego = generar_dicc_juego(palabras_elegidas,respuestas)
+    return diccionario_juego
