@@ -1,3 +1,6 @@
+#___________Datos Temporales_____________#
+color_rojo = "\033[1;31m"
+reset = "\033[0m"
 # Crear las funciones necesarias para la interaccion con el jugador
 #---------- TABLERO ----------- #
 def Tablero(LetrasParticipantes,lista_aciertos = []):
@@ -19,7 +22,8 @@ def CantAcErr(aciertos = 0,errores = 0):
 def Informacion(LetrasParticipantes,palabras,caracter = 0,definicion =1):
     print(f"Turno de la letra {LetrasParticipantes[caracter].upper()} - Palabra de {len(palabras[caracter][0])} letras")
     print(f"Definicion: {palabras[caracter][definicion]}")
-
+    #____________datos temporales_____________#
+    print(f"{color_rojo}Palabra: {palabras[caracter][0]}{reset}")
 # Solicitamos al usuario que ingrese una palabra alfabetica 
 def Preguntar():
     palabra = input("Ingrese palabra: ")
