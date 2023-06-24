@@ -87,4 +87,5 @@ def Jugar(letrasElegidas,Palabras):
 
 
 
-Jugar(["a","b","c"],[["arbol","planta"],["barco","medio de transporte"],["casa","lugar donde se vive"]])
+#print(Jugar(["a","n"],[["argentina","pais"],["nigeria","pais"]]))
+
