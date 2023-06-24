@@ -3,7 +3,7 @@ from set_herramientas import orden_alfabetico,imprimir_diccionario
 import doctest
 
 #_______________________Funciones complementarias_______________________
-
+datos = obtener_lista_definiciones()
 def quitar_tilde(vocal_tildada):
     """
     Reemplaza una vocal con tilde por su equivalente sin tilde.
@@ -102,3 +102,8 @@ def integrar_etapa_2(datos):
     resumen_diccionario = contador_letras(datos)
     imprimir_diccionario(resumen_diccionario)
     return diccionario
+<<<<<<< HEAD
+
+print(integrar_etapa_2(datos))
+=======
+>>>>>>> c843b93efd4e523eddb231cd39284a4c1bc31c34

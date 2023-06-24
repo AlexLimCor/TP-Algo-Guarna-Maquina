@@ -60,10 +60,9 @@ def Interactuar(LetrasParticipantes,palabras):
         Informacion(LetrasParticipantes,palabras,indice,DEFINICION)
         palabra = Preguntar()
         validar = Verificar(palabra)
-        if validar:
-            if palabra == palabras[indice][0]:
-                acierto += 1
-                lista_aciertos.append(A)
+        if validar and palabra == palabras[indice][0]:
+            acierto += 1
+            lista_aciertos.append(A)
         else:
             errores +=1
             lista_aciertos.append(E)
@@ -86,5 +85,8 @@ def Jugar(letrasElegidas,Palabras):
     resumen = Interactuar(letrasElegidas,Palabras)
     return resumen
 
+<<<<<<< HEAD
+#print(Jugar(["a","n"],[["argentina","pais"],["nigeria","pais"]]))
+=======
 
 Jugar(["a","b","c"],[["arbol","planta"],["barco","medio de transporte"],["casa","lugar donde se vive"]])

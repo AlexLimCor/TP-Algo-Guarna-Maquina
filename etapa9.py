@@ -72,6 +72,9 @@ def Interactuar(lista_jugadores,lista_palabras,lista_letras):
             palabra = Preguntar()
             validar = Verificar(palabra)
             if validar and palabra == lista_palabras[indice][0]:
+                # 'dicc_participantes[lista_jugadores[posicion]][1]'
+                # busco primero el nombre en el diccionario(lista_jugadores[posicion]) y sumo el valor segun si
+                # la palabra es acertada o errada 
                 dicc_participantes[lista_jugadores[posicion]][1] += ACIERTOS
                 lista_turno.append(jugador)
                 lista_aciertos.append(A)
