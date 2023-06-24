@@ -1,88 +1,63 @@
 from set_herramientas import imprimir_diccionario_valores,imprimir_diccionario
-"""
-diccionario_v1 = {"respuestas":['berenjena', 'federación', 'gimotear', 'individual', 'necrología', 'ovacionar', 'probable', 'quíntuple', 'xerografía', 'yelmo'],
-                "palabras_correctas": ['','','','','','','','','','',],
-                "letras_participantes":['','','','','','','','','','',],
-}
-"""
-
-#_______________________ETAPA 5_______________________
-#Se cuenta la cantidad de aciertos y errores y se calcula el puntaje
-
-def contador_puntaje(diccionario):
-
+from etapa4 import integrar_juego
+def contador_puntaje(diccionario_puntaje):
     """
-    La funcion recibe como parametro una lista de palabras correctas, una lista de respuestas y un puntaje inicial
-    y devuelve un diccionario con el puntaje y una lista de aciertos y errores
-
-    parametros: palabras_correctas:lista, respuestas:lista,
+    Parametros:
+        diccionario_puntaje: diccionario con las claves "aciertos" y "errores" y sus respectivos valores
+        return: puntaje total int
     """
 
-    palabras_correctas = diccionario["palabras_correctas"]
-    respuestas = diccionario["respuestas"]
-    lista_acietos_errores = []
-    puntaje = 0
-    for indice in range(len(respuestas)):
-        respuesta = respuestas[indice]
-        palabra = palabras_correctas[indice]
-        if respuesta == palabra:
-            lista_acietos_errores.append(True)
-            puntaje +=10  
-        else:
-            lista_acietos_errores.append(False)
-            puntaje += -3 
+    PUNTAJE_ACIERTO = 10
+    PUNTAJE_DESACIERTO = 3
+    puntaje = diccionario_puntaje["aciertos"]*PUNTAJE_ACIERTO - diccionario_puntaje["errores"]*PUNTAJE_DESACIERTO
+    return puntaje  
 
-    diccionario["resultados"] = lista_acietos_errores
-
-    return (diccionario,puntaje)
-
-#Se genera un diccionario con el resumen de la partida 
-
-def genera_diccionario_resumen(diccionario):
+def generar_resumen(diccionario):
     """
-    Parametros:diccionario{"letras_participantes":lista,
-                            "respuestas":lista,
-                            "palabra_correcta":lista,
-                            "lista_resultados":lista
-                            }
-    la funcion recibe como parametro un diccionario y devuelve un diccionario
+    Parametros:
+        diccionario: clave: letra, valor: lista con [palabra , respuesta]
+        return: diccionario con clave aciertos y errores y sus respectivos valores
     """
+    diccionario_puntaje = {
+    "aciertos":0,
+    "errores":0
+    }
     diccionario_resumen = {}
-    for indice in range(len(diccionario["letras_participantes"])):
-
-        letra = diccionario["letras_participantes"][indice]
-        respuesta = diccionario["respuestas"][indice]
-        palabra = diccionario["palabras_correctas"][indice]
-        
+    for letra in diccionario.keys():
+        palabra = diccionario[letra][0]
+        respuesta = diccionario[letra][1]
         mensaje_base = f"Turno de letra {letra.upper()} - Palabra de {len(palabra)} letras - "
         diccionario_resumen[letra] = mensaje_base
         
-        if diccionario["resultados"][indice]:
+        if respuesta == palabra:
             diccionario_resumen[letra] += f"{palabra} - acierto"
+            diccionario_puntaje["aciertos"] += 1
 
         else:
             diccionario_resumen[letra] += f"{respuesta} - error - Palabra correcta {palabra}"
-        
-    return(diccionario_resumen)
-def integrar_etapa_5(diccionario,puntae_inicial):
+            diccionario_puntaje["errores"] += 1
+
+        imprimir_diccionario_valores(diccionario_resumen)
+    return diccionario_puntaje
+
+
+
+def integrar_etapa_5(diccionario,punaje_inicial=0):
     """
-    Parametros:diccionario{"letras_participantes":lista,
-                            "respuestas":lista,
-                            "palabras_correctas":lista,
-                            }
-    return: una tupla con el  y un booleano(volver a jugar)
-    la funcion recibe como parametro un diccionario y devuelve una tupla con el  y un booleano(volver a jugar)
+    Parametros:
+        diccionario: clave: letra, valor: lista con [palabra , respuesta]
+        return: 
     """
-    #se genera un diccionario que contiene el  y una lista de aciertos y errores 
-    diccionario_juego,puntaje = contador_puntaje(diccionario)
-    #se genera un diccionario con el resumen de la partida
-    #imprimir_diccionario(diccionario_juego)
-    puntaje += puntae_inicial
-    print(f"Puntaje:{puntaje}")
-    diccionario_resumen = genera_diccionario_resumen(diccionario_juego)
-    imprimir_diccionario_valores(diccionario_resumen)
-    #imprimir_diccionario(diccionario_juego)
+    diccionario_puntaje = generar_resumen(diccionario)
+    puntaje = contador_puntaje(diccionario_puntaje) + punaje_inicial
+    print(f"Su puntaje es {puntaje}")
+
+
     volver_jugar = int(input("Desea volver a jugar? 1:si 2:no"))
-    volver_jugar = True if volver_jugar == 1 else False
-    renaudar = (puntaje,volver_jugar)
-    return renaudar
+    volver_jugar = integrar_etapa_5(integrar_juego(10),puntaje) if volver_jugar == 1 else print("Gracias por jugar")
+    return volver_jugar
+if __name__ == "__main__":
+    """
+    funcion de prueba
+    """
+    integrar_etapa_5(integrar_juego(10))
