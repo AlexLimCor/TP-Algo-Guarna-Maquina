@@ -6,7 +6,8 @@ from etapa5 import integrar_etapa_5
 from datos import obtener_lista_definiciones
 from set_herramientas import extraer_claves_coincidentes
 
-def integrar_juego(cantidad_letras):
+def integrar_juego(cantidad_letras,puntaje_inicial=0):
+
     diccionario = integrar_etapa_2(obtener_lista_definiciones())
 
     letras_elegidas,palabras_elegidas = integrar_etapa_3(diccionario,cantidad_letras)
@@ -15,9 +16,9 @@ def integrar_juego(cantidad_letras):
     diccionario_juego = {"letras_participantes" : letras_elegidas,
                          "respuestas": respuestas,
                          "palabras_correctas" : palabras_elegidas}
-    puntaje, volver_a_jugar = integrar_etapa_5(diccionario_juego)
-    renaudar = integrar_juego(cantidad_letras) if volver_a_jugar else print(f"Fin del juego, Puntaje final : {puntaje}")
+    puntaje, volver_a_jugar = integrar_etapa_5(diccionario_juego,puntaje_inicial)
+    renaudar = integrar_juego(cantidad_letras,puntaje) if volver_a_jugar else print(f"Fin del juego, Puntaje final : {puntaje}")
     return renaudar
 
 
-print(integrar_juego(10))
+integrar_juego(10)

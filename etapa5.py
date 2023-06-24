@@ -15,17 +15,13 @@ def contador_puntaje(diccionario):
     La funcion recibe como parametro una lista de palabras correctas, una lista de respuestas y un puntaje inicial
     y devuelve un diccionario con el puntaje y una lista de aciertos y errores
 
-    parametros: palabras_correctas:lista, respuestas:lista, puntaje_inicial:int
+    parametros: palabras_correctas:lista, respuestas:lista,
     """
-    if "puntaje_inicial" not in diccionario:
-        diccionario["puntaje_inicial"] = 0
-    puntaje_inicial = diccionario["puntaje_inicial"]
 
     palabras_correctas = diccionario["palabras_correctas"]
     respuestas = diccionario["respuestas"]
     lista_acietos_errores = []
-    puntaje = 0 + puntaje_inicial
-
+    puntaje = 0
     for indice in range(len(respuestas)):
         respuesta = respuestas[indice]
         palabra = palabras_correctas[indice]
@@ -37,9 +33,8 @@ def contador_puntaje(diccionario):
             puntaje += -3 
 
     diccionario["resultados"] = lista_acietos_errores
-    diccionario["puntaje"] = puntaje
 
-    return diccionario
+    return (diccionario,puntaje)
 
 #Se genera un diccionario con el resumen de la partida 
 
@@ -69,30 +64,24 @@ def genera_diccionario_resumen(diccionario):
             diccionario_resumen[letra] += f"{respuesta} - error - Palabra correcta {palabra}"
         
     return(diccionario_resumen)
-
-def integrar_etapa_5(diccionario):
+def integrar_etapa_5(diccionario,puntae_inicial):
     """
     Parametros:diccionario{"letras_participantes":lista,
                             "respuestas":lista,
                             "palabras_correctas":lista,
                             }
-    return: una tupla con el puntaje y un booleano(volver a jugar)
-    la funcion recibe como parametro un diccionario y devuelve una tupla con el puntaje y un booleano(volver a jugar)
+    return: una tupla con el  y un booleano(volver a jugar)
+    la funcion recibe como parametro un diccionario y devuelve una tupla con el  y un booleano(volver a jugar)
     """
-    #se genera un diccionario que contiene el puntaje y una lista de aciertos y errores 
-    diccionario_juego = contador_puntaje(diccionario)
-    puntaje = diccionario_juego["puntaje"]
+    #se genera un diccionario que contiene el  y una lista de aciertos y errores 
+    diccionario_juego,puntaje = contador_puntaje(diccionario)
     #se genera un diccionario con el resumen de la partida
     #imprimir_diccionario(diccionario_juego)
+    puntaje += puntae_inicial
+    print(f"Puntaje:{puntaje}")
     diccionario_resumen = genera_diccionario_resumen(diccionario_juego)
     imprimir_diccionario_valores(diccionario_resumen)
     #imprimir_diccionario(diccionario_juego)
-    print(f"Puntaje:{puntaje}")
-
-
-    diccionario["puntaje_inicial"] = diccionario["puntaje"]
-
-
     volver_jugar = int(input("Desea volver a jugar? 1:si 2:no"))
     volver_jugar = True if volver_jugar == 1 else False
     renaudar = (puntaje,volver_jugar)

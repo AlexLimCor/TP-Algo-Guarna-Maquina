@@ -100,7 +100,7 @@ def integrar_etapa_2(datos):
     """
     diccionario = generador_diccionario(datos)
     resumen_diccionario = contador_letras(datos)
-    imprimir_diccionario(resumen_diccionario)
+    #imprimir_diccionario(resumen_diccionario)
     return diccionario
 
-print(integrar_etapa_2(datos))
+
