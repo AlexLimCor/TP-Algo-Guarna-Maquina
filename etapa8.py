@@ -18,9 +18,9 @@ def escribir_archivo(archivo, lista):
 def escribir_diccionario(longitud_minima_palabra):
     """
     """
-    palabras = open("definiciones_palabras\\palabras.txt","r"),#encoding='utf-8')
-    definiciones = open("definiciones_palabras\\definiciones.txt","r")#,encoding='utf-8')
-    diccionario = open("definiciones_palabras\\definiciones.csv_v2","w")#,encoding='utf-8')
+    palabras = open("definiciones_palabras\\palabras.txt","r",encoding='utf-8')
+    definiciones = open("definiciones_palabras\\definiciones.txt","r",encoding='utf-8')
+    diccionario = open("definiciones_palabras\\definiciones.csv_v2","w",encoding='utf-8')
     palabras_candidatas = []
     linea_palabra = leer_archivo(palabras,"####")
     linea_definicion = leer_archivo(definiciones,"####")

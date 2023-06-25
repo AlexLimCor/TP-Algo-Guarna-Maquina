@@ -292,7 +292,7 @@ def Interfaz(arUser):
     return lista_usuarios
 
 #usuarios_csv = "usuarios.csv"
-#print(Ejecutar_Juego(usuarios_csv))
+#print(Interfaz(usuarios_csv))
 
 
 
