@@ -300,9 +300,9 @@ def Ejecutar_Juego(arUser):
     return lista_usuarios
 
 
-usuarios_csv = "usuarios.csv"
+#usuarios_csv = "usuarios.csv"
 #archivo = open(usuarios_csv,"r+")
-print(Ejecutar_Juego(usuarios_csv))
+#print(Ejecutar_Juego(usuarios_csv))
 
 
 

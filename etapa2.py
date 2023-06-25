@@ -31,7 +31,7 @@ def quitar_tilde(vocal_tildada):
     return vocal_sin_tilde
 
 
-print(doctest.testmod())
+#print(doctest.testmod())
 
 
 
@@ -63,7 +63,7 @@ def generador_diccionario(diccionario_datos):
         if len(elemento[PALABRA]) >= LONG_MIN:
             #Armado del diccionario con la condicion
             palabras_candidatas[elemento[PALABRA]] = elemento[DEFINICION]
-    print(f"Total de palabras {len(palabras_candidatas)}")
+    #print(f"Total de palabras {len(palabras_candidatas)}")
     return palabras_candidatas
 
 
@@ -102,5 +102,4 @@ def integrar_etapa_2(datos):
     resumen_diccionario = contador_letras(datos)
     #imprimir_diccionario(resumen_diccionario)
     return diccionario
-
 
