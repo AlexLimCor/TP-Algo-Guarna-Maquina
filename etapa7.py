@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter import messagebox 
 import random
 #Leemos el archivo 
-
 def leer(arUser):
     linea = arUser.readline()
     linea = linea.rstrip("\n")
@@ -86,8 +85,6 @@ def Buscar(arUser,usuario):
                 if user == nombre:
                     nombre = False
                 user = Usuario(linea)
-    #El puntero vuelve al inicio de la lectura
-    #arUser.seek(INICIO)
     return nombre
 
 #Registrar al usuario y validamos todos los pasos
@@ -108,7 +105,6 @@ def Registrarse(arUser,usuario,clave1,clave2):
     else:
         messagebox.showerror("Usuario no valido o Existente","Por favor ingrese otro nombre")  
     
-
 #Iniciar sesion
 def IniciarSesion(arUser,usuario,clave):
     with open(arUser,"r") as linea:
@@ -215,8 +211,6 @@ def ventana_principal(arUser):
     ventana.mainloop()
     return Usuarios
 
-
-
 # --- Nueva ventana de registro -- 
 def ventana_secundaria(arUser):
     ventana_secundaria = Tk()
@@ -263,8 +257,6 @@ def ventana_secundaria(arUser):
         ventana_secundaria.destroy()
     ventana_secundaria.mainloop()
 
-    
-
 #----------- Seleccionamos al azar los nombres para dar comienzo al turno
 def Eleccion(arUser):
     usuarios = ventana_principal(arUser)
@@ -295,13 +287,11 @@ def mostrar_eleccion(arUser):
 
 
 #---- Empezar juego---#
-def Ejecutar_Juego(arUser):
+def Interfaz(arUser):
     lista_usuarios = mostrar_eleccion(arUser)
     return lista_usuarios
 
-
 #usuarios_csv = "usuarios.csv"
-#archivo = open(usuarios_csv,"r+")
 #print(Ejecutar_Juego(usuarios_csv))
 
 

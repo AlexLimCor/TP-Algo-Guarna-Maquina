@@ -1,5 +1,5 @@
 #______________________integracion de etapas______________________
-from etapa1 import Jugar
+from etapa1 import Iniciar
 from etapa2 import integrar_etapa_2
 from etapa3 import integrar_etapa_3
 from datos import obtener_lista_definiciones
@@ -22,6 +22,6 @@ def integrar_juego(cantidad_letras,puntaje_inicial=0):
 
     letras_elegidas,palabras_elegidas = integrar_etapa_3(diccionario,cantidad_letras)
     palabras_definicion = extraer_claves_coincidentes(diccionario,palabras_elegidas)
-    respuestas = Jugar(letras_elegidas,palabras_definicion)
+    respuestas = Iniciar(letras_elegidas,palabras_definicion)
     diccionario_juego = generar_dicc_juego(palabras_elegidas,respuestas)
     return diccionario_juego
