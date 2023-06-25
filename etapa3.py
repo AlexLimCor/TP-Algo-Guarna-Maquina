@@ -12,39 +12,41 @@ def generar_letras_aleatorias(cantidad_letras):
     letras_elegidas = sorted(letras_elegidas, key=orden_alfabetico)
     return letras_elegidas
 
-def seleccionar_clave_aleatoria_por_letra(diccionario,letra):
+def seleccionar_clave_aleatoria_por_letra(lista_palabras,letra):
     """
-    La funcion recibe como parametro un diccionario y una letra y retorna una clave(palabra) aleatoria 
+    La funcion recibe como parametro un lista_palabras y una letra y retorna una clave(palabra) aleatoria 
     que empieza con la letra recibida
     """
     inicial = 0
     letra = orden_alfabetico(letra)
-    listas_claves_candidatas = [clave for clave in diccionario.keys() if orden_alfabetico(clave)[inicial] in letra]
+    listas_claves_candidatas = [clave for clave in lista_palabras if orden_alfabetico(clave)[inicial] in letra]
     palabra_aleatoria_elegida = random.choice(listas_claves_candidatas)
     return palabra_aleatoria_elegida
 
 
-def obtener_lista_palabras(diccionario,letras_participantes):
+def obtener_lista_palabras(lista_palabras,letras_participantes):
     """
-    la funcion recibe como parametro un diccionario y una lista de letras
+    la funcion recibe como parametro un lista_palabras y una lista de letras
     y devuelve una lista de palabras aleatorias que empiezan con cada letra participante
     """
     lista_palabras_elegidas = []
     for letra in letras_participantes:
-        letra_elegida = seleccionar_clave_aleatoria_por_letra(diccionario,letra)
+        letra_elegida = seleccionar_clave_aleatoria_por_letra(lista_palabras,letra)
         lista_palabras_elegidas.append(letra_elegida)
     return lista_palabras_elegidas
 
-def integrar_etapa_3(diccionario,cantidad_letras):
+
+def integrar_etapa_3(lista_palabras,cantidad_letras):
     """
-    diccionario:{"palabra":definicion,"palabra":definicion,...}
-    cantidad_letras:numero entero
+    Parametros:
+            lista_palabras:{"palabra":definicion,"palabra":definicion,...}
+            cantidad_letras:numero entero
     return: una lista de listas [[letras_participantes,lista_palabras_elegidas]]
 
-    La funcion recibe como parametro un diccionario y un numero entero y devuelve una lista de palabras
+    La funcion recibe como parametro un lista_palabras y un numero entero y devuelve una lista de palabras
     aleatorias que empiezan con cada letra participante
     """
     letras_participantes = generar_letras_aleatorias(cantidad_letras)
-    lista_palabras_elegidas = obtener_lista_palabras(diccionario,letras_participantes)
+    lista_palabras_elegidas = obtener_lista_palabras(lista_palabras,letras_participantes)
     resultado = [letras_participantes,lista_palabras_elegidas]
     return resultado
