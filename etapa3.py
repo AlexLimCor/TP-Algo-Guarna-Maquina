@@ -48,5 +48,4 @@ def integrar_etapa_3(lista_palabras,cantidad_letras):
     """
     letras_participantes = generar_letras_aleatorias(cantidad_letras)
     lista_palabras_elegidas = obtener_lista_palabras(lista_palabras,letras_participantes)
-    resultado = [letras_participantes,lista_palabras_elegidas]
-    return resultado
+    return letras_participantes,lista_palabras_elegidas

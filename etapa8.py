@@ -1,4 +1,6 @@
 from set_herramientas import orden_alfabetico
+from etapa10 import designar_configuracion
+from etapa3 import integrar_etapa_3
 excepciones = ["á","é","í","ó","ú","ñ"]
 def leer_archivo(archivo, default):
     """
@@ -7,6 +9,20 @@ def leer_archivo(archivo, default):
     """
     linea = archivo.readline()
     return linea if linea else default
+
+def generador_diccionario(diccionario_datos):
+    """
+    Genera un diccionario con las palabras que cumplen con la condicion
+    """
+    palabras_candidatas = {}
+    PALABRA = 0
+    DEFINICION = 1
+    for elemento in diccionario_datos:
+        #Armado del diccionario con la condicion
+        palabras_candidatas[elemento[PALABRA]] = elemento[DEFINICION]
+    return palabras_candidatas
+
+
 def escribir_archivo(archivo, lista):
     """
     Parametros: archivo(objeto de open) y lista
@@ -35,7 +51,7 @@ def escribir_diccionario(longitud_minima_palabra):
 
     while palabra != "####" and definicion != "####":
         #print(definicion,"\n")
-        if len(palabra)>=longitud_minima_palabra and palabra.isalpha(): 
+        if len(palabra) >= longitud_minima_palabra and palabra.isalpha(): 
             palabras_candidatas.append([palabra,definicion])
         linea_palabra = leer_archivo(palabras,"####")
         linea_definicion = leer_archivo(definiciones,"####")
@@ -65,3 +81,12 @@ def leer_diccionario():
             linea = leer_archivo(diccionario,"####")
             linea_dicc = linea.rstrip("\n").split(",")
     return lista_palabras
+
+def integrar_etapa_8():
+    LONGITUD_PALABRA_MINIMA = designar_configuracion()["LONGITUD_PALABRA_MINIMA"]
+    CANTIDAD_LETRAS_ROSCO = designar_configuracion()["CANTIDAD_LETRAS_ROSCO"]
+    escribir_archivo(LONGITUD_PALABRA_MINIMA)
+    lista_palabras = leer_diccionario()
+    dicc = generador_diccionario(lista_palabras)
+    letras,palabras = integrar_etapa_3(dicc.keys(),CANTIDAD_LETRAS_ROSCO)
+    return letras,palabras    
