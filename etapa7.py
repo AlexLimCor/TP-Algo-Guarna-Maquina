@@ -76,7 +76,6 @@ def crear_clave(clave):
 
 #Buscamos si el usuario se encuentra en el archivo
 def Buscar(arUser,usuario):
-    INICIO = 0
     nombre = crear_usuario(usuario)
     with open(arUser,"r") as linea:
         user = Usuario(linea)
@@ -85,6 +84,7 @@ def Buscar(arUser,usuario):
                 if user == nombre:
                     nombre = False
                 user = Usuario(linea)
+        #linea.seek(0,0)
     return nombre
 
 #Registrar al usuario y validamos todos los pasos
@@ -95,7 +95,8 @@ def Registrarse(arUser,usuario,clave1,clave2):
     if nombre:
         if contrasenia and repet_contrasenia:
             if repet_contrasenia == contrasenia:
-                with open(arUser,"a") as linea:
+                with open(arUser,"r+") as linea:
+                    linea.seek(0,0)
                     grabarUsuarioClave(linea,nombre,contrasenia)
                 messagebox.showinfo("","Exito")
             else:
@@ -117,7 +118,6 @@ def IniciarSesion(arUser,usuario,clave):
         if not validacion:
             messagebox.showerror("","Usuario o clave no valido")
     #Colocamos el puntero al inicio para poder usar a futuro el archivo
-    #arUser.seek(INICIO)
     return validacion
 
 

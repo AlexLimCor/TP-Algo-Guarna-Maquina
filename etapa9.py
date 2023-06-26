@@ -272,14 +272,6 @@ def Partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
         
     return respuesta
     
-def Jugar(arUser):
-    '''
-    Integramos todo lo obtenido e iniciamos el juego
-    Parametro: Recibe un archivo.csv que contenga los usuarios registrados 
-    '''
-    lista_jugadores = Interfaz(arUser)
-    if lista_jugadores:
-        Partida(lista_jugadores)
 
 #archivo = "usuarios.csv"   
 #print(Jugar(archivo))
