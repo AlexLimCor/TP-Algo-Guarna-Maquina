@@ -1,8 +1,5 @@
 from etapa1 import Preguntar , Verificar
 from datos  import obtener_lista_definiciones 
-from etapa3 import integrar_etapa_3
-from etapa2 import integrar_etapa_2
-from etapa7 import Interfaz
 from etapa10 import designar_configuracion
 from etapa8 import integrar_etapa_8
 #___________Datos Temporales_____________#
@@ -236,17 +233,6 @@ def ImprimirFinal(dicc_puntos,dicc_participantes,contador = 1):
         print(f"{dicc_participantes[nombre][0]}. {nombre} - ({puntos[0]}) puntos")
     print()
 
-def Datos():
-    '''
-    Extreamos los datos de las anteriores etapas.
-    Retorna una lista de Letras a Jugar, y la Lista de palabras junto a sus definciones
-    
-    '''
-    datos = obtener_lista_definiciones()
-    diccionario = integrar_etapa_2(datos)
-    letras,palabra = integrar_etapa_3(diccionario,10)
-    palabra_definicion = extraer_claves_coincidentes(diccionario,palabra)                                            
-    return letras,palabra_definicion
 
 def Partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
     '''
@@ -272,14 +258,6 @@ def Partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
         
     return respuesta
     
-def Jugar(arUser):
-    '''
-    Integramos todo lo obtenido e iniciamos el juego
-    Parametro: Recibe un archivo.csv que contenga los usuarios registrados 
-    '''
-    lista_jugadores = Interfaz(arUser)
-    if lista_jugadores:
-        Partida(lista_jugadores)
 
 #archivo = "usuarios.csv"   
 #print(Jugar(archivo))
