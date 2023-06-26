@@ -3,8 +3,7 @@ from etapa3 import integrar_etapa_3
 from set_herramientas import extraer_claves_coincidentes
 from etapa2 import integrar_etapa_2
 from etapa7 import Interfaz
-from etapa8 import leer_diccionario
-from etapa10 import designar_configuracion,definir_configuracion
+from etapa10 import designar_configuracion
 
 #---- MOSTRAR TABLERO --- #
 def tablero(letrasParticipantes,lista_turno=[],lista_aciertos =[]):
@@ -127,8 +126,8 @@ def Resumen(dicc_resumen,letras,palabras,dicc_participantes,dicc_puntaje ={}):
     indice = 0
     INICIAL =0
     PARCIAL =0
-    PUNTAJE_ACIERTO = 10
-    PUNTAJE_DESACIERTO = -3
+    PUNTAJE_ACIERTO = designar_configuracion()["PUNTAJE_ACIERTO"]
+    PUNTAJE_DESACIERTO = designar_configuracion()["PUNTAJE_DESACIERTO"]
     for clave,valor in dicc_resumen.items():
         if clave not in dicc_puntaje:
             dicc_puntaje[clave] = [INICIAL,PARCIAL]
@@ -190,14 +189,15 @@ def Partida(lista_jugadores,dicc_puntaje = {}):
     #Lista_jugadores = una lista que contiene los jugadores, esta lista se obtiene de la etapa 7 Ejecutar_Juego()
     Retorna la respuesta que haya ingresado el usuario si desea volver a jugar o no
     '''
+   
     letras,palabra_definicion = Datos()
     dicc_participantes = Participantes(lista_jugadores)
     dicc_resumen = Interactuar(dicc_participantes,palabra_definicion,letras)
     Resumen(dicc_resumen,letras,palabra_definicion,dicc_participantes,dicc_puntaje)
     ImprimirPuntaje(dicc_puntaje,dicc_participantes)
     contador_partidas = 1
-    respuesta = input(f"Desea volver a jugar?:\n1.si\n2.no\n")
-    SI = "1"
+    respuesta = int(input(f"Desea volver a jugar?:\n1.si\n2.no\n"))
+    SI =1
     if respuesta == SI:
         respuesta = Partida(lista_jugadores,dicc_puntaje)
         contador_partidas +=1

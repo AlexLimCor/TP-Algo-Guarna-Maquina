@@ -31,7 +31,7 @@ def quitar_tilde(vocal_tildada):
     return vocal_sin_tilde
 
 
-#print(doctest.testmod())
+print(doctest.testmod())
 
 
 
