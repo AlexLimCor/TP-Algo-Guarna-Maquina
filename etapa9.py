@@ -1,6 +1,5 @@
 from etapa1 import Preguntar , Verificar
 from etapa3 import integrar_etapa_3
-from set_herramientas import extraer_claves_coincidentes
 from etapa2 import integrar_etapa_2
 from etapa7 import Interfaz
 from etapa10 import designar_configuracion
@@ -80,6 +79,8 @@ def Interactuar(dicc_participantes,lista_palabras,lista_letras):
             imprimir_jugadores(dicc_participantes)
             print(f"Turno Jugador {dicc_participantes[lista_jugadores[posicion]][0]}. {lista_jugadores[posicion]} - letra {lista_letras[indice].upper()} - Palabra de {len(lista_palabras[indice][0])} letras")
             print(f"Definicion: {lista_palabras[indice][DEFINICION]}")
+            #soluciones
+            print(f"{lista_palabras[indice][0]}")
             palabra = Preguntar()
             validar = Verificar(palabra)
             if validar and palabra == lista_palabras[indice][0]:
@@ -126,8 +127,8 @@ def Resumen(dicc_resumen,letras,palabras,dicc_participantes,dicc_puntaje ={}):
     indice = 0
     INICIAL =0
     PARCIAL =0
-    PUNTAJE_ACIERTO = designar_configuracion()["PUNTAJE_ACIERTO"]
-    PUNTAJE_DESACIERTO = designar_configuracion()["PUNTAJE_DESACIERTO"]
+    PUNTAJE_ACIERTO = int(designar_configuracion()["PUNTAJE_ACIERTO"])
+    PUNTAJE_DESACIERTO = -int(designar_configuracion()["PUNTAJE_DESACIERTO"])
     for clave,valor in dicc_resumen.items():
         if clave not in dicc_puntaje:
             dicc_puntaje[clave] = [INICIAL,PARCIAL]
@@ -182,7 +183,7 @@ def Datos():
     palabra_definicion = extraer_claves_coincidentes(diccionario,palabra)                                            
     return letras,palabra_definicion
 
-def Partida(lista_jugadores,dicc_puntaje = {}):
+def Partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
     '''
     Iniciamos el juego con los datos obtenidos y unimos todas las funciones anteriores
     Parametro:
@@ -190,32 +191,25 @@ def Partida(lista_jugadores,dicc_puntaje = {}):
     Retorna la respuesta que haya ingresado el usuario si desea volver a jugar o no
     '''
    
-    letras,palabra_definicion = Datos()
+    letras,palabra_definicion = integrar_etapa_8()
     dicc_participantes = Participantes(lista_jugadores)
     dicc_resumen = Interactuar(dicc_participantes,palabra_definicion,letras)
     Resumen(dicc_resumen,letras,palabra_definicion,dicc_participantes,dicc_puntaje)
     ImprimirPuntaje(dicc_puntaje,dicc_participantes)
-    contador_partidas = 1
-    respuesta = int(input(f"Desea volver a jugar?:\n1.si\n2.no\n"))
+    MAXIMO_PARTIDAS = int(designar_configuracion()["MAXIMO_PARTIDAS"])
+    respuesta = int(input(f"Desea volver a jugar?:\n1.si\n2.no\n")) if contador_partidas < MAXIMO_PARTIDAS else ImprimirFinal(dicc_puntaje,dicc_participantes,contador_partidas)
     SI =1
     if respuesta == SI:
-        respuesta = Partida(lista_jugadores,dicc_puntaje)
         contador_partidas +=1
-    else:
-        respuesta = ImprimirFinal(dicc_puntaje,dicc_participantes,contador_partidas)
+        respuesta = Partida(lista_jugadores,dicc_puntaje,contador_partidas)
+    elif respuesta != SI and contador_partidas < MAXIMO_PARTIDAS:
+        ImprimirFinal(dicc_puntaje,dicc_participantes,contador_partidas)
+        
     return respuesta
     
-def Jugar(arUser):
-    '''
-    Integramos todo lo obtenido e iniciamos el juego
-    Parametro: Recibe un archivo.csv que contenga los usuarios registrados 
-    '''
-    lista_jugadores = Interfaz(arUser)
-    if lista_jugadores:
-        Partida(lista_jugadores)
 
-archivo = "usuarios.csv"   
-Jugar(archivo)
+#archivo = "usuarios.csv"   
+#print(Jugar(archivo))
 
 
 

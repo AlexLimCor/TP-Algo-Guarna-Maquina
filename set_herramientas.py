@@ -75,28 +75,3 @@ def imprimir_diccionario(diccionario):
     for clave , valor in diccionario.items():
         print(f"{azul}{clave}:{reset}{valor}")
 
-
-def correccion_alfabetica(cadena):
-    """
-    alternativa a la funcion orden_alfabetico
-    """
-    equivalencia_alfabetica = {
-    'á': 'a',
-    'é': 'e',
-    'í': 'i',
-    'ó': 'o',
-    'ú': 'u',
-    'ñ': 'nz',
-    }
-    cadena_eq =""
-    for caracter in cadena:
-        if caracter in equivalencia_alfabetica.keys():
-            cadena_eq += equivalencia_alfabetica[caracter]
-        else:
-            cadena_eq += caracter
-    return cadena_eq
-"""
-print(correccion_alfabetica("árbol"))
-print(correccion_alfabetica("ñandú"))
-"""
-print(correccion_alfabetica("ñu"))

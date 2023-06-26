@@ -1,6 +1,6 @@
 #______________Funciones Complementarias_______________________
 
-def write_csv(diccionario, archivo):
+def escribir_csv(diccionario, archivo):
     """
     Parametros: 
     diccionario y archivo(objeto de open)
@@ -37,7 +37,7 @@ def definir_configuracion():
     for clave in lista_configuracion:
         dicc_configuracion[clave] = validar_int(input(f"Ingrese {clave}: "))
     with open("definiciones_palabras\\configuracion.csv","w") as configuracion:
-        write_csv(dicc_configuracion, configuracion)
+        escribir_csv(dicc_configuracion, configuracion)
     return 
 #________________________Etapa 10______________________________
 
@@ -72,7 +72,3 @@ def designar_configuracion(archivo= "definiciones_palabras\\configuracion.csv"):
         test = False if lineas != len(dicc_default) else True
 
     return dicc_configuracion
-
-'''if __name__ == "__main__":
-    definir_configuracion()
-    print(designar_configuracion())'''

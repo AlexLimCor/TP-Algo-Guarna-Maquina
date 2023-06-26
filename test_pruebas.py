@@ -79,8 +79,3 @@ def test_clave():
     print("Exito")
 
 test_clave()
-
-
-
-
-    
