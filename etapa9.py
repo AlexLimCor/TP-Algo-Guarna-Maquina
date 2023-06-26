@@ -1,5 +1,4 @@
 from etapa1 import Preguntar , Verificar
-from datos  import obtener_lista_definiciones 
 from etapa10 import designar_configuracion
 from etapa8 import integrar_etapa_8
 #___________Datos Temporales_____________#
@@ -144,7 +143,7 @@ def Interactuar(dicc_participantes,lista_palabras,lista_letras):
             print(f"Turno Jugador {dicc_participantes[lista_jugadores[posicion]][0]}. {lista_jugadores[posicion]} - letra {lista_letras[indice].upper()} - Palabra de {len(lista_palabras[indice][0])} letras")
             print(f"Definicion: {lista_palabras[indice][DEFINICION]}")
             #soluciones
-            print(f"{lista_palabras[indice][0]}")
+            #print(f"{lista_palabras[indice][0]}")
             palabra = Preguntar()
             validar = Verificar(palabra)
             if validar and palabra == lista_palabras[indice][0]:
