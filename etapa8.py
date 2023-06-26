@@ -127,7 +127,6 @@ def escribir_diccionario(longitud_minima_palabra):
     diccionario.write("palabra,definicion\n")
     escribir_archivo(diccionario,palabras_candidatas)
     diccionario.close()
-escribir_diccionario(100)
 
 
 def leer_diccionario():
@@ -144,9 +143,14 @@ def leer_diccionario():
             linea_dicc = linea.rstrip("\n").split(",")
     return lista_palabras
 
+def integrar_etapa_8():
+    diccionario_conf = designar_configuracion()
+    LONGITUD_PALABRA_MINIMA = int(diccionario_conf["LONGITUD_PALABRA_MINIMA"])
+    CANTIDAD_LETRAS_ROSCO = int(diccionario_conf["CANTIDAD_LETRAS_ROSCO"])
+    escribir_diccionario(LONGITUD_PALABRA_MINIMA)
+    lista_palabras = leer_diccionario()
+    dicc = generador_diccionario(lista_palabras)
 
-palabras_candidatas = [['árbol', 'definición1'], ['zorro', 'definición2'], ['ópera', 'definición3'], ['éxito', 'definición4'], ['ñandú', 'definición5']]
-excepciones = {'á', 'é', 'í', 'ó', 'ú', 'ñ'}
-
-sorted_palabras = sorted(palabras_candidatas, key=lambda x: correccion_alfabetica(x[0]) if x[0][0] not in excepciones else correccion_alfabetica(x[0]))
-print(sorted_palabras)
+    letras,palabras = integrar_etapa_3(list(dicc.keys()),CANTIDAD_LETRAS_ROSCO)
+    palabras_definicion = extraer_claves_coincidentes(dicc,palabras)
+    return letras,palabras_definicion

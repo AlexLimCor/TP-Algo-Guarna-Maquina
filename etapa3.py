@@ -1,6 +1,10 @@
-import random
-
-#______________________Funciones complementarias_______________________
+#______________________integracion de etapas______________________
+from etapa1 import Iniciar
+from etapa2 import integrar_etapa_2
+from etapa3 import integrar_etapa_3
+from datos import obtener_lista_definiciones
+from etapa8 import leer_diccionario
+#___________________funciones complementarias_____________________
 def orden_alfabetico(elemento):
     """
     la funcion recibe como parametro una elemento de caracteres y 
@@ -49,53 +53,60 @@ def orden_alfabetico(elemento):
         equivalencia_numerica.append(abecedario[letra])
     return equivalencia_numerica
 
-def generar_letras_aleatorias(cantidad_letras):
-    """
-    La funcion recibe como parametro un numero entero y devuelve una lista de letras aleatorias 
-    con longitud igual al numero recibido
-    """
-    letras=['a','b','c','d','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z']
-    #Elegimos 10 letras aleatorias
-    letras_elegidas=random.sample(letras,cantidad_letras)
-    #Ordenamos las letras alfabeticamente
-    letras_elegidas = sorted(letras_elegidas, key=orden_alfabetico)
-    return letras_elegidas
 
-def seleccionar_clave_aleatoria_por_letra(lista_palabras,letra):
-    """
-    La funcion recibe como parametro un lista_palabras y una letra y retorna una clave(palabra) aleatoria 
-    que empieza con la letra recibida
-    """
-    inicial = 0
-    letra = orden_alfabetico(letra)
-    listas_claves_candidatas = [clave for clave in lista_palabras if orden_alfabetico(clave)[inicial] in letra]
-    palabra_aleatoria_elegida = random.choice(listas_claves_candidatas)
-    return palabra_aleatoria_elegida
+def imprimir_diccionario(diccionario):
+    #___________Colores___________
+    azul = '\033[94m'
+    reset = '\033[0m'
+    for clave , valor in diccionario.items():
+        print(f"{azul}{clave}:{reset}{valor}")
 
 
-def obtener_lista_palabras(lista_palabras,letras_participantes):
+
+def generar_dicc_juego(palabras_elegidas,respuestas):
+    dicc_juego = {}
+    INICIAL = 0
+    for elemento in range(len(palabras_elegidas)):
+        dicc_juego[palabras_elegidas[elemento][INICIAL]] = [palabras_elegidas[elemento],respuestas[elemento]]
+    return dicc_juego
+def extraer_claves_coincidentes(diccionario,lista_palabras):
     """
-    la funcion recibe como parametro un lista_palabras y una lista de letras
-    y devuelve una lista de palabras aleatorias que empiezan con cada letra participante
+    La funcion recibe como parametro un diccionario y una lista de palabras 
+    y devuelve una lista de listas con la palabra y su definicion
     """
-    lista_palabras_elegidas = []
-    for letra in letras_participantes:
-        letra_elegida = seleccionar_clave_aleatoria_por_letra(lista_palabras,letra)
-        lista_palabras_elegidas.append(letra_elegida)
-    return lista_palabras_elegidas
+    lista_definiciones = []
+    for palabra, definicion in diccionario.items():
+        if palabra in lista_palabras:
+            lista_definiciones.append([palabra,definicion])
+        lista_definiciones = sorted(lista_definiciones, key=lambda x: orden_alfabetico(x[0]))
+    return lista_definiciones
+
+#______________________Etapas 4__________________________
 
 
-def integrar_etapa_3(lista_palabras,cantidad_letras):
+
+def integrar_etapa4(cantidad_letras,puntaje_inicial=0):
+
+    diccionario = integrar_etapa_2(obtener_lista_definiciones())
+
+    letras_elegidas,palabras_elegidas = integrar_etapa_3(diccionario,cantidad_letras)
+    palabras_definicion = extraer_claves_coincidentes(diccionario,palabras_elegidas)
+    respuestas = Iniciar(letras_elegidas,palabras_definicion)
+    diccionario_juego = generar_dicc_juego(palabras_elegidas,respuestas)
+    return diccionario_juego
+
+#______________________Etapas 4 con csv__________________________
+
+def intregrar_juego_csv(cantidad_letras):
     """
     Parametros:
-            lista_palabras:{"palabra":definicion,"palabra":definicion,...}
-            cantidad_letras:numero entero
-    return: una lista de listas [[letras_participantes,lista_palabras_elegidas]]
-
-    La funcion recibe como parametro un lista_palabras y un numero entero y devuelve una lista de palabras
-    aleatorias que empiezan con cada letra participante
+        cantidad_letras: numero entero
+    return: diccionario con clave: letra, valor: lista con [palabra , respuesta]
     """
-    letras_participantes = generar_letras_aleatorias(cantidad_letras)
-    lista_palabras_elegidas = obtener_lista_palabras(diccionario,letras_participantes)
-    resultado = [letras_participantes,lista_palabras_elegidas]
-    return resultado
+    diccionario = integrar_etapa_2(leer_diccionario())
+    lista_palabras = diccionario.keys()
+    letras_elegidas,palabras_elegidas = integrar_etapa_3(lista_palabras,cantidad_letras)
+    palabras_definicion = extraer_claves_coincidentes(diccionario,palabras_elegidas)
+    respuestas = Iniciar(letras_elegidas,palabras_definicion)
+    diccionario_juego = generar_dicc_juego(palabras_elegidas,respuestas)
+    return diccionario_juego

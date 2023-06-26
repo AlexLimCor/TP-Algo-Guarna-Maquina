@@ -1,8 +1,75 @@
 from etapa1 import Preguntar , Verificar
+from datos  import obtener_lista_definiciones 
 from etapa3 import integrar_etapa_3
 from etapa2 import integrar_etapa_2
 from etapa7 import Interfaz
 from etapa10 import designar_configuracion
+from etapa8 import integrar_etapa_8
+#___________Datos Temporales_____________#
+color_rojo = "\033[1;31m"
+reset = "\033[0m"
+
+#______________________Funciones complementarias_____________________
+def orden_alfabetico(elemento):
+    """
+    la funcion recibe como parametro una elemento de caracteres y 
+    devuelve una lista con la equivalencia numerica de cada letra. 
+    Si la elemento es una lista, se toma el primer elemento.
+    >>> orden_alfabetico("hola")
+    [8, 16, 12, 1]
+    >>> orden_alfabetico("manzana")
+    [13, 1, 14, 27, 1, 14, 1]
+    >>> orden_alfabetico("árbol")
+    [1, 19, 2, 16, 12]
+    >>> orden_alfabetico("último")
+    [22, 12, 21, 9, 13, 16]
+    """
+    abecedario = {
+    'a': 1, 'á': 1, 
+    'b': 2, 
+    'c': 3, 
+    'd': 4, 
+    'e': 5, 'é': 5, 
+    'f': 6, 
+    'g': 7, 
+    'h': 8, 
+    'i': 9, 'í': 9,
+    'j': 10, 
+    'k': 11, 
+    'l': 12, 
+    'm': 13, 
+    'n': 14, 
+    'ñ': 15, 
+    'o': 16, 'ó': 16, 
+    'p': 17, 
+    'q': 18, 
+    'r': 19,
+    's': 20, 
+    't': 21, 
+    'u': 22, 'ú': 22,  'ü': 22,
+    'v': 23, 
+    'w': 24, 
+    'x': 25, 
+    'y': 26, 
+    'z': 27
+    }
+    equivalencia_numerica = []
+    for letra in elemento:
+        equivalencia_numerica.append(abecedario[letra])
+    return equivalencia_numerica
+
+def extraer_claves_coincidentes(diccionario,lista_palabras):
+    """
+    La funcion recibe como parametro un diccionario y una lista de palabras 
+    y devuelve una lista de listas con la palabra y su definicion
+    """
+    lista_definiciones = []
+    for palabra, definicion in diccionario.items():
+        if palabra in lista_palabras:
+            lista_definiciones.append([palabra,definicion])
+        lista_definiciones = sorted(lista_definiciones, key=lambda x: orden_alfabetico(x[0]))
+    return lista_definiciones
+
 
 #---- MOSTRAR TABLERO --- #
 def tablero(letrasParticipantes,lista_turno=[],lista_aciertos =[]):
@@ -103,7 +170,6 @@ def Interactuar(dicc_participantes,lista_palabras,lista_letras):
                 dicc_registro[lista_jugadores[posicion]] = [palabra]
             indice +=1
         posicion += 1
-    print("-----------------------------------------")
     tablero(lista_letras,lista_turno,lista_aciertos)
     return dicc_registro
 
@@ -176,8 +242,7 @@ def Datos():
     Retorna una lista de Letras a Jugar, y la Lista de palabras junto a sus definciones
     
     '''
-  
-    datos = leer_diccionario()
+    datos = obtener_lista_definiciones()
     diccionario = integrar_etapa_2(datos)
     letras,palabra = integrar_etapa_3(diccionario,10)
     palabra_definicion = extraer_claves_coincidentes(diccionario,palabra)                                            
@@ -207,6 +272,14 @@ def Partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
         
     return respuesta
     
+def Jugar(arUser):
+    '''
+    Integramos todo lo obtenido e iniciamos el juego
+    Parametro: Recibe un archivo.csv que contenga los usuarios registrados 
+    '''
+    lista_jugadores = Interfaz(arUser)
+    if lista_jugadores:
+        Partida(lista_jugadores)
 
 #archivo = "usuarios.csv"   
 #print(Jugar(archivo))
