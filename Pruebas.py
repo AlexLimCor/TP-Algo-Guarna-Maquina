@@ -30,6 +30,7 @@ print(doctest.testmod())
 # --------- Etapa 2-----------#
 
 
+"""
 
 from valor_aleatorio import generar_letras_aleatorias,seleccionar_clave_aleatoria_por_letra
 from etapa8 import generador_diccionario
@@ -58,5 +59,8 @@ print(test_seleccionar_clave_aleatoria_por_letra())
 def test_jugar_de_nuevo():
     lista_test = []
     
+"""
+numero = '4'
+#respuesta = int(input(f"Desea volver a jugar?:\n1.si\n2.no\n")) if numero <=3 else print("No")
 
-    
+print(numero.isnumeric())

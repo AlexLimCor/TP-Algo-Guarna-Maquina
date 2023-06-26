@@ -1,6 +1,12 @@
 from datos import obtener_lista_definiciones
 import random
+#_______________________Primer entrega_______________________
+"""
+Trabajo Practico parte 1
 
+Entrega 16/06/2023
+
+"""
 # ----------ETAPA_1-------------
 # INTERACCION CON EL JUGADOR
 def tablero_turno_palabraIngresada(palabra_y_deficion,letrasElegidas):

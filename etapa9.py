@@ -1,10 +1,75 @@
 from etapa1 import Preguntar , Verificar
 from datos  import obtener_lista_definiciones 
 from etapa3 import integrar_etapa_3
-from set_herramientas import extraer_claves_coincidentes
 from etapa2 import integrar_etapa_2
 from etapa7 import Interfaz
 from etapa10 import designar_configuracion
+from etapa8 import integrar_etapa_8
+#___________Datos Temporales_____________#
+color_rojo = "\033[1;31m"
+reset = "\033[0m"
+
+#______________________Funciones complementarias_____________________
+def orden_alfabetico(elemento):
+    """
+    la funcion recibe como parametro una elemento de caracteres y 
+    devuelve una lista con la equivalencia numerica de cada letra. 
+    Si la elemento es una lista, se toma el primer elemento.
+    >>> orden_alfabetico("hola")
+    [8, 16, 12, 1]
+    >>> orden_alfabetico("manzana")
+    [13, 1, 14, 27, 1, 14, 1]
+    >>> orden_alfabetico("árbol")
+    [1, 19, 2, 16, 12]
+    >>> orden_alfabetico("último")
+    [22, 12, 21, 9, 13, 16]
+    """
+    abecedario = {
+    'a': 1, 'á': 1, 
+    'b': 2, 
+    'c': 3, 
+    'd': 4, 
+    'e': 5, 'é': 5, 
+    'f': 6, 
+    'g': 7, 
+    'h': 8, 
+    'i': 9, 'í': 9,
+    'j': 10, 
+    'k': 11, 
+    'l': 12, 
+    'm': 13, 
+    'n': 14, 
+    'ñ': 15, 
+    'o': 16, 'ó': 16, 
+    'p': 17, 
+    'q': 18, 
+    'r': 19,
+    's': 20, 
+    't': 21, 
+    'u': 22, 'ú': 22,  'ü': 22,
+    'v': 23, 
+    'w': 24, 
+    'x': 25, 
+    'y': 26, 
+    'z': 27
+    }
+    equivalencia_numerica = []
+    for letra in elemento:
+        equivalencia_numerica.append(abecedario[letra])
+    return equivalencia_numerica
+
+def extraer_claves_coincidentes(diccionario,lista_palabras):
+    """
+    La funcion recibe como parametro un diccionario y una lista de palabras 
+    y devuelve una lista de listas con la palabra y su definicion
+    """
+    lista_definiciones = []
+    for palabra, definicion in diccionario.items():
+        if palabra in lista_palabras:
+            lista_definiciones.append([palabra,definicion])
+        lista_definiciones = sorted(lista_definiciones, key=lambda x: orden_alfabetico(x[0]))
+    return lista_definiciones
+
 
 #---- MOSTRAR TABLERO --- #
 def tablero(letrasParticipantes,lista_turno=[],lista_aciertos =[]):
@@ -81,6 +146,8 @@ def Interactuar(dicc_participantes,lista_palabras,lista_letras):
             imprimir_jugadores(dicc_participantes)
             print(f"Turno Jugador {dicc_participantes[lista_jugadores[posicion]][0]}. {lista_jugadores[posicion]} - letra {lista_letras[indice].upper()} - Palabra de {len(lista_palabras[indice][0])} letras")
             print(f"Definicion: {lista_palabras[indice][DEFINICION]}")
+            #soluciones
+            print(f"{lista_palabras[indice][0]}")
             palabra = Preguntar()
             validar = Verificar(palabra)
             if validar and palabra == lista_palabras[indice][0]:
@@ -126,8 +193,8 @@ def Resumen(dicc_resumen,letras,palabras,dicc_participantes,dicc_puntaje ={}):
     indice = 0
     INICIAL =0
     PARCIAL =0
-    PUNTAJE_ACIERTO = designar_configuracion()["PUNTAJE_ACIERTO"]
-    PUNTAJE_DESACIERTO = designar_configuracion()["PUNTAJE_DESACIERTO"]
+    PUNTAJE_ACIERTO = int(designar_configuracion()["PUNTAJE_ACIERTO"])
+    PUNTAJE_DESACIERTO = -int(designar_configuracion()["PUNTAJE_DESACIERTO"])
     for clave,valor in dicc_resumen.items():
         if clave not in dicc_puntaje:
             dicc_puntaje[clave] = [INICIAL,PARCIAL]
@@ -181,7 +248,7 @@ def Datos():
     palabra_definicion = extraer_claves_coincidentes(diccionario,palabra)                                            
     return letras,palabra_definicion
 
-def Partida(lista_jugadores,dicc_puntaje = {}):
+def Partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
     '''
     Iniciamos el juego con los datos obtenidos y unimos todas las funciones anteriores
     Parametro:
@@ -189,20 +256,20 @@ def Partida(lista_jugadores,dicc_puntaje = {}):
     Retorna la respuesta que haya ingresado el usuario si desea volver a jugar o no
     '''
    
-    letras,palabra_definicion = Datos()
+    letras,palabra_definicion = integrar_etapa_8()
     dicc_participantes = Participantes(lista_jugadores)
     dicc_resumen = Interactuar(dicc_participantes,palabra_definicion,letras)
     Resumen(dicc_resumen,letras,palabra_definicion,dicc_participantes,dicc_puntaje)
     ImprimirPuntaje(dicc_puntaje,dicc_participantes)
-    contador_partidas = 1
-    MAXIMO_PARTIDAS = designar_configuracion()["MAXIMO_PARTIDAS"]
-    respuesta = int(input(f"Desea volver a jugar?:\n1.si\n2.no\n"))
+    MAXIMO_PARTIDAS = int(designar_configuracion()["MAXIMO_PARTIDAS"])
+    respuesta = int(input(f"Desea volver a jugar?:\n1.si\n2.no\n")) if contador_partidas < MAXIMO_PARTIDAS else ImprimirFinal(dicc_puntaje,dicc_participantes,contador_partidas)
     SI =1
-    if respuesta == SI and contador_partidas <= MAXIMO_PARTIDAS:
-        respuesta = Partida(lista_jugadores,dicc_puntaje)
+    if respuesta == SI:
         contador_partidas +=1
-    else:
-        respuesta = ImprimirFinal(dicc_puntaje,dicc_participantes,contador_partidas)
+        respuesta = Partida(lista_jugadores,dicc_puntaje,contador_partidas)
+    elif respuesta != SI and contador_partidas < MAXIMO_PARTIDAS:
+        ImprimirFinal(dicc_puntaje,dicc_participantes,contador_partidas)
+        
     return respuesta
     
 def Jugar(arUser):
@@ -214,8 +281,8 @@ def Jugar(arUser):
     if lista_jugadores:
         Partida(lista_jugadores)
 
-archivo = "usuarios.csv"   
-print(Jugar(archivo))
+#archivo = "usuarios.csv"   
+#print(Jugar(archivo))
 
 
 

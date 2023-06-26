@@ -1,5 +1,16 @@
-from set_herramientas import imprimir_diccionario_valores,imprimir_diccionario
-from etapa4 import integrar_juego
+from etapa4 import integrar_etapa4
+
+#___________________funciones complementarias_____________________
+#______________Colores______________
+rojo = '\033[91m'
+azul = '\033[94m'
+reset = '\033[0m'
+def imprimir_diccionario_valores(diccionario):
+    for valor in diccionario.values():
+        print(valor)
+
+
+#_______________________________Etapa 5_______________________________________
 def contador_puntaje(diccionario_puntaje,PUNTAJE_ACIERTO = 10,PUNTAJE_DESACIERTO = 3):
     
     """
@@ -40,24 +51,24 @@ def generar_resumen(diccionario):
     return diccionario_puntaje
 
 
+def jugar_de_nuevo(cantidad_letras,puntaje_inicial):
+    diccionario = integrar_etapa4(cantidad_letras)
+    return integrar_etapa_5(diccionario,cantidad_letras,puntaje_inicial)
 
-def integrar_etapa_5(diccionario,punaje_inicial=0):
+def integrar_etapa_5(diccionario,cantidad_letras,puntaje_inicial=0):
     """
     Parametros:
         diccionario: clave: letra, valor: lista con [palabra , respuesta]
+        cantidad_letras: numero entero
+        punaje_inicial: numero entero
     return: 
         volver_jugar: Funcion recursiva que permite volver a jugar o mostrar el puntaje final 
     """
     diccionario_puntaje = generar_resumen(diccionario)
-    puntaje = contador_puntaje(diccionario_puntaje) + punaje_inicial
+    puntaje = contador_puntaje(diccionario_puntaje) + puntaje_inicial
     print(f"Su puntaje es {puntaje}")
 
 
     volver_jugar = int(input("Desea volver a jugar? 1:si 2:no"))
-    volver_jugar = integrar_etapa_5(integrar_juego(10),puntaje) if volver_jugar == 1 else print("Gracias por jugar")
+    volver_jugar = jugar_de_nuevo(cantidad_letras,puntaje) if volver_jugar == 1 else print(f"\n\n\n{azul}Gracias por jugar.{reset}\nSu puntaje final es {puntaje}")
     return volver_jugar
-if __name__ == "__main__":
-    """
-    funcion de prueba
-    """
-    integrar_etapa_5(integrar_juego(10))
