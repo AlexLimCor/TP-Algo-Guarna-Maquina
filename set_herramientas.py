@@ -1,4 +1,3 @@
-import random
 import doctest
 def orden_alfabetico(elemento):
     """

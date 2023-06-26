@@ -53,6 +53,6 @@ def designar_configuracion(archivo= "definiciones_palabras\\configuracion.csv"):
 
     return dicc_configuracion
 
-if __name__ == "__main__":
+'''if __name__ == "__main__":
     definir_configuracion()
-    print(designar_configuracion())
+    print(designar_configuracion())'''

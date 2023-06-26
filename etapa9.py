@@ -1,9 +1,10 @@
 from etapa1 import Preguntar , Verificar
-from datos  import obtener_lista_definiciones 
 from etapa3 import integrar_etapa_3
 from set_herramientas import extraer_claves_coincidentes
 from etapa2 import integrar_etapa_2
 from etapa7 import Interfaz
+from etapa8 import leer_diccionario
+from etapa10 import designar_configuracion,definir_configuracion
 
 #---- MOSTRAR TABLERO --- #
 def tablero(letrasParticipantes,lista_turno=[],lista_aciertos =[]):
@@ -102,6 +103,7 @@ def Interactuar(dicc_participantes,lista_palabras,lista_letras):
                 dicc_registro[lista_jugadores[posicion]] = [palabra]
             indice +=1
         posicion += 1
+    print("-----------------------------------------")
     tablero(lista_letras,lista_turno,lista_aciertos)
     return dicc_registro
 
@@ -174,7 +176,8 @@ def Datos():
     Retorna una lista de Letras a Jugar, y la Lista de palabras junto a sus definciones
     
     '''
-    datos = obtener_lista_definiciones()
+  
+    datos = leer_diccionario()
     diccionario = integrar_etapa_2(datos)
     letras,palabra = integrar_etapa_3(diccionario,10)
     palabra_definicion = extraer_claves_coincidentes(diccionario,palabra)                                            
@@ -193,8 +196,8 @@ def Partida(lista_jugadores,dicc_puntaje = {}):
     Resumen(dicc_resumen,letras,palabra_definicion,dicc_participantes,dicc_puntaje)
     ImprimirPuntaje(dicc_puntaje,dicc_participantes)
     contador_partidas = 1
-    respuesta = int(input(f"Desea volver a jugar?:\n1.si\n2.no\n"))
-    SI =1
+    respuesta = input(f"Desea volver a jugar?:\n1.si\n2.no\n")
+    SI = "1"
     if respuesta == SI:
         respuesta = Partida(lista_jugadores,dicc_puntaje)
         contador_partidas +=1
@@ -212,7 +215,7 @@ def Jugar(arUser):
         Partida(lista_jugadores)
 
 archivo = "usuarios.csv"   
-print(Jugar(archivo))
+Jugar(archivo)
 
 
 

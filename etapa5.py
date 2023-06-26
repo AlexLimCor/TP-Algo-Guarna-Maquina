@@ -1,22 +1,21 @@
 from set_herramientas import imprimir_diccionario_valores,imprimir_diccionario
 from etapa4 import integrar_juego
-def contador_puntaje(diccionario_puntaje):
+def contador_puntaje(diccionario_puntaje,PUNTAJE_ACIERTO = 10,PUNTAJE_DESACIERTO = 3):
+    
     """
     Parametros:
-        diccionario_puntaje: diccionario con las claves "aciertos" y "errores" y sus respectivos valores
-        return: puntaje total int
+            diccionario_puntaje: diccionario con las claves "aciertos" y "errores" y sus respectivos valores
+    return: puntaje total intg
+        
     """
-
-    PUNTAJE_ACIERTO = 10
-    PUNTAJE_DESACIERTO = 3
     puntaje = diccionario_puntaje["aciertos"]*PUNTAJE_ACIERTO - diccionario_puntaje["errores"]*PUNTAJE_DESACIERTO
     return puntaje  
 
 def generar_resumen(diccionario):
     """
     Parametros:
-        diccionario: clave: letra, valor: lista con [palabra , respuesta]
-        return: diccionario con clave aciertos y errores y sus respectivos valores
+            diccionario: clave: letra, valor: lista con [palabra , respuesta]
+    return: diccionario con clave aciertos y errores y sus respectivos valores
     """
     diccionario_puntaje = {
     "aciertos":0,
@@ -46,7 +45,8 @@ def integrar_etapa_5(diccionario,punaje_inicial=0):
     """
     Parametros:
         diccionario: clave: letra, valor: lista con [palabra , respuesta]
-        return: 
+    return: 
+        volver_jugar: Funcion recursiva que permite volver a jugar o mostrar el puntaje final 
     """
     diccionario_puntaje = generar_resumen(diccionario)
     puntaje = contador_puntaje(diccionario_puntaje) + punaje_inicial

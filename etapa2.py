@@ -63,7 +63,7 @@ def generador_diccionario(diccionario_datos):
         if len(elemento[PALABRA]) >= LONG_MIN:
             #Armado del diccionario con la condicion
             palabras_candidatas[elemento[PALABRA]] = elemento[DEFINICION]
-    #print(f"Total de palabras {len(palabras_candidatas)}")
+    print(f"Total de palabras {len(palabras_candidatas)}")
     return palabras_candidatas
 
 
@@ -81,7 +81,6 @@ def contador_letras(diccionario):
 
     for elemento in diccionario:
         letra_inicial = elemento[PALABRA][INICIAL]
-        #Armado del diccionario con la cantidad de palabras que hay por cada letra
         if letra_inicial in VOCALES_TILDE: 
             #Si la letra inicial tiene tilde se le quita 
             letra_inicial = quitar_tilde(letra_inicial)
@@ -102,4 +101,3 @@ def integrar_etapa_2(datos):
     resumen_diccionario = contador_letras(datos)
     #imprimir_diccionario(resumen_diccionario)
     return diccionario
-

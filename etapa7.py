@@ -21,26 +21,35 @@ def Usuario(arUser):
     return nombre[USUARIO]
 #---- USUARIO ---- 
 def crear_usuario(nombre):
-    '''Verificamos que el nombre que ingrese cumpla con las condiciones'''
+    '''
+    Verificamos que el nombre que ingrese cumpla con las condiciones
+    Y este devuelve el nombre si la condicion es valida sino un valor booleano en este caso False
+    '''
     MIN = 4
     MAX = 20
     caracter_especial = ["-"]
     indice = 0
-    Usuario = False
+    Usuario = True
     if len(nombre) >= MIN and len(nombre) <= MAX:
-        while indice < len(nombre):
+        while indice < len(nombre) and Usuario:
             caracter = nombre[indice]
             if caracter.isalnum() or caracter in caracter_especial:
                 Usuario = True
             else:
                 Usuario = False
             indice +=1
+    else:
+        Usuario = False
     if Usuario:
         Usuario = nombre
     return Usuario
 #----Crear Clave----
 def crear_clave(clave):
-    ''' Validamos si el usuario ingresa una clave '''
+    '''
+    Validamos si el usuario ingresa una clave
+    y retorna la clave si es verdadero y en en caso contrario un False
+    
+    '''
     LONG_MIN = 6
     LONG_MAX = 12
     lista_especial = ["#","!"]
