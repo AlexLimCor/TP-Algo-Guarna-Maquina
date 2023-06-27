@@ -48,7 +48,7 @@ def orden_alfabetico(elemento):
     for letra in elemento:
         equivalencia_numerica.append(abecedario[letra])
     return equivalencia_numerica
-
+    #CRUZ, ARIEL CARLOS LEONARDO​
 def generar_letras_aleatorias(cantidad_letras):
     """
     La funcion recibe como parametro un numero entero y devuelve una lista de letras aleatorias 
@@ -60,18 +60,18 @@ def generar_letras_aleatorias(cantidad_letras):
     #Ordenamos las letras alfabeticamente
     letras_elegidas = sorted(letras_elegidas, key=orden_alfabetico)
     return letras_elegidas
-
+    #CRUZ, ARIEL CARLOS LEONARDO​
 def seleccionar_clave_aleatoria_por_letra(lista_palabras,letra):
     """
     La funcion recibe como parametro un lista_palabras y una letra y retorna una clave(palabra) aleatoria 
     que empieza con la letra recibida
     """
-    inicial = 0
+    INICIAL = 0
     letra = orden_alfabetico(letra)
-    listas_claves_candidatas = [clave for clave in lista_palabras if orden_alfabetico(clave)[inicial] in letra]
+    listas_claves_candidatas = [clave for clave in lista_palabras if orden_alfabetico(clave)[INICIAL] in letra]
     palabra_aleatoria_elegida = random.choice(listas_claves_candidatas)
     return palabra_aleatoria_elegida
-
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 def obtener_lista_palabras(lista_palabras,letras_participantes):
     """
@@ -83,7 +83,7 @@ def obtener_lista_palabras(lista_palabras,letras_participantes):
         letra_elegida = seleccionar_clave_aleatoria_por_letra(lista_palabras,letra)
         lista_palabras_elegidas.append(letra_elegida)
     return lista_palabras_elegidas
-
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 def integrar_etapa_3(lista_palabras,cantidad_letras):
     """
@@ -98,3 +98,4 @@ def integrar_etapa_3(lista_palabras,cantidad_letras):
     letras_participantes = generar_letras_aleatorias(cantidad_letras)
     lista_palabras_elegidas = obtener_lista_palabras(lista_palabras,letras_participantes)
     return letras_participantes,lista_palabras_elegidas
+    #CRUZ, ARIEL CARLOS LEONARDO​

@@ -52,6 +52,7 @@ def orden_alfabetico(elemento):
     for letra in elemento:
         equivalencia_numerica.append(abecedario[letra])
     return equivalencia_numerica
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 
 def imprimir_diccionario(diccionario):
@@ -60,7 +61,7 @@ def imprimir_diccionario(diccionario):
     reset = '\033[0m'
     for clave , valor in diccionario.items():
         print(f"{azul}{clave}:{reset}{valor}")
-
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 
 def generar_dicc_juego(palabras_elegidas,respuestas):
@@ -69,6 +70,7 @@ def generar_dicc_juego(palabras_elegidas,respuestas):
     for elemento in range(len(palabras_elegidas)):
         dicc_juego[palabras_elegidas[elemento][INICIAL]] = [palabras_elegidas[elemento],respuestas[elemento]]
     return dicc_juego
+    #CRUZ, ARIEL CARLOS LEONARDO​
 def extraer_claves_coincidentes(diccionario,lista_palabras):
     """
     La funcion recibe como parametro un diccionario y una lista de palabras 
@@ -80,6 +82,7 @@ def extraer_claves_coincidentes(diccionario,lista_palabras):
             lista_definiciones.append([palabra,definicion])
         lista_definiciones = sorted(lista_definiciones, key=lambda x: orden_alfabetico(x[0]))
     return lista_definiciones
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 #______________________Etapas 4__________________________
 
@@ -94,6 +97,7 @@ def integrar_etapa4(cantidad_letras,puntaje_inicial=0):
     respuestas = Iniciar(letras_elegidas,palabras_definicion)
     diccionario_juego = generar_dicc_juego(palabras_elegidas,respuestas)
     return diccionario_juego
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 #______________________Etapas 4 con csv__________________________
 
@@ -110,3 +114,4 @@ def intregrar_juego_csv(cantidad_letras):
     respuestas = Iniciar(letras_elegidas,palabras_definicion)
     diccionario_juego = generar_dicc_juego(palabras_elegidas,respuestas)
     return diccionario_juego
+    #CRUZ, ARIEL CARLOS LEONARDO​

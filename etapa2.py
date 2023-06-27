@@ -28,7 +28,7 @@ def quitar_tilde(vocal_tildada):
     vocal_sin_tilde = vocales_tildadas[vocal_tildada]
 
     return vocal_sin_tilde
-
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 print(doctest.testmod())
 
@@ -79,6 +79,7 @@ def orden_alfabetico(elemento):
     for letra in elemento:
         equivalencia_numerica.append(abecedario[letra])
     return equivalencia_numerica
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 
 
@@ -92,6 +93,7 @@ def ordenar_diccionario(diccionario):
     for elemento in lista_items:
         diccionario_ordenado[elemento[0]] = elemento[1]
     return diccionario_ordenado
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 
 
@@ -114,6 +116,7 @@ def generador_diccionario(diccionario_datos):
             palabras_candidatas[elemento[PALABRA]] = elemento[DEFINICION]
     print(f"Total de palabras {len(palabras_candidatas)}")
     return palabras_candidatas
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 
 #Se genera un diccionario con la cantidad de palabras que hay por cada letra
@@ -139,6 +142,7 @@ def contador_letras(diccionario):
             resumen_diccionario[letra_inicial] = 1
     resumen_diccionario = ordenar_diccionario(resumen_diccionario)
     return resumen_diccionario
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 def integrar_etapa_2(datos):
     """
@@ -150,3 +154,4 @@ def integrar_etapa_2(datos):
     resumen_diccionario = contador_letras(datos)
     #imprimir_diccionario(resumen_diccionario)
     return diccionario
+    #CRUZ, ARIEL CARLOS LEONARDO​ 

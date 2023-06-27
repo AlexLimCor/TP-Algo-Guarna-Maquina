@@ -2,6 +2,7 @@
 color_rojo = "\033[1;31m"
 reset = "\033[0m"
 # Crear las funciones necesarias para la interaccion con el jugador
+#LIMACHI CORDERO, ALEX​
 #---------- TABLERO ----------- #
 def Tablero(LetrasParticipantes,lista_aciertos = []):
     tablero_letras = ""
@@ -30,6 +31,7 @@ def Preguntar():
     palabra = input("Ingrese palabra: ")
     palabra.lower()
     return palabra
+    #LIMACHI CORDERO, ALEX​
 
 # Validamos que sea una palabra correcta 
 def Verificar(palabra):
@@ -47,6 +49,7 @@ def Verificar(palabra):
         indice +=1
     # Aplanamos la palabra para que no distinga la mayuscula
     return validar
+    #LIMACHI CORDERO, ALEX​
 
 #Interactuamos con el jugador 
 def Interactuar(LetrasParticipantes,palabras):
@@ -78,6 +81,7 @@ def Interactuar(LetrasParticipantes,palabras):
     '''Almacenamos todas las palabras en una lista para despues hacer el resumen'''
     Tablero(LetrasParticipantes,lista_aciertos)
     return resumen
+    #LIMACHI CORDERO, ALEX​
 
 
 # Unimos todas las funciones para crear la  etapa 1 "Interracion con el Jugador"
@@ -89,6 +93,9 @@ def Iniciar(letrasElegidas,Palabras):
     """
     resumen = Interactuar(letrasElegidas,Palabras)
     return resumen
+    #LIMACHI CORDERO, ALEX​
+
+
 
 
 

@@ -7,6 +7,7 @@ def escribir_csv(diccionario, archivo):
     """
     for clave, valor in diccionario.items():
         archivo.write(f"{clave},{valor}\n")
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 def leer_linea(archivo,default):
     """
@@ -15,6 +16,7 @@ def leer_linea(archivo,default):
     """
     linea = archivo.readline()
     return linea if linea else default
+    #CRUZ, ARIEL CARLOS LEONARDO​
 def validar_int(cadena):
     """
     parametros:
@@ -27,6 +29,7 @@ def validar_int(cadena):
     else:
         cadena = "Valor invalido"
     return cadena
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 def definir_configuracion():
     """
@@ -39,6 +42,7 @@ def definir_configuracion():
     with open("definiciones_palabras\\configuracion.csv","w") as configuracion:
         escribir_csv(dicc_configuracion, configuracion)
     return 
+    #CRUZ, ARIEL CARLOS LEONARDO​
 #________________________Etapa 10______________________________
 
 
@@ -72,3 +76,4 @@ def designar_configuracion(archivo= "definiciones_palabras\\configuracion.csv"):
         test = False if lineas != len(dicc_default) else True
 
     return dicc_configuracion
+    #CRUZ, ARIEL CARLOS LEONARDO​

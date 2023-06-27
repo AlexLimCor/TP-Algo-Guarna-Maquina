@@ -20,6 +20,7 @@ def test_palabra():
     assert resultado == True
 
     print("Exito")
+    #LIMACHI CORDERO, ALEX​
 
 test_palabra()
 
@@ -49,6 +50,7 @@ def test_usuario():
     assert resultado == "Alex-1"
 
     print("Exito")
+    #LIMACHI CORDERO, ALEX​
 test_usuario()
 
 
@@ -77,5 +79,6 @@ def test_clave():
     assert respuesta == "Aléx123#"
 
     print("Exito")
+    #LIMACHI CORDERO, ALEX​
 
 test_clave()

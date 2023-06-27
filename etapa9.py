@@ -53,6 +53,7 @@ def orden_alfabetico(elemento):
     for letra in elemento:
         equivalencia_numerica.append(abecedario[letra])
     return equivalencia_numerica
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 def extraer_claves_coincidentes(diccionario,lista_palabras):
     """
@@ -65,6 +66,7 @@ def extraer_claves_coincidentes(diccionario,lista_palabras):
             lista_definiciones.append([palabra,definicion])
         lista_definiciones = sorted(lista_definiciones, key=lambda x: orden_alfabetico(x[0]))
     return lista_definiciones
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 
 #---- MOSTRAR TABLERO --- #
@@ -83,7 +85,7 @@ def tablero(letrasParticipantes,lista_turno=[],lista_aciertos =[]):
         else:
             tablero_aciertos += "[ ]"
     print(f"{tablero_letras}\n{tablero_turno}\n{tablero_aciertos}\n")
-
+    #LIMACHI CORDERO, ALEX​
 # Creo un diccionario que almacena los valores de aciertos y errores de cada jugador
 def Participantes(lista_jugadores):
     '''
@@ -99,6 +101,7 @@ def Participantes(lista_jugadores):
             dicc_participantes[element] = [posicion,ACIERTO,ERRORES]
             posicion +=1
     return dicc_participantes
+    #LIMACHI CORDERO, ALEX​
 # Mostrar en pantalla la cantidad de aciertos y errores de cada jugador
 def imprimir_jugadores(dicc_participantes):
     ACIERTO =1 
@@ -108,6 +111,7 @@ def imprimir_jugadores(dicc_participantes):
     for clave,valor in dicc_participantes.items():
         print(f"{valor[POSICION]}. {clave} - Aciertos: {valor[ACIERTO]} - Errores: {valor[ERRORES]}")
     print()
+    #LIMACHI CORDERO, ALEX​
 
 # Importamos de la etapa 1 la funcion preguntar() y verificar() para validar la palabra que ingresa el usuario
 def Interactuar(dicc_participantes,lista_palabras,lista_letras):
@@ -168,6 +172,7 @@ def Interactuar(dicc_participantes,lista_palabras,lista_letras):
         posicion += 1
     tablero(lista_letras,lista_turno,lista_aciertos)
     return dicc_registro
+    #LIMACHI CORDERO, ALEX​
 
 def Resumen(dicc_resumen,letras,palabras,dicc_participantes,dicc_puntaje ={}):
     '''
@@ -203,6 +208,7 @@ def Resumen(dicc_resumen,letras,palabras,dicc_participantes,dicc_puntaje ={}):
                 print(f"Turno de la letra {letras[indice].upper()} - Jugador {dicc_participantes[clave][0]} {clave} - Palabra de {len(palabras[indice][0])} letras - {palabra} - error - Palabra Correcta: {palabras[indice][0]}")
                 dicc_puntaje[clave][1] += PUNTAJE_DESACIERTO
             indice+=1
+    #LIMACHI CORDERO, ALEX​
         
 def ImprimirPuntaje(dicc_puntaje,dicc_participantes):
     '''
@@ -221,6 +227,7 @@ def ImprimirPuntaje(dicc_puntaje,dicc_participantes):
     for clave,valor in dicc_puntaje.items():
         valor[0] += valor[1]
         valor[1] = 0
+    #LIMACHI CORDERO, ALEX​
 
 def ImprimirFinal(dicc_puntos,dicc_participantes,contador = 1):
     '''
@@ -231,6 +238,7 @@ def ImprimirFinal(dicc_puntos,dicc_participantes,contador = 1):
     for nombre,puntos in dicc_puntos.items():
         print(f"{dicc_participantes[nombre][0]}. {nombre} - ({puntos[0]}) puntos")
     print()
+    #LIMACHI CORDERO, ALEX​
 
 
 def Partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
@@ -256,7 +264,8 @@ def Partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
         ImprimirFinal(dicc_puntaje,dicc_participantes,contador_partidas)
         
     return respuesta
-    
+
+#LIMACHI CORDERO, ALEX​
 
 #archivo = "usuarios.csv"   
 #print(Jugar(archivo))

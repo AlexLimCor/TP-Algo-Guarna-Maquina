@@ -9,16 +9,19 @@ def leer(arUser):
         linea = ","
     Registro = linea.split(",")
     return Registro
+    #LIMACHI CORDERO, ALEX​
 
 #Escribimos en el archivo el usuario y clave 
 def grabarUsuarioClave(arUser,User,clave):
     arUser.write(User + "," + clave + "\n")
+    #LIMACHI CORDERO, ALEX​
 
 #Solo tomamos el nombre del usuario en el registro para despues buscar si hay usuarios con el mismo nombre 
 def Usuario(arUser):
     USUARIO = 0
     nombre = leer(arUser)
     return nombre[USUARIO]
+    #LIMACHI CORDERO, ALEX​
 #---- USUARIO ---- 
 def crear_usuario(nombre):
     '''
@@ -43,6 +46,7 @@ def crear_usuario(nombre):
     if Usuario:
         Usuario = nombre
     return Usuario
+    #LIMACHI CORDERO, ALEX​
 #----Crear Clave----
 def crear_clave(clave):
     '''
@@ -82,6 +86,7 @@ def crear_clave(clave):
             validarClave = clave
 
     return validarClave
+    #LIMACHI CORDERO, ALEX​
 
 #Buscamos si el usuario se encuentra en el archivo
 def Buscar(arUser,usuario):
@@ -95,6 +100,7 @@ def Buscar(arUser,usuario):
                 user = Usuario(linea)
         #linea.seek(0,0)
     return nombre
+    #LIMACHI CORDERO, ALEX​
 
 #Registrar al usuario y validamos todos los pasos
 def Registrarse(arUser,usuario,clave1,clave2):
@@ -114,7 +120,7 @@ def Registrarse(arUser,usuario,clave1,clave2):
             messagebox.showerror("Clave no valido","Recuerda que debe tener por lo menos una mayuscula,una minuscula,un numero y alguno de los siguientes caracteres especiales: #, !")
     else:
         messagebox.showerror("Usuario no valido o Existente","Por favor ingrese otro nombre")  
-    
+    #LIMACHI CORDERO, ALEX​
 #Iniciar sesion
 def IniciarSesion(arUser,usuario,clave):
     with open(arUser,"r") as linea:
@@ -128,7 +134,7 @@ def IniciarSesion(arUser,usuario,clave):
             messagebox.showerror("","Usuario o clave no valido")
     #Colocamos el puntero al inicio para poder usar a futuro el archivo
     return validacion
-
+    #LIMACHI CORDERO, ALEX​
 
 #----------------------- INTERFAZ GRAFICA ----------------------------- #
 # Creamos un Ventana principal de "Bienvenido al juego"
@@ -219,7 +225,7 @@ def ventana_principal(arUser):
     Usuarios = []
     ventana.mainloop()
     return Usuarios
-
+    #LIMACHI CORDERO, ALEX​
 # --- Nueva ventana de registro -- 
 def ventana_secundaria(arUser):
     ventana_secundaria = Tk()
@@ -265,12 +271,13 @@ def ventana_secundaria(arUser):
         Registrarse(arUser,nombre,clave1,clave2)
         ventana_secundaria.destroy()
     ventana_secundaria.mainloop()
-
+    #LIMACHI CORDERO, ALEX​
 #----------- Seleccionamos al azar los nombres para dar comienzo al turno
 def Eleccion(arUser):
     usuarios = ventana_principal(arUser)
     seleccion = random.sample(usuarios,len(usuarios))
     return seleccion
+    #LIMACHI CORDERO, ALEX​
 
 #---- Mostramos en ventana los turnos de los usuarios que ingresan 
 def mostrar_eleccion(arUser):
@@ -293,12 +300,15 @@ def mostrar_eleccion(arUser):
     if len(seleccion) > MIN and len(seleccion) <= MAX:
         ventana.mainloop()
     return seleccion
-
+    #LIMACHI CORDERO, ALEX​
 
 #---- Empezar juego---#
 def Interfaz(arUser):
     lista_usuarios = mostrar_eleccion(arUser)
     return lista_usuarios
+
+#LIMACHI CORDERO, ALEX​
+
 
 #usuarios_csv = "usuarios.csv"
 #print(Interfaz(usuarios_csv))

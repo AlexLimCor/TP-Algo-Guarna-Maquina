@@ -8,6 +8,7 @@ reset = '\033[0m'
 def imprimir_diccionario_valores(diccionario):
     for valor in diccionario.values():
         print(valor)
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 
 #_______________________________Etapa 5_______________________________________
@@ -21,6 +22,7 @@ def contador_puntaje(diccionario_puntaje,PUNTAJE_ACIERTO = 10,PUNTAJE_DESACIERTO
     """
     puntaje = diccionario_puntaje["aciertos"]*PUNTAJE_ACIERTO - diccionario_puntaje["errores"]*PUNTAJE_DESACIERTO
     return puntaje  
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 def generar_resumen(diccionario):
     """
@@ -49,11 +51,13 @@ def generar_resumen(diccionario):
 
         imprimir_diccionario_valores(diccionario_resumen)
     return diccionario_puntaje
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 
 def jugar_de_nuevo(cantidad_letras,puntaje_inicial):
     diccionario = integrar_etapa4(cantidad_letras)
     return integrar_etapa_5(diccionario,cantidad_letras,puntaje_inicial)
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 def integrar_etapa_5(diccionario,cantidad_letras,puntaje_inicial=0):
     """
@@ -72,3 +76,4 @@ def integrar_etapa_5(diccionario,cantidad_letras,puntaje_inicial=0):
     volver_jugar = int(input("Desea volver a jugar? 1:si 2:no"))
     volver_jugar = jugar_de_nuevo(cantidad_letras,puntaje) if volver_jugar == 1 else print(f"\n\n\n{azul}Gracias por jugar.{reset}\nSu puntaje final es {puntaje}")
     return volver_jugar
+    #CRUZ, ARIEL CARLOS LEONARDO​

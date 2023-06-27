@@ -49,6 +49,7 @@ def orden_alfabetico(elemento):
     for letra in elemento:
         equivalencia_numerica.append(abecedario[letra])
     return equivalencia_numerica
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 def extraer_claves_coincidentes(diccionario,lista_palabras):
     """
@@ -61,6 +62,7 @@ def extraer_claves_coincidentes(diccionario,lista_palabras):
             lista_definiciones.append([palabra,definicion])
         lista_definiciones = sorted(lista_definiciones, key=lambda x: orden_alfabetico(x[0]))
     return lista_definiciones
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 excepciones = ["á","é","í","ó","ú","ñ"]
 
@@ -71,18 +73,20 @@ def leer_archivo(archivo, default):
     """
     linea = archivo.readline()
     return linea if linea else default
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
-def generador_diccionario(diccionario_datos):
+def generador_diccionario(datos):
     """
     Genera un diccionario con las palabras que cumplen con la condicion
     """
     palabras_candidatas = {}
     PALABRA = 0
     DEFINICION = 1
-    for elemento in diccionario_datos:
+    for elemento in datos:
         #Armado del diccionario con la condicion
         palabras_candidatas[elemento[PALABRA]] = elemento[DEFINICION]
     return palabras_candidatas
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 
 def escribir_archivo(archivo, lista):
@@ -92,6 +96,7 @@ def escribir_archivo(archivo, lista):
     """
     for palabra,definicion in lista:
         archivo.write(f"{palabra},'{definicion}'\n")
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 def escribir_diccionario(longitud_minima_palabra):
     """
@@ -127,6 +132,7 @@ def escribir_diccionario(longitud_minima_palabra):
     diccionario.write("palabra,definicion\n")
     escribir_archivo(diccionario,palabras_candidatas)
     diccionario.close()
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 
 def leer_diccionario():
@@ -142,6 +148,7 @@ def leer_diccionario():
             linea = leer_archivo(diccionario,"####")
             linea_dicc = linea.rstrip("\n").split(",")
     return lista_palabras
+    #CRUZ, ARIEL CARLOS LEONARDO​
 
 def integrar_etapa_8():
     diccionario_conf = designar_configuracion()
@@ -154,3 +161,4 @@ def integrar_etapa_8():
     letras,palabras = integrar_etapa_3(list(dicc.keys()),CANTIDAD_LETRAS_ROSCO)
     palabras_definicion = extraer_claves_coincidentes(dicc,palabras)
     return letras,palabras_definicion
+    #CRUZ, ARIEL CARLOS LEONARDO​
