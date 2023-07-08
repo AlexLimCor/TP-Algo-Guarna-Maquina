@@ -1,5 +1,5 @@
 from etapa3 import seleccionar_palabras_aleatoria
-from etapa10 import designar_configuracion
+from configuracion_juego import designar_configuracion
 import doctest
 import os
 
