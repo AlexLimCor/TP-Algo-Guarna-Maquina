@@ -1,6 +1,6 @@
 from etapa1 import Preguntar , Verificar
 from etapa10 import designar_configuracion
-from etapa8 import integrar_etapa_8
+from etapa8 import generar_dicc_segun_configuracion
 #___________Datos Temporales_____________#
 color_rojo = "\033[1;31m"
 reset = "\033[0m"
@@ -249,7 +249,9 @@ def Partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
     Retorna la respuesta que haya ingresado el usuario si desea volver a jugar o no
     '''
    
-    letras,palabra_definicion = integrar_etapa_8()
+    diccionario_letras_palabra_definicion = generar_dicc_segun_configuracion()
+    letras = list(diccionario_letras_palabra_definicion.keys())
+    palabra_definicion = list(diccionario_letras_palabra_definicion.values())
     dicc_participantes = Participantes(lista_jugadores)
     dicc_resumen = Interactuar(dicc_participantes,palabra_definicion,letras)
     Resumen(dicc_resumen,letras,palabra_definicion,dicc_participantes,dicc_puntaje)
@@ -269,9 +271,3 @@ def Partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
 
 #archivo = "usuarios.csv"   
 #print(Jugar(archivo))
-
-
-
-
-
-
