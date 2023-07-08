@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox 
 import random
+import platform
 #Leemos el archivo 
 def leer(arUser):
     linea = arUser.readline()
@@ -144,7 +145,8 @@ def ventana_principal(arUser):
     ventana = Tk()
     ventana.title("PasaPalabra-Maquina")
     ventana.geometry("400x300")
-    ventana.iconbitmap("pasapalabra.ico")
+    if not platform.system() == "Linux":
+        ventana.iconbitmap("pasapalabra.ico")
     #---frame---
     login = Frame(ventana,width=200,height=300)
     login.pack()

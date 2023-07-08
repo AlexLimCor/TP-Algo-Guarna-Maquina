@@ -1,4 +1,5 @@
 import os
+from tkinter import messagebox 
 #______________Rutas de archivos_______________________
 configuracion_arc = os.path.join("definiciones_palabras","configuracion.csv")
 #______________Funciones Complementarias_______________________
@@ -42,4 +43,38 @@ def designar_configuracion():
             #print(f"La configuracion {clave} no es valida, asignando valor por defecto {valor}")
             dicc_configuracion[clave] = valor
     return dicc_configuracion
+    #CRUZ, ARIEL CARLOS LEONARDO​
+
+    
+def varidar_config(diccionario_config_usuario):
+    """
+    La funcion valida que los valores ingresados por el usuario sean validos
+    Parametros: diccionario con la configuracion del usuario{config:valor}
+    return: lista con los mensajes de error
+    """
+    dicc_config_default = {
+    "LONGITUD_PALABRA_MINIMA": 4,
+    "CANTIDAD_LETRAS_ROSCO": 10,
+    "MAXIMO_PARTIDAS": 5,
+    "PUNTAJE_ACIERTO": 10,
+    "PUNTAJE_DESACIERTO": 3,
+    }
+    etiquetas = list(diccionario_config_usuario.keys())
+    valores = list(diccionario_config_usuario.values())
+    error_mensajes = []
+    for indice in range(len(valores)):
+        valor = valores[indice]
+        try:
+            valor = int(valor)
+            if valor < dicc_config_default[etiquetas[indice]]:
+                raise ValueError
+        except ValueError:
+            error_mensajes.append(f"El valor {etiquetas[indice]} debe ser un numero entero mayor {dicc_config_default[etiquetas[indice]]}")
+    
+    if error_mensajes:
+        mensaje_error = ""
+        for error in error_mensajes:
+            mensaje_error += error + "\n"
+        messagebox.showerror("Error", mensaje_error)
+    return error_mensajes
     #CRUZ, ARIEL CARLOS LEONARDO​
