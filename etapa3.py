@@ -1,5 +1,5 @@
 import random
-
+import doctest
 #______________________Funciones complementarias_______________________
 def orden_alfabetico(elemento):
     """
@@ -85,7 +85,7 @@ def obtener_lista_palabras(lista_palabras,letras_participantes):
     return lista_palabras_elegidas
     #CRUZ, ARIEL CARLOS LEONARDO​
 
-def integrar_etapa_3(lista_palabras,cantidad_letras):
+def seleccionar_palabras_aleatoria(lista_palabras,cantidad_letras):
     """
     Parametros:
             lista_palabras:{"palabra":definicion,"palabra":definicion,...}
@@ -97,5 +97,8 @@ def integrar_etapa_3(lista_palabras,cantidad_letras):
     """
     letras_participantes = generar_letras_aleatorias(cantidad_letras)
     lista_palabras_elegidas = obtener_lista_palabras(lista_palabras,letras_participantes)
-    return letras_participantes,lista_palabras_elegidas
+    return lista_palabras_elegidas 
+#letras_participantes,lista_palabras_elegidas
     #CRUZ, ARIEL CARLOS LEONARDO​
+
+print(doctest.testmod())
