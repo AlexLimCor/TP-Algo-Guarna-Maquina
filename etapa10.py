@@ -1,14 +1,7 @@
+import os
+#______________Rutas de archivos_______________________
+configuracion_arc = os.path.join("definiciones_palabras","configuracion.csv")
 #______________Funciones Complementarias_______________________
-
-def escribir_csv(diccionario, archivo):
-    """
-    Parametros: 
-    diccionario y archivo(objeto de open)
-    """
-    for clave, valor in diccionario.items():
-        archivo.write(f"{clave},{valor}\n")
-    #CRUZ, ARIEL CARLOS LEONARDO​
-
 def leer_linea(archivo,default):
     """
     Parametros: archivo(objeto de open) y cadena
@@ -17,41 +10,16 @@ def leer_linea(archivo,default):
     linea = archivo.readline()
     return linea if linea else default
     #CRUZ, ARIEL CARLOS LEONARDO​
-def validar_int(cadena):
-    """
-    parametros:
-        cadena: cadena de caracteres
-        return: cadena convertida a entero o cadena "Valor invalido" si no se puede convertir
-
-    """
-    if cadena.isnumeric():
-        cadena = int(cadena)
-    else:
-        cadena = "Valor invalido"
-    return cadena
-    #CRUZ, ARIEL CARLOS LEONARDO​
-
-def definir_configuracion():
-    """
-    La funcion escribe en un archivo csv la configuracion del juego segun los parametros que ingrese el usuario
-    """
-    lista_configuracion = ["LONGITUD_PALABRA_MINIMA","CANTIDAD_LETRAS_ROSCO","MAXIMO_PARTIDAS","PUNTAJE_ACIERTO","PUNTAJE_DESACIERTO"]
-    dicc_configuracion = {}
-    for clave in lista_configuracion:
-        dicc_configuracion[clave] = validar_int(input(f"Ingrese {clave}: "))
-    with open("definiciones_palabras\\configuracion.csv","w") as configuracion:
-        escribir_csv(dicc_configuracion, configuracion)
-    return 
-    #CRUZ, ARIEL CARLOS LEONARDO​
+    
 #________________________Etapa 10______________________________
 
-
-def designar_configuracion(archivo= "definiciones_palabras\\configuracion.csv"):
+def designar_configuracion():
     """
     Parametros: ruta del archivo de configuracion
     return: diccionario con la configuracion del juego
     """
-    dicc_default = {
+    archivo = configuracion_arc
+    dicc_config_default = {
     "LONGITUD_PALABRA_MINIMA": 4,
     "CANTIDAD_LETRAS_ROSCO": 10,
     "MAXIMO_PARTIDAS": 5,
@@ -59,21 +27,19 @@ def designar_configuracion(archivo= "definiciones_palabras\\configuracion.csv"):
     "PUNTAJE_DESACIERTO": 3,
     }
     dicc_configuracion = {}
-    default = "####"
-    test = True
-    lineas = 0
+    default = "####,####"
     with open(archivo, "r") as configuracion:
         linea = leer_linea(configuracion,default)
-        linea_config = linea.rstrip("\n").split(",")
-        while linea != default and test:
-            if linea_config[0] in dicc_default.keys() and linea_config[1].isnumeric():
-                dicc_configuracion[linea_config[0]] = linea_config[1]
-            else:
-                dicc_configuracion[linea_config[0]] = dicc_default[linea_config[0]]
+        config, valor = linea.rstrip("\n").split(",")
+        while config != "####":
+            if config in dicc_config_default and valor.isnumeric():
+                dicc_configuracion[config] = int(valor)
             linea = leer_linea(configuracion,default)
-            linea_config = linea.rstrip("\n").split(",")
-            lineas +=1
-        test = False if lineas != len(dicc_default) else True
-
+            config, valor = linea.rstrip("\n").split(",")
+    #Completamos el diccionario con los valores por defecto si no estan en el archivo
+    for clave, valor in dicc_config_default.items():
+        if clave not in dicc_configuracion:
+            #print(f"La configuracion {clave} no es valida, asignando valor por defecto {valor}")
+            dicc_configuracion[clave] = valor
     return dicc_configuracion
     #CRUZ, ARIEL CARLOS LEONARDO​
