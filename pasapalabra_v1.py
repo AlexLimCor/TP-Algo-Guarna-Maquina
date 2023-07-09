@@ -10,9 +10,10 @@ TEXTO_PALABRA = 'Palabra de'
 TEXTO_LETRAS = 'letras'
 TEXTO_DEFINICION = 'Definicion'
 TEXTO_INGRESAR_PALABRA = "Ingrese palabra"
-TEXTO_ADVERTENCIA = "La longitud no es la indicada, Por favor vuelva a ingresar"
-TEXTO_ERROR = "Error,La palabra contiene caracteres invalidos"
+TEXTO_ADVERTENCIA = "Longitud no valido, Por favor vuelva a ingresar una palabra de"
+TEXTO_ERROR = "La palabra contiene caracteres invalidos"
 TEXTO_CORRECION = 'Palabra incorrecta , La palabra es'
+TEXTO_AVISO = "Recuerda colocar caracteres alfabeticos"
 MENSAJE_ACIERTO = "a"
 MENSAJE_INCORRECTO = "e" 
 
@@ -32,12 +33,6 @@ def tablero(lista_letras,lista_aciertos = []):
 def mostrar_aciertos_errores(aciertos = 0,errores = 0):
     print(f"{TEXTO_ACIERTO}: {aciertos}\n{TEXTO_ERRORES}: {errores}")
 
-# Informacion de la palabra candidata a adivinar
-def informacion_palabra(dicc_palabras,caracter = 0,definicion =1):
-    lista_letras = list(dicc_palabras.keys())
-    lista_palabras = list(dicc_palabras.values())
-    print(f"{TEXTO_TURNO} {lista_letras[caracter].upper()} - {TEXTO_PALABRA} {len(lista_palabras[caracter][0])} {TEXTO_LETRAS}")
-    print(f"{TEXTO_DEFINICION}: {lista_palabras[caracter][definicion]}")
 
 def aplanar_palabra(palabra):
     '''
@@ -98,6 +93,7 @@ def validar_palabra_ingresada(palabra):
 
 # Solicitamos al usuario que ingrese una palabra alfabetica 
 def ingresar_palabra():
+    print(f"*{TEXTO_AVISO}*")
     palabra = input(f"{TEXTO_INGRESAR_PALABRA}:")
     termino = aplanar_palabra(palabra)
     return termino
@@ -110,7 +106,7 @@ def comparar_palabras(palabra_adivinar):
         LONGITUD_PALABRA_ADIVINAR = len(palabra_adivinar)
         LONGITUD_PALABRA = len(palabra)
         while LONGITUD_PALABRA != LONGITUD_PALABRA_ADIVINAR and validar:
-            print(f"----------------------------------------\n{TEXTO_ADVERTENCIA}")
+            print(f"----------------------------------------\n{TEXTO_ADVERTENCIA}: {LONGITUD_PALABRA_ADIVINAR} {TEXTO_LETRAS}")
             palabra = ingresar_palabra()
             validar = validar_palabra_ingresada(palabra)
             if validar:
@@ -126,6 +122,7 @@ def comparar_palabras(palabra_adivinar):
 def interactuar(dicc_palabras):
     lista_letras = list(dicc_palabras.keys())
     lista_palabras = list(dicc_palabras.values())
+    print(lista_palabras)
     resumen = []
     lista_aciertos = []
     acierto = 0
@@ -136,7 +133,8 @@ def interactuar(dicc_palabras):
         print("---------------------------------------------")
         tablero(lista_letras,lista_aciertos)
         mostrar_aciertos_errores(acierto,errores)
-        informacion_palabra(lista_letras,lista_palabras,indice,DEFINICION)
+        print(f"{TEXTO_TURNO} {lista_letras[indice].upper()} - {TEXTO_PALABRA} {len(lista_palabras[indice][0])} {TEXTO_LETRAS}")
+        print(f"{TEXTO_DEFINICION}: {lista_palabras[indice][DEFINICION]}")
         palabra = comparar_palabras(lista_palabras[indice][0])
         termino = aplanar_palabra(lista_palabras[indice][0])
         if palabra == termino:
@@ -158,15 +156,13 @@ def interactuar(dicc_palabras):
 # Unimos todas las funciones para crear la  etapa 1 "Interracion con el Jugador"
 def iniciar_juego(dicc_palabras):
     """
-    letrasElegidas: lista de letras elegidas
-    Palabras: lista de palabras candidatas
+    recibe como parametro un diccionario de palabras 
     return: lista de palabras ingresadas por el usuario
     """
     resumen = interactuar(dicc_palabras)
     return resumen
     #LIMACHI CORDERO, ALEX​
 
-#print(aplanar_palabra("EjEcuCióN"))
 print(doctest.testmod())
 
 
