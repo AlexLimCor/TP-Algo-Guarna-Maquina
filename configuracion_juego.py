@@ -74,8 +74,7 @@ def escribir_dicc_configuracion(longitud_palabra_minima,letras_en_el_rosco,maxim
     with open(configuracion_arc,"w") as configuracion:
         escribir_csv(diccionario_valido, configuracion)
     return 
-
-def leer_configuracion():
+def obtener_confi_valida(dicc_configuracion):
     dicc_default = {
     "LONGITUD_PALABRA_MINIMA": 4,
     "CANTIDAD_LETRAS_ROSCO": 10,
@@ -83,6 +82,16 @@ def leer_configuracion():
     "PUNTAJE_ACIERTO": 10,
     "PUNTAJE_DESACIERTO": 3,
     }
+    for clave, valor in dicc_default.items():
+        if not clave in dicc_configuracion.keys():
+            dicc_configuracion[clave] = valor
+        elif type(dicc_configuracion[clave]) != int:
+            dicc_configuracion[clave] = valor
+    return dicc_configuracion
+
+
+
+def leer_configuracion():
     CONFIGURACION = 0
     VALOR = 1
     diccionario_configuracion = {}
@@ -94,19 +103,7 @@ def leer_configuracion():
                 diccionario_configuracion[linea_dicc[CONFIGURACION]] = int(linea_dicc[VALOR])
             linea = leer_linea(configuracion,"####")
             linea_dicc = linea.rstrip("\n").split(",")
-    print(diccionario_configuracion)
-    
-    for clave, valor in dicc_default.items():
-        try:
-            print(clave,valor)
-            if not clave in diccionario_configuracion.keys():
-                raise KeyError
-            elif type(diccionario_configuracion[clave]) != int:
-                raise ValueError
-        except KeyError:
-            diccionario_configuracion[clave] = valor
-        except ValueError:
-            diccionario_configuracion[clave] = valor
+    diccionario_configuracion = obtener_confi_valida(diccionario_configuracion)
     return diccionario_configuracion
 
 
