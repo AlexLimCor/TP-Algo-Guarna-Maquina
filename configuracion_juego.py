@@ -93,7 +93,9 @@ def validar_config(valores):
                 mensaje_error += f"{error} debe ser un numero entero mayor a 0\n"
         if not __name__ == "__main__":
             messagebox.showerror("Error", mensaje_error)
-    
+    else:
+        messagebox.showinfo("Configuracion", "Configuracion guardada correctamente") if not __name__ == "__main__" else None
+            
     return generar_diccionario(etiquetas,valores,True) if not error_mensajes else dicc_config_default
     #CRUZ, ARIEL CARLOS LEONARDO​
 
@@ -105,8 +107,10 @@ def escribir_dicc_configuracion(longitud_palabra_minima,letras_en_el_rosco,maxim
     """
     valores = [longitud_palabra_minima,letras_en_el_rosco,maximo_partidas,puntaje_acierto,puntaje_desacierto]
     diccionario_valido = validar_config(valores)
+
     with open(configuracion_arc,"w") as configuracion:
         escribir_csv(diccionario_valido, configuracion)
+
     return 
     #CRUZ, ARIEL CARLOS LEONARDO​
 #_________________________Leer Archivo Configuracion____________________________________
@@ -168,3 +172,4 @@ def leer_configuracion():
     return diccionario_configuracion
     #CRUZ, ARIEL CARLOS LEONARDO​
 print(doctest.testmod())
+
