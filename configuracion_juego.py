@@ -84,17 +84,25 @@ def validar_config(valores):
         else:
             error_mensajes.append(clave)
     
-    if error_mensajes:
-        mensaje_error = ""
-        for error in error_mensajes:
-            if error == "LONGITUD_PALABRA_MINIMA":
-                mensaje_error += f"La longitud minima de la palabra debe ser mayor a {dicc_config_default[error] -1} y menor a {MAX_LONGITUD_PALABRA + 1}\n"
-            else:
-                mensaje_error += f"{error} debe ser un numero entero mayor a 0\n"
-        if not __name__ == "__main__":
-            messagebox.showerror("Error", mensaje_error)
+    if error_mensajes and not __name__ == "__main__":
+        adicional = ""
+        mensaje_confirmacion = "Algunos valores ingresados no son validos.\nSe establecera la configuracion por defecto.\n\n"
+        for clave, valor in dicc_config_default.items():
+            mensaje_confirmacion += f"{clave}: {valor}\n"
+        mensaje_confirmacion += "\nTen en cuenta que:\n"
+        if "LONGITUD_PALABRA_MINIMA" in error_mensajes:
+            mensaje_confirmacion += f"La longitud minima de palabra debe ser un numero entero entre {dicc_config_default['LONGITUD_PALABRA_MINIMA']} y {MAX_LONGITUD_PALABRA}\n"
+            adicional = "restantes"
+        else:
+            mensaje_confirmacion += f"Los valores{adicional} deben ser numero enteros mayores a 0\n"
+        
+        messagebox.showinfo("Configuracion", mensaje_confirmacion)
     else:
-        messagebox.showinfo("Configuracion", "Configuracion guardada correctamente") if not __name__ == "__main__" else None
+        if not __name__ == "__main__":
+            mensaje_confirmacion = "La configuracion establecida es:\n\n"
+            for clave, valor in dicc_config_usuario.items():
+                mensaje_confirmacion += f"{clave}: {valor}\n"
+            messagebox.showinfo("Configuracion", mensaje_confirmacion)
             
     return generar_diccionario(etiquetas,valores,True) if not error_mensajes else dicc_config_default
     #CRUZ, ARIEL CARLOS LEONARDO​
