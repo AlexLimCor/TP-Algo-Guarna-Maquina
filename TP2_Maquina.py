@@ -1,12 +1,12 @@
-from etapa7 import Interfaz
-from etapa9 import Partida
+from interfaz_grafica import interfaz_usuario
+from pasapalabra_v2 import iniciar_partida
 import platform
 
 def pasapalabra():
     archivo_user = "usuarios.csv" 
-    jugadores = Interfaz(archivo_user)
+    jugadores = interfaz_usuario(archivo_user)
     if jugadores:
-        Partida(jugadores)
+        iniciar_partida(jugadores)
 
 print(platform.platform())
 print(platform.system())

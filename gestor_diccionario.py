@@ -1,5 +1,5 @@
 from etapa3 import seleccionar_palabras_aleatoria
-from configuracion_juego import designar_configuracion
+from configuracion_juego import leer_configuracion
 import doctest
 import os
 
@@ -207,7 +207,7 @@ def generar_dicc_segun_configuracion():
     La funcion genera un diccionario con las palabras y sus definiciones segun la configuracion del juego
     return: diccionario con clave: Inicial de la palabra, valor: lista con [palabra , definicion]
     """
-    diccionario_conf = designar_configuracion()
+    diccionario_conf = leer_configuracion()
     longitud_minima_palabra = int(diccionario_conf["LONGITUD_PALABRA_MINIMA"])
     cantidad_letras_rosco = int(diccionario_conf["CANTIDAD_LETRAS_ROSCO"])
     dicc_palabras_candidates = crear_dicc_palabras_candidatas(longitud_minima_palabra)

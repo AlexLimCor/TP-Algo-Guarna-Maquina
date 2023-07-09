@@ -1,5 +1,5 @@
 #______________________integracion de etapas______________________
-from etapa1 import Iniciar
+from pasapalabra_v1 import iniciar_juego
 from etapa2 import integrar_etapa_2
 from etapa3 import integrar_etapa_3
 from datos import obtener_lista_definiciones
