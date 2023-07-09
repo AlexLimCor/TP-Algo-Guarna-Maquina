@@ -65,24 +65,49 @@ def varidar_config(valores):
     return dicc_config_usuario if not error_mensajes else dicc_config_default
     #CRUZ, ARIEL CARLOS LEONARDO​
 
-def definir_configuracion(dicc_configuracion):
-    """
-    La funcion recibe como parametro un diccionario con la configuracion del usuario y lo escribe en un archivo csv
-    Parametros: diccionario con la configuracion del usuario{config:valor}
-    """
-    with open(configuracion_arc,"w") as configuracion:
-        escribir_csv(dicc_configuracion, configuracion)
-    return 
-    #CRUZ, ARIEL CARLOS LEONARDO​
-
-
 def escribir_dicc_configuracion(longitud_palabra_minima,letras_en_el_rosco,maximo_partidas,puntaje_acierto,puntaje_desacierto):
     valores = [longitud_palabra_minima,letras_en_el_rosco,maximo_partidas,puntaje_acierto,puntaje_desacierto]
     """
     La funcion recibe como parametro un diccionario y un archivo y escribe en el archivo
     """
     diccionario_valido = varidar_config(valores)
-    definir_configuracion(diccionario_valido)
+    with open(configuracion_arc,"w") as configuracion:
+        escribir_csv(diccionario_valido, configuracion)
+    return 
+
+def leer_configuracion():
+    dicc_default = {
+    "LONGITUD_PALABRA_MINIMA": 4,
+    "CANTIDAD_LETRAS_ROSCO": 10,
+    "MAXIMO_PARTIDAS": 5,
+    "PUNTAJE_ACIERTO": 10,
+    "PUNTAJE_DESACIERTO": 3,
+    }
+    CONFIGURACION = 0
+    VALOR = 1
+    diccionario_configuracion = {}
+    with open(configuracion_arc,"r") as configuracion:
+        linea = leer_linea(configuracion,"####")
+        linea_dicc = linea.rstrip("\n").split(",")
+        while linea != "####":
+            if len(linea_dicc) == 2:
+                diccionario_configuracion[linea_dicc[CONFIGURACION]] = int(linea_dicc[VALOR])
+            linea = leer_linea(configuracion,"####")
+            linea_dicc = linea.rstrip("\n").split(",")
+    print(diccionario_configuracion)
+    
+    for clave, valor in dicc_default.items():
+        try:
+            print(clave,valor)
+            if not clave in diccionario_configuracion.keys():
+                raise KeyError
+            elif type(diccionario_configuracion[clave]) != int:
+                raise ValueError
+        except KeyError:
+            diccionario_configuracion[clave] = valor
+        except ValueError:
+            diccionario_configuracion[clave] = valor
+    return diccionario_configuracion
 
 
-escribir_dicc_configuracion(4,10.9,5,10,3)
+print(leer_configuracion())
