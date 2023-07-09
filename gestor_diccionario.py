@@ -1,4 +1,4 @@
-from etapa3 import seleccionar_palabras_aleatoria
+from palabras_aleatorias import seleccionar_palabras_aleatoria
 from configuracion_juego import leer_configuracion
 import doctest
 import os

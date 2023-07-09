@@ -33,9 +33,7 @@ def mostrar_aciertos_errores(aciertos = 0,errores = 0):
     print(f"{TEXTO_ACIERTO}: {aciertos}\n{TEXTO_ERRORES}: {errores}")
 
 # Informacion de la palabra candidata a adivinar
-def informacion_palabra(dicc_palabras,caracter = 0,definicion =1):
-    lista_letras = list(dicc_palabras.keys())
-    lista_palabras = list(dicc_palabras.values())
+def informacion_palabra(lista_letras,lista_palabras, caracter= 0,definicion =1):
     print(f"{TEXTO_TURNO} {lista_letras[caracter].upper()} - {TEXTO_PALABRA} {len(lista_palabras[caracter][0])} {TEXTO_LETRAS}")
     print(f"{TEXTO_DEFINICION}: {lista_palabras[caracter][definicion]}")
 
