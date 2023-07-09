@@ -85,16 +85,14 @@ def validar_config(valores):
             error_mensajes.append(clave)
     
     if error_mensajes and not __name__ == "__main__":
-        adicional = ""
         mensaje_confirmacion = "Algunos valores ingresados no son validos.\nSe establecera la configuracion por defecto.\n\n"
         for clave, valor in dicc_config_default.items():
             mensaje_confirmacion += f"{clave}: {valor}\n"
         mensaje_confirmacion += "\nTen en cuenta que:\n"
         if "LONGITUD_PALABRA_MINIMA" in error_mensajes:
             mensaje_confirmacion += f"La longitud minima de palabra debe ser un numero entero entre {dicc_config_default['LONGITUD_PALABRA_MINIMA']} y {MAX_LONGITUD_PALABRA}\n"
-            adicional = "restantes"
         else:
-            mensaje_confirmacion += f"Los valores{adicional} deben ser numero enteros mayores a 0\n"
+            mensaje_confirmacion += f"Los valores deben ser numero enteros mayores a 0\n"
         
         messagebox.showinfo("Configuracion", mensaje_confirmacion)
     else:
