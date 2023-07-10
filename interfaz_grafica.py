@@ -2,6 +2,7 @@ from tkinter import Tk,messagebox,Frame,Label,Entry,Button
 import random
 from registro_usuario import iniciar_sesion,registro_usuario
 from configuracion_juego import escribir_dicc_configuracion,leer_configuracion
+import os
 
 #-----------------------ETAPA 7 ---------------------------------------#
 # MENSAJES
@@ -13,7 +14,7 @@ TEXTO_PUNTAJE_DESACIERTO = "PUNTAJE_DESACIERTO"
 
 # VENTANA USUARIO
 TITULO_VENTANA_USUARIO = "PasaPalabra-Maquina"
-ICONO = "pasapalabra.ico"
+ICONO = os.path.join("recursos","pasapalabra.ico")
 TAMANIO_VENTANA_USUARIO = "400x300"
 TEXTO_BIENVENIDO = "Bienvenido"
 TEXTO_USUARIO = "Usuario"

@@ -203,6 +203,5 @@ def iniciar_partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
         imprimir_puntaje_final(dicc_puntaje,dicc_participantes,contador_partidas)    
     return respuesta
 
-iniciar_partida(["alex","usuario"])
 
 #LIMACHI CORDERO, ALEX​
