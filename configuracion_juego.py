@@ -177,5 +177,6 @@ def leer_configuracion():
     diccionario_configuracion = obtener_confi_valida(diccionario_configuracion)
     return diccionario_configuracion
     #CRUZ, ARIEL CARLOS LEONARDO​
-print(doctest.testmod())
+if __name__ == "__main__":
+    print(doctest.testmod())
 

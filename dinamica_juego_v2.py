@@ -28,8 +28,8 @@ TEXTO_PARTIDAS_JUGADAS = 'Partidas Jugadas'
 TEXTO_PUNTOS = 'puntos'
 TEXTO_PUNTAJE_PARTIDA = "Puntaje de la partida"
 TEXTO_PUNTAJE_PARCIAL = "Puntaje parcial"
-TEXTO_SI = 'Si'
-TEXTO_NO = 'No'
+TEXTO_SI = '[Si/s]'
+TEXTO_NO = '[No/n]'
 MENSAJE_CORRECTO = "a"
 MENSAJE_INCORRECTO = "e"
 
@@ -172,6 +172,35 @@ def imprimir_puntaje_final(dicc_puntos,dicc_participantes,contador = 1):
     print()
     #LIMACHI CORDERO, ALEX​
 
+def orden_alfab_breve(palabra):
+    alfabeto={
+        "s": 1, "S": 1,
+        "n": 2, "N": 2,
+        "i": 3, "I": 3, "í": 3, "Í": 3,
+        "o": 4, "O": 4, "ó": 4, "Ó": 4,
+    }
+    indice = 0
+    equivalencia_numerica = []
+    while indice < len(palabra):
+        if palabra[indice] in alfabeto.keys():
+            equivalencia_numerica.append(alfabeto[palabra[indice]])
+        else:
+            equivalencia_numerica.append(100)
+        indice +=1
+    return equivalencia_numerica
+
+
+def validar_jugar_de_nuevo():
+    respuesta = input(f"{TEXTO_PREGUNTA}?:\n{TEXTO_SI}\n{TEXTO_NO}\n")
+    if  orden_alfab_breve(respuesta) == orden_alfab_breve("si") or orden_alfab_breve(respuesta) == orden_alfab_breve("s"):
+        respuesta = 1
+    elif orden_alfab_breve(respuesta) == orden_alfab_breve("no") or orden_alfab_breve(respuesta) == orden_alfab_breve("n"):
+        respuesta = 2
+    else:
+        print(f"-------------------\n{TEXTO_ERROR}\n------------------------")
+        print("Por favor ingrese si o no")
+        validar_jugar_de_nuevo()
+    return respuesta
 
 def iniciar_partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
     '''
@@ -186,16 +215,13 @@ def iniciar_partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
     imprimir_puntaje(dicc_puntaje,dicc_participantes)
     MAXIMO_PARTIDAS = int(leer_configuracion()[TEXTO_MAXIMO_PARTIDAS])
     if contador_partidas <= MAXIMO_PARTIDAS:
-        SI = '1'
-        NO = '2'
-        respuesta = input(f"{TEXTO_PREGUNTA}?:\n1.{TEXTO_SI}\n2.{TEXTO_NO}\n")
-        while respuesta != SI and respuesta != NO:
-            print(f"-------------------\n{TEXTO_ERROR}\n------------------------")
-            respuesta = input(f"{TEXTO_PREGUNTA}?:\n1.{TEXTO_SI}\n2.{TEXTO_NO}\n")
+        SI = 1
+        NO = 2
+        respuesta = validar_jugar_de_nuevo() if contador_partidas < MAXIMO_PARTIDAS else NO
         if respuesta == SI:
             contador_partidas +=1
             respuesta = iniciar_partida(lista_jugadores,dicc_puntaje,contador_partidas)
-        elif respuesta != SI and contador_partidas < MAXIMO_PARTIDAS:
+        elif respuesta == NO and contador_partidas < MAXIMO_PARTIDAS:
             imprimir_puntaje_final(dicc_puntaje,dicc_participantes,contador_partidas)
     else:
         imprimir_puntaje_final(dicc_puntaje,dicc_participantes,contador_partidas)    

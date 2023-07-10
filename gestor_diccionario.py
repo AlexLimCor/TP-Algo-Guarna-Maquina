@@ -166,5 +166,5 @@ def generar_dicc_segun_configuracion():
     dicc_palabras_elegidas = generar_dicc_palabras_def_elegidas(dicc_palabras_candidates,cantidad_letras_rosco)
     return dicc_palabras_elegidas
     #CRUZ, ARIEL CARLOS LEONARDO​
-
-print(doctest.testmod())
+if __name__ == "__main__":
+    print(doctest.testmod())

@@ -162,8 +162,8 @@ def iniciar_juego(dicc_palabras):
     resumen = interactuar(dicc_palabras)
     return resumen
     #LIMACHI CORDERO, ALEX​
-
-print(doctest.testmod())
+if __name__ == "__main__":
+    print(doctest.testmod())
 
 
 

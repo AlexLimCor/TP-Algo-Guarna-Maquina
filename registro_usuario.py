@@ -165,5 +165,5 @@ def registro_usuario(arUser,usuario,clave1,clave2):
     else:
         messagebox.showerror("",ERROR_NOMBRE_INVALIDO)  
 
-
-print(doctest.testmod())
+if __name__ == "__main__":
+    print(doctest.testmod())

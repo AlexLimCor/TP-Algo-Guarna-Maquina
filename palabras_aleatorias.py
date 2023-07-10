@@ -111,4 +111,5 @@ def seleccionar_palabras_aleatoria(lista_palabras,cantidad_letras):
 #letras_participantes,lista_palabras_elegidas
     #CRUZ, ARIEL CARLOS LEONARDO​
 
-print(doctest.testmod())
+if __name__ == "__main__":
+    print(doctest.testmod())
