@@ -1,6 +1,5 @@
 from interfaz_grafica import interfaz_usuario
 from dinamica_juego_v2 import iniciar_partida
-import platform
 
 def pasapalabra():
     archivo_user = "recursos/usuarios.csv" 
@@ -8,6 +7,4 @@ def pasapalabra():
     if jugadores:
         iniciar_partida(jugadores)
 
-print(platform.platform())
-print(platform.system())
 pasapalabra()
