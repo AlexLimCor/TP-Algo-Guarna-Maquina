@@ -215,16 +215,13 @@ def iniciar_partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
     imprimir_puntaje(dicc_puntaje,dicc_participantes)
     MAXIMO_PARTIDAS = int(leer_configuracion()[TEXTO_MAXIMO_PARTIDAS])
     if contador_partidas < MAXIMO_PARTIDAS:
-        SI = '1'
-        NO = '2'
-        respuesta = input(f"{TEXTO_PREGUNTA}?:\n1.{TEXTO_SI}\n2.{TEXTO_NO}\n")
-        while respuesta != SI and respuesta != NO:
-            print(f"-------------------\n{TEXTO_ERROR}\n------------------------")
-            respuesta = input(f"{TEXTO_PREGUNTA}?:\n1.{TEXTO_SI}\n2.{TEXTO_NO}\n")
+        SI = 1
+        NO = 2
+        respuesta = validar_jugar_de_nuevo()
         if respuesta == SI:
             contador_partidas +=1
             iniciar_partida(lista_jugadores,dicc_puntaje,contador_partidas)
-        elif respuesta != SI and contador_partidas < MAXIMO_PARTIDAS:
+        elif respuesta == NO and contador_partidas < MAXIMO_PARTIDAS:
             imprimir_puntaje_final(dicc_puntaje,dicc_participantes,contador_partidas)
     else:
         imprimir_puntaje_final(dicc_puntaje,dicc_participantes,contador_partidas)
