@@ -185,7 +185,7 @@ def iniciar_partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
     resumen_partida(diccionario_palabras,dicc_participantes,dicc_puntaje)
     imprimir_puntaje(dicc_puntaje,dicc_participantes)
     MAXIMO_PARTIDAS = int(leer_configuracion()[TEXTO_MAXIMO_PARTIDAS])
-    if contador_partidas <= MAXIMO_PARTIDAS:
+    if contador_partidas < MAXIMO_PARTIDAS:
         SI = '1'
         NO = '2'
         respuesta = input(f"{TEXTO_PREGUNTA}?:\n1.{TEXTO_SI}\n2.{TEXTO_NO}\n")
@@ -194,12 +194,11 @@ def iniciar_partida(lista_jugadores,dicc_puntaje = {},contador_partidas=1):
             respuesta = input(f"{TEXTO_PREGUNTA}?:\n1.{TEXTO_SI}\n2.{TEXTO_NO}\n")
         if respuesta == SI:
             contador_partidas +=1
-            respuesta = iniciar_partida(lista_jugadores,dicc_puntaje,contador_partidas)
+            iniciar_partida(lista_jugadores,dicc_puntaje,contador_partidas)
         elif respuesta != SI and contador_partidas < MAXIMO_PARTIDAS:
             imprimir_puntaje_final(dicc_puntaje,dicc_participantes,contador_partidas)
     else:
-        imprimir_puntaje_final(dicc_puntaje,dicc_participantes,contador_partidas)    
-    return respuesta
+        imprimir_puntaje_final(dicc_puntaje,dicc_participantes,contador_partidas)
 
 #iniciar_partida(["alex","usuario"])
 
