@@ -55,7 +55,12 @@ def ventana_usuario(arUser):
     ventana = Tk()
     ventana.title(TITULO_VENTANA_USUARIO)
     ventana.geometry(TAMANIO_VENTANA_USUARIO)
-    ventana.iconbitmap(ICONO)
+    try:
+        ventana.iconbitmap(ICONO)
+        raise Exception
+    except Exception:
+        if __name__ == "__main__":
+            print("No se pudo cargar el icono")
     ventana.resizable(False,False)
     #---frame---
     login = Frame(ventana,width=200,height=300)
