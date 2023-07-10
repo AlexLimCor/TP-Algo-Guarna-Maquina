@@ -1,8 +1,7 @@
 from tkinter import Tk,messagebox,Frame,Label,Entry,Button
-import random
 from registro_usuario import iniciar_sesion,registro_usuario
 from configuracion_juego import escribir_dicc_configuracion,leer_configuracion
-import os
+import os,random
 
 #-----------------------ETAPA 7 ---------------------------------------#
 # MENSAJES
@@ -57,6 +56,7 @@ def ventana_usuario(arUser):
     ventana.title(TITULO_VENTANA_USUARIO)
     ventana.geometry(TAMANIO_VENTANA_USUARIO)
     ventana.iconbitmap(ICONO)
+    ventana.resizable(False,False)
     #---frame---
     login = Frame(ventana,width=200,height=300)
     login.pack()
