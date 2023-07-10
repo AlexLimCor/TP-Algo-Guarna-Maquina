@@ -78,5 +78,3 @@ def jugar_pasapalabras(diccionario_juego,cantidad_letras,puntaje_inicial=0):
     return volver_jugar
     #CRUZ, ARIEL CARLOS LEONARDO​
 
-
-jugar_pasapalabras(generar_resumen_partida(1),1)

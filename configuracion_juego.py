@@ -2,7 +2,7 @@ import os
 from tkinter import messagebox 
 import doctest
 #______________Rutas de archivos_______________________
-configuracion_arc = os.path.join("definiciones_palabras","configuracion.csv")
+configuracion_arc = os.path.join("recursos","configuracion.csv")
 #______________Funciones Complementarias_______________________
 
 def leer_linea(archivo,default):

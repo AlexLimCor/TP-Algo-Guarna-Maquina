@@ -1,0 +1,5 @@
+valores_invalidos,"Algunos valores ingresados no son validos.\nSe establecera la configuracion por defecto.\n\n"
+sugerencia,"\nTen en cuenta que:\n"
+error_palabra_minima,"La longitud minima de palabra debe ser un numero entero entre {dicc_config_default['LONGITUD_PALABRA_MINIMA']} y {MAX_LONGITUD_PALABRA}\n"
+otros_errores,"Los valores deben ser numero enteros mayores a 0\n"
+tle_configuracion,"Configuracion de la partida\n"
