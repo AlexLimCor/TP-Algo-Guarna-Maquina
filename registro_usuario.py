@@ -9,7 +9,10 @@ ERROR_CLAVE_NO_COINCIDENTE = "Las claves no coinciden"
 ERROR_NOMBRE_INVALIDO = "Por favor ingrese un nombre que sea de longitud mayor o igual a 4 caracteres y un maximo de 20, estar formado solo por letras,numeros y el guion medio '-' "
 ERROR_CLAVE_INVALIDO = "Recuerda que debe tener por lo menos una mayuscula,una minuscula,un numero y alguno de los siguientes caracteres especiales: #, !"
 REGISTRO_EXITO = "Se registro con exito"
-#---- NOMBRE ---- 
+#---- NOMBRE ---- #
+'''Se pide crear un nombre que contenga las siguientes condiciones
+1. Un minimo de 4 caracteres y maximo de 20
+2. Estar formado solo por letras,numeros y el guion medio '-' '''
 def crear_nombre(nombre):
     '''
     >>> crear_nombre("alex")
@@ -48,6 +51,11 @@ def crear_nombre(nombre):
     #LIMACHI CORDERO, ALEX​
 
 #----CLAVE----#
+'''Condiciones
+1. Un minimo de 6 y 12 caracteres
+2. Estar formado solo por caracteres alfanumericos, a excepcion de las letras acentuadas y los caracteres '#' '!'
+3. Debe contener al menos una letra mayuscula,una letra minuscula y alguno de los siguientes caracteres '#' '!'
+'''
 def crear_clave(clave):
     '''
     >>> crear_clave('Japon2#')
