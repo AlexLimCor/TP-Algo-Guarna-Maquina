@@ -76,18 +76,9 @@ def validar_palabra_ingresada(palabra):
     >>> validar_palabra_ingresada("ar bol")
     False
     '''
-    vocales_acentuadas = ["á","é","í","ó","ú"]
-    validar = True
-    indice = 0
-    while indice < len(palabra) and validar:
-        caracter = palabra[indice]
-        if caracter.isnumeric():
-            validar = False
-        if not caracter.isalnum():
-            validar = False
-            if caracter in vocales_acentuadas:
-                validar = True
-        indice +=1
+    validar = False
+    if palabra.isalpha():
+        validar = True
     return validar
     #LIMACHI CORDERO, ALEX​
 
