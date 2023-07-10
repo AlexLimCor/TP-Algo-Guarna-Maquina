@@ -1,6 +1,5 @@
 #______________________integracion de etapas______________________
-from pasapalabra_v1 import iniciar_juego
-from etapa2 import integrar_etapa_2
+from dinamica_juego_v1 import iniciar_juego
 from gestor_diccionario import generar_dicc_palabras_def_elegidas, transformador_lista_a_dicc
 from palabras_aleatorias import seleccionar_palabras_aleatoria
 from datos import obtener_lista_definiciones
