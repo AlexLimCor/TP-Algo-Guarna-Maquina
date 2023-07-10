@@ -172,7 +172,7 @@ def leer_diccionario():
     return lista_palabras
     #CRUZ, ARIEL CARLOS LEONARDO​
 
-
+ 
 
 def crear_dicc_palabras_candidatas(longitud_minima_palabra):
     """
