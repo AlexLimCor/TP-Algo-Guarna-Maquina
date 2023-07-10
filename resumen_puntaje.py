@@ -9,7 +9,23 @@ def imprimir_diccionario_valores(diccionario):
     for valor in diccionario.values():
         print(valor)
     #CRUZ, ARIEL CARLOS LEONARDO​
-
+def orden_alfab_breve(palabra):
+    
+    alfabeto={
+        "s": 1, "S": 1,
+        "n": 2, "N": 2,
+        "i": 3, "I": 3, "í": 3, "Í": 3,
+        "o": 4, "O": 4, "ó": 4, "Ó": 4,
+    }
+    indice = 0
+    equivalencia_numerica = []
+    while indice < len(palabra):
+        if palabra[indice] in alfabeto.keys():
+            equivalencia_numerica.append(alfabeto[palabra[indice]])
+        else:
+            equivalencia_numerica.append(100)
+        indice +=1
+    return equivalencia_numerica
 
 #_______________________________Etapa 5_______________________________________
 def contador_puntaje(diccionario_puntaje,PUNTAJE_ACIERTO = 10,PUNTAJE_DESACIERTO = 3):
@@ -53,11 +69,28 @@ def generar_resumen_puntaje(diccionario):
     return diccionario_puntaje
     #CRUZ, ARIEL CARLOS LEONARDO​
 
-
+def validar_jugar_de_nuevo():
+    """
+    La funcion valida si el usuario quiere volver a jugar o no
+    return: 1 si quiere volver a jugar, 2 si no quiere volver a jugar
+    """
+    respuesta = input("Desea volver a jugar? \n[si/s]\n[no/n]\n")
+    if  orden_alfab_breve(respuesta) == orden_alfab_breve("si") or orden_alfab_breve(respuesta) == orden_alfab_breve("s"):
+        respuesta = 1
+    elif orden_alfab_breve(respuesta) == orden_alfab_breve("no") or orden_alfab_breve(respuesta) == orden_alfab_breve("n"):
+        respuesta = 2
+    else:
+        print(f"{rojo}Respuesta invalida{reset}\n")
+        print("Por favor ingrese si o no")
+        validar_jugar_de_nuevo()
+    return respuesta
+    #CRUZ, ARIEL CARLOS LEONARDO​
+    
 def jugar_de_nuevo(cantidad_letras,puntaje_inicial):
     diccionario = generar_resumen_partida(cantidad_letras)
     return jugar_pasapalabras(diccionario,cantidad_letras,puntaje_inicial)
     #CRUZ, ARIEL CARLOS LEONARDO​
+
 
 def jugar_pasapalabras(diccionario_juego,cantidad_letras,puntaje_inicial=0):
     """
@@ -72,8 +105,8 @@ def jugar_pasapalabras(diccionario_juego,cantidad_letras,puntaje_inicial=0):
     puntaje = contador_puntaje(diccionario_puntaje) + puntaje_inicial
     print(f"Su puntaje es {puntaje}")
 
+    volver_jugar = validar_jugar_de_nuevo()
 
-    volver_jugar = int(input("Desea volver a jugar? 1:si 2:no"))
     volver_jugar = jugar_de_nuevo(cantidad_letras,puntaje) if volver_jugar == 1 else print(f"\n\n\n{azul}Gracias por jugar.{reset}\nSu puntaje final es {puntaje}")
     return volver_jugar
     #CRUZ, ARIEL CARLOS LEONARDO​
