@@ -56,87 +56,9 @@ def transformador_lista_a_dicc(datos):
     #CRUZ, ARIEL CARLOS LEONARDO​
 
 
-def escribir_archivo(archivo, lista):
-    """
-    Parametros: archivo(objeto de open) y lista
-    La funcion recibe como parametro un archivo y una lista y escribe en el archivo
-    """
-    for palabra,definicion in lista:
-        archivo.write(f"{palabra},'{definicion}'\n")
-    #CRUZ, ARIEL CARLOS LEONARDO​
 
 #_________________________Rutas de archivos____________________________________
-definiciones_arc = os.path.join("recursos","definiciones.txt")
-palabras_arc = os.path.join("recursos","palabras.txt")
-diccionario_arc = os.path.join("recursos","diccionario.csv")
 
-def escribir_dicc_csv(longitud_minima_palabra):
-    
-    
-    """
-    Parametros: numero entero
-    La funcion recibe como parametro un numero entero y escribe en un archivo csv las palabras y sus definiciones
-    """
-    palabras = open(palabras_arc,"r",encoding='utf-8')
-    definiciones = open(definiciones_arc,"r",encoding='utf-8')
-    diccionario = open(diccionario_arc,"w",encoding='utf-8')
-    palabras_candidatas = []
-    linea_palabra = leer_archivo(palabras,"####")
-    linea_definicion = leer_archivo(definiciones,"####")
-    palabra = linea_palabra.rstrip('\n')
-    definicion = linea_definicion.rstrip("\n")
-    """
-    Se fucionan los archivos que contiene las palabra y las definiciones en un solo archivo. 
-    Se consideran que se termino de leer el archivo cuando se encuentra la cadena "####"
-    """
-
-    while palabra != "####" and definicion != "####":
-        #print(definicion,"\n")
-        if len(palabra) >= longitud_minima_palabra and palabra.isalpha(): 
-            palabras_candidatas.append([palabra,definicion])
-        linea_palabra = leer_archivo(palabras,"####")
-        linea_definicion = leer_archivo(definiciones,"####")
-        palabra = linea_palabra.rstrip('\n')
-        definicion = linea_definicion.rstrip('\n')
-    palabras.close()
-    definiciones.close()
-    #print(palabras_candidatas)
-    palabras_candidatas = sorted(palabras_candidatas, key=lambda x:orden_alfabetico(x[0]))
-    #print(diccionario)
-    diccionario.write("palabra,definicion\n")
-    escribir_archivo(diccionario,palabras_candidatas)
-    diccionario.close()
-    #CRUZ, ARIEL CARLOS LEONARDO​
-
-
-def leer_diccionario():
-    """
-    La funcion lee el archivo csv y devuelve una lista de listas con las palabras y sus definiciones
-    """
-    lista_palabras = []
-    with open(diccionario_arc,"r",encoding='utf-8') as diccionario:
-        linea = leer_archivo(diccionario,"####")
-        linea_dicc = linea.rstrip("\n").split(",")
-        while linea != "####":
-            lista_palabras.append(linea_dicc)
-            linea = leer_archivo(diccionario,"####")
-            linea_dicc = linea.rstrip("\n").split(",")
-    return lista_palabras
-    #CRUZ, ARIEL CARLOS LEONARDO​
-
- 
-
-def crear_dicc_palabras_candidatas(longitud_minima_palabra):
-    """
-    La funcion escribe un archivo csv con las palabras y sus definiciones y devuelve un diccionario con las palabras y sus definiciones
-    Parametros: numero entero
-    return: diccionario con clave: palabra, valor: definicion
-    """
-    escribir_dicc_csv(longitud_minima_palabra)
-    lista_palabras_def_candidatas = leer_diccionario()
-    dicc_palabras_def_candidatas = transformador_lista_a_dicc(lista_palabras_def_candidatas)
-    return dicc_palabras_def_candidatas
-    #CRUZ, ARIEL CARLOS LEONARDO​
 
 def generar_dicc_palabras_def_elegidas(diccionario_palabras_definiciones,cantidad_letras_rosco):
     """
@@ -152,19 +74,6 @@ def generar_dicc_palabras_def_elegidas(diccionario_palabras_definiciones,cantida
     for i in range(len(palabras_elegidas)):
         diccionario_palabras_def_elegidas[palabras_elegidas[i][INICIAL]] = lista_palabras_def_elegidas[i]
     return diccionario_palabras_def_elegidas
-    #CRUZ, ARIEL CARLOS LEONARDO​
-
-def generar_dicc_segun_configuracion():
-    """
-    La funcion genera un diccionario con las palabras y sus definiciones segun la configuracion del juego
-    return: diccionario con clave: Inicial de la palabra, valor: lista con [palabra , definicion]
-    """
-    diccionario_conf = leer_configuracion()
-    longitud_minima_palabra = int(diccionario_conf["LONGITUD_PALABRA_MINIMA"])
-    cantidad_letras_rosco = int(diccionario_conf["CANTIDAD_LETRAS_ROSCO"])
-    dicc_palabras_candidates = crear_dicc_palabras_candidatas(longitud_minima_palabra)
-    dicc_palabras_elegidas = generar_dicc_palabras_def_elegidas(dicc_palabras_candidates,cantidad_letras_rosco)
-    return dicc_palabras_elegidas
     #CRUZ, ARIEL CARLOS LEONARDO​
 
 print(doctest.testmod())

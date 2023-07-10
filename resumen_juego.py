@@ -55,3 +55,6 @@ def generar_resumen_partida(cantidad_letras):
     return diccionario_juego
     #CRUZ, ARIEL CARLOS LEONARDO​
 
+def menu():
+    print(__name__)
+menu()

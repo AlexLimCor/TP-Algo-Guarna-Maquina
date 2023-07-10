@@ -53,6 +53,9 @@ def generar_letras_aleatorias(cantidad_letras):
     """
     La funcion recibe como parametro un numero entero y devuelve una lista de letras aleatorias 
     con longitud igual al numero recibido
+    Parametros:
+            cantidad_letras: numero entero
+    return: lista de letras aleatorias
     """
     letras=['a','b','c','d','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z']
     #Elegimos 10 letras aleatorias
@@ -63,8 +66,11 @@ def generar_letras_aleatorias(cantidad_letras):
     #CRUZ, ARIEL CARLOS LEONARDO​
 def seleccionar_clave_aleatoria_por_letra(lista_palabras,letra):
     """
-    La funcion recibe como parametro un lista_palabras y una letra y retorna una clave(palabra) aleatoria 
-    que empieza con la letra recibida
+    Parametros:
+            lista_palabras: lista
+            letra: caracter
+    return: palabra string
+    La funcion recibe como parametro un lista_palabras y una letra y devuelve una palabra aleatoria que empieza con la letra
     """
     INICIAL = 0
     letra = orden_alfabetico(letra)
@@ -75,8 +81,12 @@ def seleccionar_clave_aleatoria_por_letra(lista_palabras,letra):
 
 def obtener_lista_palabras(lista_palabras,letras_participantes):
     """
-    la funcion recibe como parametro un lista_palabras y una lista de letras
-    y devuelve una lista de palabras aleatorias que empiezan con cada letra participante
+    la funcion recibe como parametro un lista_palabras y una lista de letras.
+    y devuelve una lista de palabras aleatorias que empiezan con cada letra participante.
+    Parametros:
+        lista_palabras
+        letras_participantes
+    return: lista_palabras_elegidas
     """
     lista_palabras_elegidas = []
     for letra in letras_participantes:
@@ -87,10 +97,11 @@ def obtener_lista_palabras(lista_palabras,letras_participantes):
 
 def seleccionar_palabras_aleatoria(lista_palabras,cantidad_letras):
     """
+    La funcion recibe como parametro un lista_palabras y un numero entero y devuelve una lista de palabras aleatorias
     Parametros:
-            lista_palabras:{"palabra":definicion,"palabra":definicion,...}
+            lista_palabras
             cantidad_letras:numero entero
-    return: una lista de listas [[letras_participantes,lista_palabras_elegidas]]
+    return: lista_palabras_elegidas
 
     La funcion recibe como parametro un lista_palabras y un numero entero y devuelve una lista de palabras
     aleatorias que empiezan con cada letra participante

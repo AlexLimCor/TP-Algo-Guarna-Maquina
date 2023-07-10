@@ -8,3 +8,4 @@ def jugar_pasapalabra():
     diccionario = generar_resumen_partida(CANTIDAD_LETRAS)
     jugar_pasapalabras(diccionario,CANTIDAD_LETRAS)
 jugar_pasapalabra()
+

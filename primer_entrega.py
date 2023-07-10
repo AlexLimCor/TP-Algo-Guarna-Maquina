@@ -1,4 +1,4 @@
-from datos import obtener_lista_definiciones
+from recursos.datos import obtener_lista_definiciones
 import random
 #_______________________Primer entrega_______________________
 """
